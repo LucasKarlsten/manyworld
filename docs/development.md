@@ -483,6 +483,18 @@ sanitized JSON/Markdown evidence belongs under
 bodies, reasoning, cookies, environment dumps, or database bytes into a public
 receipt.
 
+Runtime checkpoint entries include `phases_s`: preparation, legacy writer,
+and catalog recording, plus legacy retention when it runs. Recording includes
+retention; do not add both durations. The legacy writer includes SQLite backup,
+artifact finalization and manifest generation. Storage-policy writers bypass
+the legacy method and have no `write` sample. Total `duration_s` remains the
+resource-gate measurement, including Stop checkpoints; phase samples are only
+diagnostics. Measurement wraps one validation world and does not change its
+scientific configuration or checkpoint operations.
+
+The [October 11 backlog audit](qa/2026-10-11-manyworld-release-backlog.md)
+reconciles the live Atlassian inventory with the current release blockers.
+
 ## Schema and compatibility
 
 Run databases are scientific artifacts. Additive columns/tables are preferred.
