@@ -177,6 +177,14 @@ def test_one_tick_provider_free_validation_is_isolated_and_exact(tmp_path):
         for row in receipt["providers"]["pairs"]
     } == {("scripted", "scripted")}
     assert receipt["runtime"]["checkpoints"]
+    for checkpoint in receipt["runtime"]["checkpoints"]:
+        phases = checkpoint["phases_s"]
+        assert {"prepare", "write", "record", "retention"} <= phases.keys()
+        assert all(value >= 0 for value in phases.values())
+        # Retention is nested within catalog recording; do not sum both.
+        assert phases["retention"] <= phases["record"]
+        measured = sum(phases[key] for key in ("prepare", "write", "record"))
+        assert measured <= checkpoint["duration_s"] + 0.000003
     assert receipt["replay"]["proof"]["exact"] is True
     assert receipt["replay"]["proof"]["differences"] == []
     assert next(

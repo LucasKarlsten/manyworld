@@ -532,6 +532,45 @@ def _secret_values(config: Mapping[str, object]) -> tuple[str, ...]:
     return tuple(values)
 
 
+@contextmanager
+def _checkpoint_phase_timings(world):
+    """Measure one checkpoint without changing its operations or error handling.
+
+    Record includes retention, so those two durations must not be summed.
+    The legacy writer covers backup, finalization, and manifest generation.
+    Storage-policy writers bypass that method and have no `write` sample.
+    Wrappers belong to this world only and are restored even on failure.
+    """
+    phases: dict[str, float] = {}
+    originals = {}
+    for name, phase in (
+        ("_checkpoint_prepare", "prepare"),
+        ("_checkpoint_write", "write"),
+        ("_checkpoint_record", "record"),
+        ("_prune_checkpoints", "retention"),
+    ):
+        original = getattr(world, name)
+        # Preserve instance lookup as well as the callable (write is static).
+        originals[name] = (name in world.__dict__, world.__dict__.get(name))
+
+        def measured(*args, _original=original, _phase=phase, **kwargs):
+            started = time.perf_counter()
+            try:
+                return _original(*args, **kwargs)
+            finally:
+                phases[_phase] = round(time.perf_counter() - started, 6)
+
+        setattr(world, name, measured)
+    try:
+        yield phases
+    finally:
+        for name, (was_present, value) in originals.items():
+            if was_present:
+                setattr(world, name, value)
+            else:
+                delattr(world, name)
+
+
 def run_validation(
     profile: Path,
     ticks: int,
@@ -616,6 +655,7 @@ def run_validation(
             before: list[dict[str, object]],
             started: float,
             result: str | None,
+            phases: dict[str, float],
         ) -> None:
             checkpoint_path = Path(result).resolve() if result else None
             manifest = Path(f"{checkpoint_path}.manifest.json") \
@@ -624,6 +664,7 @@ def run_validation(
                 "tick": int(tick),
                 "reason": reason,
                 "duration_s": round(time.perf_counter() - started, 6),
+                "phases_s": dict(phases),
                 "source_before": before,
                 "source_after": _database_files(source_path),
                 "artifact": (
@@ -641,8 +682,9 @@ def run_validation(
         ) -> str | None:
             before = _database_files(source_path)
             started = time.perf_counter()
-            result = original_checkpoint(tick, reason=reason)
-            record_checkpoint(tick, reason, before, started, result)
+            with _checkpoint_phase_timings(source_world) as phases:
+                result = original_checkpoint(tick, reason=reason)
+            record_checkpoint(tick, reason, before, started, result, phases)
             return result
 
         async def measured_checkpoint_async(
@@ -650,8 +692,9 @@ def run_validation(
         ) -> str | None:
             before = _database_files(source_path)
             started = time.perf_counter()
-            result = await original_checkpoint_async(tick, reason=reason)
-            record_checkpoint(tick, reason, before, started, result)
+            with _checkpoint_phase_timings(source_world) as phases:
+                result = await original_checkpoint_async(tick, reason=reason)
+            record_checkpoint(tick, reason, before, started, result, phases)
             return result
 
         def record_tick(tick: int, summary: dict[str, object]) -> None:
