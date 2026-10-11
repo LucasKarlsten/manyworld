@@ -62,3 +62,9 @@ Jira workflow states were left unchanged because their full acceptance criteria 
 A diagnostic copy of recovery checkpoint tick 119 was resumed for one scripted tick and stopped at tick 120. Preparation took 0.000684 seconds, writer 4.255447 seconds, catalog recording 0.001337 seconds (including 0.000928 seconds retention). Writer profiling measured SQLite backup at 3.192 seconds and manifest generation at 1.036 seconds. Original checkpoint hash was unchanged. Paths and catalog references were rehomed only inside the disposable copy; this is a diagnostic, not acceptance or replay evidence.
 
 This did not reproduce the 9.585220-second outlier and does not establish its cause. The earlier closed-database copy-only trials (2.63–2.73 seconds) also omitted preparation and catalog/retention. Do not replace the failed receipt with these measurements or relax its limit. The harness now records per-checkpoint phase timings for subsequent trials; total checkpoint duration remains authoritative.
+
+The resumed diagnostic copy omitted unavailable older checkpoint files from its rehomed catalog. Its deletion workload therefore differed from the original failed run; the short measured retention time cannot rule out an original deletion stall.
+
+## Instrumented comparison follow-up
+
+The fresh [120-tick comparison](../../benchmarks/receipts/scale-270/ab-120/README.md) at `168a067` completed both arms and exact replay across 130 tables, preserving fixed regional counts and zero paid spend. All operational checks pass, including checkpoint p95 of 4.661407 seconds for baseline and 2.757068 seconds for recovery. The earlier failed attempts remain preserved. Recovery still fails purchase rejection: 7,399 of 12,224 attempts in the final window, 60.5285% against the unchanged 5% cap. The aggregate remains failed; purchase repair and a fresh passing recovery precede the formal and live gates. This evidence does not close Jira's broader release criteria.

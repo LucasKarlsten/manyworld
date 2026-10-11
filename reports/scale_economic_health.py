@@ -1401,6 +1401,11 @@ def evaluate_scale_ab(
         recovery_compare = deepcopy(recovery_config)
         baseline_policy = baseline_compare.pop("supply_recovery", None)
         recovery_policy = recovery_compare.pop("supply_recovery", None)
+        # Each arm owns separate artifact roots. Their locations are not policy;
+        # cadence, retention, resource limits and all other settings still match.
+        for field in ("checkpoint_dir", "report_dir"):
+            baseline_compare.pop(field, None)
+            recovery_compare.pop(field, None)
         configs_match = bool(
             expected_recovery_policy is not None
             and baseline_compare == recovery_compare
