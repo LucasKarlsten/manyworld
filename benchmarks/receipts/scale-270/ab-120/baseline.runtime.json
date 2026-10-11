@@ -1,0 +1,4626 @@
+{
+  "artifacts": {
+    "runtime_receipt": "baseline-output/baseline-120-12b077fde7.runtime.json"
+  },
+  "checks": {
+    "checkpoint_succeeded": true,
+    "communications_exact": true,
+    "database_growth_measured": true,
+    "exact_replay": true,
+    "foreign_keys_clean": true,
+    "ledger_reconciles": true,
+    "live_preflight": true,
+    "memory_measured": true,
+    "no_failure_events": true,
+    "no_sqlite_sidecars": true,
+    "population_exact": true,
+    "provider_model_exact": true,
+    "replay_no_live_dispatch": true,
+    "source_immutable_during_replay": true,
+    "spend_contract": true,
+    "sqlite_quick_check": true,
+    "target_tick_completed": true
+  },
+  "communications": {
+    "conversations": 3000,
+    "empty_messages": 0,
+    "invalid_message_memberships": 0,
+    "message_count_per_conversation": [
+      3
+    ],
+    "messages": 9000,
+    "unique_participants": 308
+  },
+  "configuration": {
+    "checkpoint_every": 7,
+    "checkpoint_keep_last": 4,
+    "conversation_pairs": 25,
+    "conversation_turns": 3,
+    "default_route": {
+      "model": "scripted",
+      "provider": "scripted"
+    },
+    "hard_cap_usd": 200.0,
+    "live": false,
+    "route_contract": null,
+    "ticks": 120
+  },
+  "effective_config": {
+    "acceptance": {
+      "min_ticks": 120,
+      "scale_economic_health": {
+        "max_buy_goods_rejection_rate": 0.05,
+        "max_checkpoint_p95_seconds": 5.0,
+        "max_database_growth_bytes_per_tick": 8388608,
+        "max_open_jobs": 20,
+        "max_peak_rss_mb": 2048,
+        "max_pending_applications": 20,
+        "max_pending_job_offers": 20,
+        "max_unemployment_rebound": 0.1,
+        "min_available_memory_gb": 8,
+        "required_ticks": 120,
+        "schema_version": 1,
+        "trailing_window_ticks": 60,
+        "warmup_ticks": 60
+      }
+    },
+    "banks": {
+      "count": 3,
+      "initial_reserve_ratio": 0.6,
+      "names": [
+        "Northstar Bank",
+        "Ironvale Industrial Bank",
+        "Suncoast Exchange Bank"
+      ],
+      "reserve_requirement_bps": 1000,
+      "risk_policy": {
+        "default_rate_bps": 900,
+        "max_rate_bps": 3000,
+        "min_rate_bps": 300
+      }
+    },
+    "behavior": {
+      "act_every": 3,
+      "event_wake_importance": 2.0,
+      "run_threshold": 0.35
+    },
+    "beliefs": {
+      "audit_history": true,
+      "enforce_reserved_ranges": true,
+      "model_grounding_from_tick": 0,
+      "model_max_reserved_step": 0.05,
+      "prioritize_reserved_belief_context": true
+    },
+    "budget": {
+      "cap_usd": 200.0,
+      "conversation_pairs": 25,
+      "oracle_plan_in_reserve": true,
+      "oracle_reserve_usd": 10.0,
+      "report_reserve_usd": 0.25,
+      "thresholds": [
+        0.6,
+        0.8,
+        0.95
+      ]
+    },
+    "central_bank": {
+      "max_rate_bps": 2000,
+      "max_step_bps": 50,
+      "min_rate_bps": 0,
+      "natural_unemployment": 0.05,
+      "neutral_rate_bps": 500,
+      "target_inflation": 0.02
+    },
+    "checkpoint_dir": "baseline-data/source/checkpoints",
+    "checkpoint_every": 7,
+    "checkpoint_keep_last": 4,
+    "conversations": {
+      "coverage_first": true,
+      "recent_utterance_limit": 360,
+      "similarity_jaccard_threshold": 0.65,
+      "similarity_shingle_threshold": 0.65,
+      "turns": 3
+    },
+    "engine_semantics_version": 7,
+    "exchange": {
+      "circuit_breaker_drop": 0.2
+    },
+    "firms": {
+      "count": 12,
+      "listed": 3,
+      "pay_interval_ticks": 30,
+      "target_headcount": 3
+    },
+    "government": {
+      "benefit_interval_ticks": 30,
+      "benefit_step_cents": 40000,
+      "election_interval_ticks": 180,
+      "max_benefit_cents": 400000,
+      "max_tax_bps": 3000,
+      "min_benefit_cents": 0,
+      "min_tax_bps": 500,
+      "tax_rate_bps": 1500,
+      "tax_step_bps": 300,
+      "unemployment_benefit_cents": 120000
+    },
+    "health": {
+      "coverage_bps": 8000,
+      "hospital": true,
+      "hospital_capital_cents": 3000000,
+      "insurer": true,
+      "insurer_capital_cents": 5000000,
+      "premium_cents": 3000,
+      "premium_interval_ticks": 30
+    },
+    "information": {
+      "citizen_bank_visibility": "public_status",
+      "daily_news_required": true
+    },
+    "information_economy": {
+      "base_reach": 0.15,
+      "diffusion_window_ticks": 30,
+      "enabled": true
+    },
+    "legal": {
+      "enabled": true,
+      "max_damages_cents": 10000000000,
+      "response_ticks": 14,
+      "ruleset": "northstar-us-inspired-1.0"
+    },
+    "lifecycle": {
+      "housing_cost_cents": 75000,
+      "medical_cost_cents": 5000,
+      "population_mode": "stable",
+      "retirement_age": 65
+    },
+    "living_world": {
+      "career_migration_enabled": false,
+      "core_agents": 100,
+      "enabled": true,
+      "fx_market_maker_inventory": 100000000,
+      "promotion_interval_ticks": 30,
+      "regions": [
+        {
+          "currency": "NSD",
+          "key": "northstar",
+          "legal_ruleset": "northstar-us-inspired-1.0",
+          "name": "Northstar Federation",
+          "population": 182,
+          "rate_ppm": 1000000,
+          "specialization": [
+            "technology",
+            "services",
+            "finance"
+          ],
+          "x": 0.25,
+          "y": 0.35
+        },
+        {
+          "currency": "IVC",
+          "key": "ironvale",
+          "legal_ruleset": "external-lite-1.0",
+          "name": "Ironvale Union",
+          "population": 70,
+          "rate_ppm": 750000,
+          "specialization": [
+            "manufacturing",
+            "energy"
+          ],
+          "x": 0.72,
+          "y": 0.28
+        },
+        {
+          "currency": "SCD",
+          "key": "suncoast",
+          "legal_ruleset": "external-lite-1.0",
+          "name": "Suncoast Republic",
+          "population": 56,
+          "rate_ppm": 1200000,
+          "specialization": [
+            "agriculture",
+            "logistics",
+            "tourism"
+          ],
+          "x": 0.55,
+          "y": 0.78
+        }
+      ],
+      "require_trade_contract": true
+    },
+    "llm": {
+      "concurrency": 8,
+      "decision_max_tokens": 900,
+      "default_route": {
+        "model": "scripted",
+        "provider": "scripted"
+      },
+      "local_currency_action_surfaces": true,
+      "routes": {}
+    },
+    "oracle": {
+      "default_horizon_ticks": 30,
+      "max_horizon_ticks": 365,
+      "strict_resolution_rules": true
+    },
+    "outlets": [
+      {
+        "id": 1,
+        "name": "The Ledger",
+        "slant": "pro-market-sensational"
+      },
+      {
+        "id": 2,
+        "name": "Commons Dispatch",
+        "slant": "cautious-pro-labor"
+      }
+    ],
+    "personal_names": {
+      "activation_tick": 0,
+      "version": 1
+    },
+    "political_model": {
+      "actor_bound_authorization": true,
+      "enabled": true,
+      "executive_election_interval_ticks": 360,
+      "house_election_interval_ticks": 180,
+      "house_seats": 12,
+      "lobbying_disclosure_delay_ticks": 5,
+      "senate_seats": 6
+    },
+    "population": {
+      "baseline_citizens_core": false,
+      "size": 270
+    },
+    "report_dir": "baseline-output/reports",
+    "reports": {
+      "narrative_max_tokens": 600,
+      "narrative_timeout_s": 45
+    },
+    "resource_guard": {
+      "consecutive_breaches": 3,
+      "enabled": true,
+      "max_cpu_percent": 95,
+      "max_memory_percent": 85,
+      "max_swap_percent": 80,
+      "min_available_memory_gb": 8,
+      "sample_interval_s": 2
+    },
+    "seed": 42,
+    "shocks": [],
+    "speed_delay_s": 0.0,
+    "supply_recovery": {
+      "enabled": false
+    },
+    "vc": {
+      "fund_cents": 10000000
+    }
+  },
+  "effective_config_sha256": "7e0dcb71a98619c97093d70e75999066541bcb5aa8b41c4c6f17388dc85ceed4",
+  "generated_at": "2026-10-11T12:03:33.869933+00:00",
+  "governor": {
+    "cadence_multiplier": 1,
+    "cap_usd": 200.0,
+    "citizens_enabled": true,
+    "conversation_pairs": 25,
+    "fraction": 0.0,
+    "level": 0,
+    "oracle_reserve_usd": 10.0,
+    "oracle_spend_usd": 0.0,
+    "report_reserve_usd": 0.25,
+    "report_spend_usd": 0.0,
+    "total_spend_usd": 0.0,
+    "world_spend_usd": 0.0
+  },
+  "integrity": {
+    "failure_events": {},
+    "foreign_key_violations": [],
+    "ledger_diagnostic": {
+      "account_mismatches": [],
+      "conserved": true,
+      "currency_sums": {
+        "IVC": 0,
+        "NSD": 0,
+        "SCD": 0,
+        "USD": 0
+      },
+      "grand_sum_cents": 0
+    },
+    "ledger_ok": true,
+    "quick_check": [
+      "ok"
+    ],
+    "sqlite_sidecars": []
+  },
+  "label": "baseline-120",
+  "passed": true,
+  "population": {
+    "agents": 308,
+    "alive": 308,
+    "citizen_kind": 272,
+    "core": 100,
+    "periphery": 208,
+    "regions": {
+      "ironvale": 69,
+      "northstar": 184,
+      "suncoast": 55
+    },
+    "staff_kind": 36
+  },
+  "preflight": {
+    "live_checked": false,
+    "live_ready": true,
+    "mode": "offline",
+    "ready": true,
+    "route_contract": {
+      "enforced": false
+    },
+    "routed_providers": [
+      "scripted"
+    ]
+  },
+  "profile_config_sha256": "db243cd2a184bec5c79d10883aad84e6e6b176ce4cb589c867360f23cf8f8d76",
+  "profile_path": "runs/acceptance/scale-270-baseline-120.yaml",
+  "profile_sha256": "79b52a27f5eb7fbf3a4e535bfd13e76289d8eeacc9415488b85cab97086e658e",
+  "providers": {
+    "calls": 15229,
+    "cost_usd": 0.0,
+    "pairs": [
+      {
+        "cached_calls": 0,
+        "calls": 15229,
+        "cost_usd": 0.0,
+        "in_tokens": 22399265,
+        "model": "scripted",
+        "out_tokens": 795297,
+        "provider": "scripted"
+      }
+    ],
+    "purposes": {
+      "central_banker": 17,
+      "conversation": 3064,
+      "credit_officer": 360,
+      "decision": 8465,
+      "founder": 903,
+      "lawyer": 120,
+      "memory": 1700,
+      "newsroom": 240,
+      "reporter": 240,
+      "vc_partner": 120
+    }
+  },
+  "replay": {
+    "artifact_manifest": [
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t105.db",
+        "bytes": 387674112,
+        "kind": "checkpoint_database",
+        "present": true,
+        "sha256": "0e843aaf95cbe17fb6511290659542019f32383ac96c668647c0e3f43e5ffb0f"
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t105.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t105.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t105.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t105.db.manifest.json",
+        "bytes": 2214,
+        "kind": "checkpoint_manifest",
+        "present": true,
+        "sha256": "d3cdc3655a26ea3d7a016cd0e4e3bdac1fc681143bb91af64e713e927bda40e8"
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t112.db",
+        "bytes": 414404608,
+        "kind": "checkpoint_database",
+        "present": true,
+        "sha256": "6e0bf27dcba03a2861124e06522cccec06e221a3bb1376dec804eb4db04a355d"
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t112.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t112.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t112.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t112.db.manifest.json",
+        "bytes": 2214,
+        "kind": "checkpoint_manifest",
+        "present": true,
+        "sha256": "dcf3094f6aec6193693bdcc85c0d12857c90d233b3fbaf3c9482e213fac760d0"
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t119.db",
+        "bytes": 441167872,
+        "kind": "checkpoint_database",
+        "present": true,
+        "sha256": "394cbedd4ecbeddca1610521746923eb9065d12c254210faa9862fa13f7f3be8"
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t119.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t119.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t119.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t119.db.manifest.json",
+        "bytes": 2214,
+        "kind": "checkpoint_manifest",
+        "present": true,
+        "sha256": "f6552cb020502411e258cb226de38fb9aef990559d7127efaaadda443d038aae"
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t120.db",
+        "bytes": 445911040,
+        "kind": "checkpoint_database",
+        "present": true,
+        "sha256": "ff1d777c78e1e40b157d4117c56d8f53fe17984f103713f0e8112ab4f55aeebf"
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t120.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t120.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t120.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/checkpoints/replay-12b077fde7-cecbb2c120_t120.db.manifest.json",
+        "bytes": 2213,
+        "kind": "checkpoint_manifest",
+        "present": true,
+        "sha256": "d78ed29099ae1261a6fa0604732c0221ba7d0394bd3838ae82fc124a94747fe0"
+      },
+      {
+        "artifact": "baseline-data/replay/replay-12b077fde7-cecbb2c120.db",
+        "bytes": 445911040,
+        "kind": "replay_database",
+        "present": true,
+        "sha256": "f80c95520490101f7834ca70e58fc6742d422b8aa5d72da1fa423a6e11d679a4"
+      },
+      {
+        "artifact": "baseline-data/replay/replay-12b077fde7-cecbb2c120.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/replay-12b077fde7-cecbb2c120.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/replay/replay-12b077fde7-cecbb2c120.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      }
+    ],
+    "database": "baseline-data/replay/replay-12b077fde7-cecbb2c120.db",
+    "execution": {
+      "all_nonoperational_calls_consumed_once": true,
+      "all_oracle_calls_consumed_once": true,
+      "compatibility_fallback_matches": 0,
+      "consumed_logical_calls_sha256": "76fc044af4f97c92da91c9a40eff22c859651589768ca96eaca849171fbe32e1",
+      "consumed_purpose_counts": {
+        "central_banker": 17,
+        "conversation": 3064,
+        "credit_officer": 360,
+        "decision": 8465,
+        "founder": 903,
+        "lawyer": 120,
+        "memory": 1700,
+        "newsroom": 240,
+        "reporter": 240,
+        "vc_partner": 120
+      },
+      "consumed_source_calls": 15229,
+      "duplicate_source_consumptions": 0,
+      "exact_key_matches": 15229,
+      "live_dispatch_count": 0,
+      "missing_source_calls": 0,
+      "oracle_consumed_calls": 0,
+      "oracle_consumed_calls_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "oracle_source_calls": 0,
+      "oracle_source_calls_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "schema_version": 1,
+      "source_logical_calls_sha256": "76fc044af4f97c92da91c9a40eff22c859651589768ca96eaca849171fbe32e1",
+      "source_nonoperational_calls": 15229,
+      "source_purpose_counts": {
+        "central_banker": 17,
+        "conversation": 3064,
+        "credit_officer": 360,
+        "decision": 8465,
+        "founder": 903,
+        "lawyer": 120,
+        "memory": 1700,
+        "newsroom": 240,
+        "reporter": 240,
+        "vc_partner": 120
+      },
+      "unexpected_source_calls": 0
+    },
+    "proof": {
+      "differences": [],
+      "exact": true,
+      "replay_hash": "28846f48b7e253c693ff8b848601757ed381a5405a542a3e28f07af2654ae105",
+      "replay_run_id": "replay-12b077fde7-cecbb2c120",
+      "replay_tick": 120,
+      "source_hash": "28846f48b7e253c693ff8b848601757ed381a5405a542a3e28f07af2654ae105",
+      "source_run_id": "12b077fde7",
+      "source_tick": 120,
+      "tables": [
+        {
+          "exact": true,
+          "replay_hash": "26af58fab03739e7b3320bf0e36babf8943f9504e4192c06331c979a354d23ec",
+          "replay_rows": 610,
+          "source_hash": "26af58fab03739e7b3320bf0e36babf8943f9504e4192c06331c979a354d23ec",
+          "source_rows": 610,
+          "table": "account_ledger_totals"
+        },
+        {
+          "exact": true,
+          "replay_hash": "c51ea86c5b39a6cadc154665a95e32dde73af2f926b14872fd51c1f1d532c19d",
+          "replay_rows": 633,
+          "source_hash": "c51ea86c5b39a6cadc154665a95e32dde73af2f926b14872fd51c1f1d532c19d",
+          "source_rows": 633,
+          "table": "accounts"
+        },
+        {
+          "exact": true,
+          "replay_hash": "8df6c17f8cd1de7044036a7210cc7417bbb10323f9294e5d3951699218e9e62a",
+          "replay_rows": 30083,
+          "source_hash": "8df6c17f8cd1de7044036a7210cc7417bbb10323f9294e5d3951699218e9e62a",
+          "source_rows": 30083,
+          "table": "action_proposals"
+        },
+        {
+          "exact": true,
+          "replay_hash": "f5f10b855afbdbfd2e3fb45bcdab280f0551defbc3da1f99da243185cad4d4eb",
+          "replay_rows": 3,
+          "source_hash": "f5f10b855afbdbfd2e3fb45bcdab280f0551defbc3da1f99da243185cad4d4eb",
+          "source_rows": 3,
+          "table": "agencies"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "agency_staff"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "agent_decisions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "agent_skill_history"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "agent_skills"
+        },
+        {
+          "exact": true,
+          "replay_hash": "feff3ce344b0b3d25ae9fb7bee3cb408211541a9a9449399d50ee5ba7bd6c02b",
+          "replay_rows": 214,
+          "source_hash": "feff3ce344b0b3d25ae9fb7bee3cb408211541a9a9449399d50ee5ba7bd6c02b",
+          "source_rows": 214,
+          "table": "agent_tier_history"
+        },
+        {
+          "exact": true,
+          "replay_hash": "bd49d908861552d74ac45ee2cde523b69b6f22602d818ec93586d21e33959629",
+          "replay_rows": 308,
+          "source_hash": "bd49d908861552d74ac45ee2cde523b69b6f22602d818ec93586d21e33959629",
+          "source_rows": 308,
+          "table": "agents"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "applications"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "attention_context_items"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "attention_contexts"
+        },
+        {
+          "exact": true,
+          "replay_hash": "3e7140248793ed0d714bfc4ab9af512b8ab6e3e655b837bc6f3bab92c621eb67",
+          "replay_rows": 3,
+          "source_hash": "3e7140248793ed0d714bfc4ab9af512b8ab6e3e655b837bc6f3bab92c621eb67",
+          "source_rows": 3,
+          "table": "banks"
+        },
+        {
+          "exact": true,
+          "replay_hash": "c9b1c6ead2bcee6c11c4ddf7327ec79e9f8c15b8cae906b6eef77292ffd85cd4",
+          "replay_rows": 58796,
+          "source_hash": "c9b1c6ead2bcee6c11c4ddf7327ec79e9f8c15b8cae906b6eef77292ffd85cd4",
+          "source_rows": 58796,
+          "table": "beliefs"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "bill_actions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "bill_versions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "bills"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "calibration_targets"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "causal_links"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "child_needs"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "civic_authorizations"
+        },
+        {
+          "exact": true,
+          "replay_hash": "5fcf3df3028cac64eb4f0140d8e57d153f4895cca144e5a7f6a5b42c32a87754",
+          "replay_rows": 240,
+          "source_hash": "5fcf3df3028cac64eb4f0140d8e57d153f4895cca144e5a7f6a5b42c32a87754",
+          "source_rows": 240,
+          "table": "claims"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "comm_audiences"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "comm_deliveries"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "comm_disclosure_authorities"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "comm_disclosures"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "comm_messages"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "comm_threads"
+        },
+        {
+          "exact": true,
+          "replay_hash": "313497c1121b0a1e2c63c01b27618d92998b1344262f9c1af51b72d47a3f8ee0",
+          "replay_rows": 20,
+          "source_hash": "313497c1121b0a1e2c63c01b27618d92998b1344262f9c1af51b72d47a3f8ee0",
+          "source_rows": 20,
+          "table": "committee_members"
+        },
+        {
+          "exact": true,
+          "replay_hash": "413e5e7c60cc14afd10636800665c6b31e0a0a951f8d48d0ada5ce229c781fd6",
+          "replay_rows": 8,
+          "source_hash": "413e5e7c60cc14afd10636800665c6b31e0a0a951f8d48d0ada5ce229c781fd6",
+          "source_rows": 8,
+          "table": "committees"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_appeals"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_communities"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_entries"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_feed_impressions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "8a02fec885fbad0af359a37379eb9c5c8b7033e1666c2840cc70ab52ee089869",
+          "replay_rows": 2,
+          "source_hash": "8a02fec885fbad0af359a37379eb9c5c8b7033e1666c2840cc70ab52ee089869",
+          "source_rows": 2,
+          "table": "commons_feed_policies"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_follows"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_memberships"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_moderation_actions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_profiles"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_reactions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "compute_subscriptions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "construction_action_receipts"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "construction_contributions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "construction_permit_cases"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "construction_projects"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "contract_acceptances"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "contract_clauses"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "contract_parties"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "contracts"
+        },
+        {
+          "exact": true,
+          "replay_hash": "6b2c36e446d4867af0b2c68ac171254e7382ca2a4ce78f86d4786a84d5a4a09c",
+          "replay_rows": 3000,
+          "source_hash": "6b2c36e446d4867af0b2c68ac171254e7382ca2a4ce78f86d4786a84d5a4a09c",
+          "source_rows": 3000,
+          "table": "conversations"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "counterfactual_experiments"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "counterfactual_results"
+        },
+        {
+          "exact": true,
+          "replay_hash": "4cbe3e03d7b76489ca359b558bd2631b27f00662047ed4dd3010513ae7e99dfb",
+          "replay_rows": 3,
+          "source_hash": "4cbe3e03d7b76489ca359b558bd2631b27f00662047ed4dd3010513ae7e99dfb",
+          "source_rows": 3,
+          "table": "currencies"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "dataset_manifests"
+        },
+        {
+          "exact": true,
+          "replay_hash": "7b6a1d0ccb183f5dabc75b724d3df32d99c92399a659065fd3c7a8727b1902f6",
+          "replay_rows": 2,
+          "source_hash": "7b6a1d0ccb183f5dabc75b724d3df32d99c92399a659065fd3c7a8727b1902f6",
+          "source_rows": 2,
+          "table": "due_diligence_checks"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "effective_presence"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "elections"
+        },
+        {
+          "exact": true,
+          "replay_hash": "038c61cddaf755d478d946fa9ee19ee2337a8cf055e2a1abb701992945bc01bc",
+          "replay_rows": 39,
+          "source_hash": "038c61cddaf755d478d946fa9ee19ee2337a8cf055e2a1abb701992945bc01bc",
+          "source_rows": 39,
+          "table": "employments"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e17c3b40bec36eb33043c4fd8b8f59cce75da0d3681ef73769c0d4f53ef3c437",
+          "replay_rows": 161320,
+          "source_hash": "e17c3b40bec36eb33043c4fd8b8f59cce75da0d3681ef73769c0d4f53ef3c437",
+          "source_rows": 161320,
+          "table": "events"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "external_action_submissions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "external_actor_requests"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "external_agent_connections"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "external_turn_attendance"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "firm_disclosures"
+        },
+        {
+          "exact": true,
+          "replay_hash": "3be38df8593fb96d21d1a0e650af2eadbd3449a9463f53bd3a93763d089d5c66",
+          "replay_rows": 14,
+          "source_hash": "3be38df8593fb96d21d1a0e650af2eadbd3449a9463f53bd3a93763d089d5c66",
+          "source_rows": 14,
+          "table": "firms"
+        },
+        {
+          "exact": true,
+          "replay_hash": "5ed599a90be6386f46825baa1ed8d439eab450f69506007c7efb5c3100d38b48",
+          "replay_rows": 2,
+          "source_hash": "5ed599a90be6386f46825baa1ed8d439eab450f69506007c7efb5c3100d38b48",
+          "source_rows": 2,
+          "table": "funding_rounds"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "fx_orders"
+        },
+        {
+          "exact": true,
+          "replay_hash": "7519d9b0dcbcf130afce26bdc69d9bc0df9cdc084f67bc9811b6a6b6bef9c735",
+          "replay_rows": 3,
+          "source_hash": "7519d9b0dcbcf130afce26bdc69d9bc0df9cdc084f67bc9811b6a6b6bef9c735",
+          "source_rows": 3,
+          "table": "fx_reserves"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "fx_trades"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "guardianships"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "household_memberships"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "households"
+        },
+        {
+          "exact": true,
+          "replay_hash": "7427c0a9a193321a2acabb7cc5f3f7885798f829bf5744c9342027dc7334842d",
+          "replay_rows": 57308,
+          "source_hash": "7427c0a9a193321a2acabb7cc5f3f7885798f829bf5744c9342027dc7334842d",
+          "source_rows": 57308,
+          "table": "information_exposures"
+        },
+        {
+          "exact": true,
+          "replay_hash": "c9e7a51482962f865f623c98cde50c1ba5151407959b2f7d47ae49875e950286",
+          "replay_rows": 240,
+          "source_hash": "c9e7a51482962f865f623c98cde50c1ba5151407959b2f7d47ae49875e950286",
+          "source_rows": 240,
+          "table": "information_items"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "institution_tasks"
+        },
+        {
+          "exact": true,
+          "replay_hash": "621658725a2092622b5cee239f2406cb5b8e4ed97517486f4caee6ed79e3718a",
+          "replay_rows": 113,
+          "source_hash": "621658725a2092622b5cee239f2406cb5b8e4ed97517486f4caee6ed79e3718a",
+          "source_rows": 113,
+          "table": "insurance_policies"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "ip_assets"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "ip_licenses"
+        },
+        {
+          "exact": true,
+          "replay_hash": "4ba8a157191058bc5a20d308cd5b03f94fd1e2d9e9e1cf7d42a51e1432530434",
+          "replay_rows": 345,
+          "source_hash": "4ba8a157191058bc5a20d308cd5b03f94fd1e2d9e9e1cf7d42a51e1432530434",
+          "source_rows": 345,
+          "table": "ipo_bids"
+        },
+        {
+          "exact": true,
+          "replay_hash": "f12f96856e3abeae31b0ac3e6978e85689f61ebb75dde5f8b8fbe6cc307d8749",
+          "replay_rows": 11,
+          "source_hash": "f12f96856e3abeae31b0ac3e6978e85689f61ebb75dde5f8b8fbe6cc307d8749",
+          "source_rows": 11,
+          "table": "ipo_offerings"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "job_offers"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "jobs"
+        },
+        {
+          "exact": true,
+          "replay_hash": "a2c41ca53b65a9840d75409cc4138e23673239b274f1d333fff21a04a7e1f68c",
+          "replay_rows": 32745,
+          "source_hash": "a2c41ca53b65a9840d75409cc4138e23673239b274f1d333fff21a04a7e1f68c",
+          "source_rows": 32745,
+          "table": "ledger_entries"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "legal_decisions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "a0610e3d4363cf5fbe93e45e430f040b878458c87643edd55d01b02ce6e29ae3",
+          "replay_rows": 13,
+          "source_hash": "a0610e3d4363cf5fbe93e45e430f040b878458c87643edd55d01b02ce6e29ae3",
+          "source_rows": 13,
+          "table": "legal_filings"
+        },
+        {
+          "exact": true,
+          "replay_hash": "9c0c219dfb9f48d745d2841def3f0d44bdc309f164bfc840ee8c9c7f819997de",
+          "replay_rows": 15,
+          "source_hash": "9c0c219dfb9f48d745d2841def3f0d44bdc309f164bfc840ee8c9c7f819997de",
+          "source_rows": 15,
+          "table": "legal_matters"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "legal_notices"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "legal_restrictions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "9a981fe98fe4aa49f8399350ef52aecffac978d95c3f86e50e9889038b8c9c63",
+          "replay_rows": 1,
+          "source_hash": "9a981fe98fe4aa49f8399350ef52aecffac978d95c3f86e50e9889038b8c9c63",
+          "source_rows": 1,
+          "table": "legal_rulesets"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "legislative_votes"
+        },
+        {
+          "exact": true,
+          "replay_hash": "1315f7410a49e5da67ec77ddc3fbf75b191d616fce07545b5dbd6a5598df7f4e",
+          "replay_rows": 18,
+          "source_hash": "1315f7410a49e5da67ec77ddc3fbf75b191d616fce07545b5dbd6a5598df7f4e",
+          "source_rows": 18,
+          "table": "legislators"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "liquidity_support_requests"
+        },
+        {
+          "exact": true,
+          "replay_hash": "76fc044af4f97c92da91c9a40eff22c859651589768ca96eaca849171fbe32e1",
+          "replay_rows": 15229,
+          "source_hash": "76fc044af4f97c92da91c9a40eff22c859651589768ca96eaca849171fbe32e1",
+          "source_rows": 15229,
+          "table": "llm_calls"
+        },
+        {
+          "exact": true,
+          "replay_hash": "b29ac7efefe4ec22dfdf744bf23d344c62dc661466c98a44220b94b9753be0bd",
+          "replay_rows": 47,
+          "source_hash": "b29ac7efefe4ec22dfdf744bf23d344c62dc661466c98a44220b94b9753be0bd",
+          "source_rows": 47,
+          "table": "loan_applications"
+        },
+        {
+          "exact": true,
+          "replay_hash": "5c4a5ecf7e00049f28de2925b467f5270da0451a3680a9ffc003c13ee60a2cfe",
+          "replay_rows": 4,
+          "source_hash": "5c4a5ecf7e00049f28de2925b467f5270da0451a3680a9ffc003c13ee60a2cfe",
+          "source_rows": 4,
+          "table": "loans"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "lobbying_activities"
+        },
+        {
+          "exact": true,
+          "replay_hash": "7667c62a8867f90f51bd581302be2b316b209969250303bf12d373e0cb595525",
+          "replay_rows": 134421,
+          "source_hash": "7667c62a8867f90f51bd581302be2b316b209969250303bf12d373e0cb595525",
+          "source_rows": 134421,
+          "table": "memories"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "merger_reviews"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "mergers"
+        },
+        {
+          "exact": true,
+          "replay_hash": "786e5b630c2912c080234b16d25ce7c644a8c0edd69a5e78c0e7a694f97c394f",
+          "replay_rows": 9000,
+          "source_hash": "786e5b630c2912c080234b16d25ce7c644a8c0edd69a5e78c0e7a694f97c394f",
+          "source_rows": 9000,
+          "table": "messages"
+        },
+        {
+          "exact": true,
+          "replay_hash": "2b82b0fa7f5f3acb1498373d30fb902ac4fe74a6bd3f10de754d757823e6876e",
+          "replay_rows": 3956,
+          "source_hash": "2b82b0fa7f5f3acb1498373d30fb902ac4fe74a6bd3f10de754d757823e6876e",
+          "source_rows": 3956,
+          "table": "metrics"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "migrations"
+        },
+        {
+          "exact": true,
+          "replay_hash": "b79747802eb28462eccee42bac8e93d7cbd658c4333a8008611d38e5537d3001",
+          "replay_rows": 240,
+          "source_hash": "b79747802eb28462eccee42bac8e93d7cbd658c4333a8008611d38e5537d3001",
+          "source_rows": 240,
+          "table": "news_articles"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "obligations"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "occupancy_leases"
+        },
+        {
+          "exact": true,
+          "replay_hash": "93c8da9b1fa22df3e3a528a871ca19d8262650672c1ef67fadda1f995e5b9a86",
+          "replay_rows": 2535,
+          "source_hash": "93c8da9b1fa22df3e3a528a871ca19d8262650672c1ef67fadda1f995e5b9a86",
+          "source_rows": 2535,
+          "table": "orders"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "parent_child_relations"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "person_lifecycle"
+        },
+        {
+          "exact": true,
+          "replay_hash": "007ddefcf075b7bf0eb0022360cf95a2308224c3900cc70b42d28fcd6ed5e297",
+          "replay_rows": 10,
+          "source_hash": "007ddefcf075b7bf0eb0022360cf95a2308224c3900cc70b42d28fcd6ed5e297",
+          "source_rows": 10,
+          "table": "pitches"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "places"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "policy_rules"
+        },
+        {
+          "exact": true,
+          "replay_hash": "cb260eb53b4142360816c147ffe68fbc4521e735b0249371ae9e5ca0c9397f51",
+          "replay_rows": 2,
+          "source_hash": "cb260eb53b4142360816c147ffe68fbc4521e735b0249371ae9e5ca0c9397f51",
+          "source_rows": 2,
+          "table": "political_parties"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "population_census"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "predictions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "projection_commits"
+        },
+        {
+          "exact": true,
+          "replay_hash": "27d703981ab7da84fd8c20ad09a4900d67f7df88a7705075d1bd7f024c1781c8",
+          "replay_rows": 3,
+          "source_hash": "27d703981ab7da84fd8c20ad09a4900d67f7df88a7705075d1bd7f024c1781c8",
+          "source_rows": 3,
+          "table": "regions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "scenario_packs"
+        },
+        {
+          "exact": true,
+          "replay_hash": "5f6df8d6f4469e91783f885c0c2fe15f68df66d54980785f261c0e6de8fbc66b",
+          "replay_rows": 11,
+          "source_hash": "5f6df8d6f4469e91783f885c0c2fe15f68df66d54980785f261c0e6de8fbc66b",
+          "source_rows": 11,
+          "table": "schema_migrations"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "service_appointments"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "service_cases"
+        },
+        {
+          "exact": true,
+          "replay_hash": "820c4c2cb8099e46f3cc410a0a7d0fb4a42125de505874f4f9cdcbd3cb51790b",
+          "replay_rows": 363,
+          "source_hash": "820c4c2cb8099e46f3cc410a0a7d0fb4a42125de505874f4f9cdcbd3cb51790b",
+          "source_rows": 363,
+          "table": "share_movements"
+        },
+        {
+          "exact": true,
+          "replay_hash": "41351e5e7bf21b16781e8abaaec03d58118ae742c3eb9473b89663a0f2cd8643",
+          "replay_rows": 149,
+          "source_hash": "41351e5e7bf21b16781e8abaaec03d58118ae742c3eb9473b89663a0f2cd8643",
+          "source_rows": 149,
+          "table": "shares"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "shocks"
+        },
+        {
+          "exact": true,
+          "replay_hash": "0120be30642937aa6c523a02cbf3d0491884a40f77c6f6af6b41e7e0536467f9",
+          "replay_rows": 1240,
+          "source_hash": "0120be30642937aa6c523a02cbf3d0491884a40f77c6f6af6b41e7e0536467f9",
+          "source_rows": 1240,
+          "table": "social_ties"
+        },
+        {
+          "exact": true,
+          "replay_hash": "c8fb354c8332147b6036a82b46ac8afcc0be43579967af20d77005b5cae62dae",
+          "replay_rows": 2,
+          "source_hash": "c8fb354c8332147b6036a82b46ac8afcc0be43579967af20d77005b5cae62dae",
+          "source_rows": 2,
+          "table": "term_sheets"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "trade_shipments"
+        },
+        {
+          "exact": true,
+          "replay_hash": "1ba34c7e1ebd1c54d5ebc14867b05179f54aeb5e46b8580d29b9593bbe3c65ef",
+          "replay_rows": 308,
+          "source_hash": "1ba34c7e1ebd1c54d5ebc14867b05179f54aeb5e46b8580d29b9593bbe3c65ef",
+          "source_rows": 308,
+          "table": "trader_profiles"
+        },
+        {
+          "exact": true,
+          "replay_hash": "878121986236904d8b6fcf5d93a0da6ea5aa8dcc11f772aee2c20505794d9d05",
+          "replay_rows": 223,
+          "source_hash": "878121986236904d8b6fcf5d93a0da6ea5aa8dcc11f772aee2c20505794d9d05",
+          "source_rows": 223,
+          "table": "trades"
+        },
+        {
+          "exact": true,
+          "replay_hash": "d24fb5028ab20710fef335d30a514c1ca09ce963269c2bfeb2c15e846f657066",
+          "replay_rows": 16317,
+          "source_hash": "d24fb5028ab20710fef335d30a514c1ca09ce963269c2bfeb2c15e846f657066",
+          "source_rows": 16317,
+          "table": "transactions"
+        }
+      ]
+    },
+    "run_id": "replay-12b077fde7-cecbb2c120",
+    "wall_s": 3398.506811
+  },
+  "runtime": {
+    "checkpoints": [
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t7.db",
+        "bytes": 22769664,
+        "duration_s": 0.251682,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t7.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000557,
+          "record": 0.000836,
+          "retention": 0.000542,
+          "write": 0.248523
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 22605824,
+          "main_plus_wal": 27858856,
+          "shm": 32768,
+          "wal": 5253032
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 22605824,
+          "main_plus_wal": 27858856,
+          "shm": 32768,
+          "wal": 5253032
+        },
+        "tick": 7
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t14.db",
+        "bytes": 45989888,
+        "duration_s": 0.396046,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t14.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000836,
+          "record": 0.001323,
+          "retention": 0.000988,
+          "write": 0.392976
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 45846528,
+          "main_plus_wal": 51598080,
+          "shm": 32768,
+          "wal": 5751552
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 45846528,
+          "main_plus_wal": 51598080,
+          "shm": 32768,
+          "wal": 5751552
+        },
+        "tick": 14
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t21.db",
+        "bytes": 70496256,
+        "duration_s": 4.661407,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t21.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000839,
+          "record": 0.001486,
+          "retention": 0.001154,
+          "write": 4.658141
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 70348800,
+          "main_plus_wal": 76916112,
+          "shm": 32768,
+          "wal": 6567312
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 70348800,
+          "main_plus_wal": 76916112,
+          "shm": 32768,
+          "wal": 6567312
+        },
+        "tick": 21
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t28.db",
+        "bytes": 96313344,
+        "duration_s": 1.964263,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t28.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000822,
+          "record": 0.001629,
+          "retention": 0.00131,
+          "write": 1.960982
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 96161792,
+          "main_plus_wal": 103268824,
+          "shm": 32768,
+          "wal": 7107032
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 96161792,
+          "main_plus_wal": 103268824,
+          "shm": 32768,
+          "wal": 7107032
+        },
+        "tick": 28
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t35.db",
+        "bytes": 121925632,
+        "duration_s": 0.826399,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t35.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000653,
+          "record": 0.008902,
+          "retention": 0.008613,
+          "write": 0.816085
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 121774080,
+          "main_plus_wal": 129470272,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 121774080,
+          "main_plus_wal": 129470272,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "tick": 35
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t42.db",
+        "bytes": 148025344,
+        "duration_s": 0.941032,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t42.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.00052,
+          "record": 0.014973,
+          "retention": 0.014629,
+          "write": 0.924793
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 147881984,
+          "main_plus_wal": 155578176,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 147881984,
+          "main_plus_wal": 155578176,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "tick": 42
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t49.db",
+        "bytes": 175345664,
+        "duration_s": 1.137413,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t49.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000917,
+          "record": 0.016623,
+          "retention": 0.01628,
+          "write": 1.11908
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 175202304,
+          "main_plus_wal": 182898496,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 175202304,
+          "main_plus_wal": 182898496,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "tick": 49
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t56.db",
+        "bytes": 201584640,
+        "duration_s": 1.285851,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t56.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000749,
+          "record": 0.03487,
+          "retention": 0.034482,
+          "write": 1.249308
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 201437184,
+          "main_plus_wal": 209133376,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 201437184,
+          "main_plus_wal": 209133376,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "tick": 56
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t63.db",
+        "bytes": 228462592,
+        "duration_s": 1.862135,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t63.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000942,
+          "record": 0.043213,
+          "retention": 0.042864,
+          "write": 1.817168
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 228311040,
+          "main_plus_wal": 236802392,
+          "shm": 32768,
+          "wal": 8491352
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 228311040,
+          "main_plus_wal": 236802392,
+          "shm": 32768,
+          "wal": 8491352
+        },
+        "tick": 63
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t70.db",
+        "bytes": 254676992,
+        "duration_s": 1.616274,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t70.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000464,
+          "record": 0.051705,
+          "retention": 0.051413,
+          "write": 1.563611
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 254525440,
+          "main_plus_wal": 263111552,
+          "shm": 32768,
+          "wal": 8586112
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 254525440,
+          "main_plus_wal": 263111552,
+          "shm": 32768,
+          "wal": 8586112
+        },
+        "tick": 70
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t77.db",
+        "bytes": 280322048,
+        "duration_s": 1.704853,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t77.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000504,
+          "record": 0.037257,
+          "retention": 0.036949,
+          "write": 1.666529
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 280174592,
+          "main_plus_wal": 288970824,
+          "shm": 32768,
+          "wal": 8796232
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 280174592,
+          "main_plus_wal": 288970824,
+          "shm": 32768,
+          "wal": 8796232
+        },
+        "tick": 77
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t84.db",
+        "bytes": 306966528,
+        "duration_s": 1.857376,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t84.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000484,
+          "record": 0.060476,
+          "retention": 0.060186,
+          "write": 1.795816
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 306819072,
+          "main_plus_wal": 316006704,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 306819072,
+          "main_plus_wal": 316006704,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "tick": 84
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t91.db",
+        "bytes": 334479360,
+        "duration_s": 2.045029,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t91.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000491,
+          "record": 0.067003,
+          "retention": 0.066656,
+          "write": 1.976781
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 334327808,
+          "main_plus_wal": 343515440,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 334327808,
+          "main_plus_wal": 343515440,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "tick": 91
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t98.db",
+        "bytes": 360886272,
+        "duration_s": 2.17691,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t98.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000599,
+          "record": 0.061451,
+          "retention": 0.061166,
+          "write": 2.114379
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 360742912,
+          "main_plus_wal": 369930544,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 360742912,
+          "main_plus_wal": 369930544,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "tick": 98
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t105.db",
+        "bytes": 387674112,
+        "duration_s": 2.258677,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t105.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000442,
+          "record": 0.074606,
+          "retention": 0.074339,
+          "write": 2.183168
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 387518464,
+          "main_plus_wal": 396706096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 387518464,
+          "main_plus_wal": 396706096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "tick": 105
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t112.db",
+        "bytes": 414404608,
+        "duration_s": 2.440896,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t112.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000466,
+          "record": 0.081861,
+          "retention": 0.081585,
+          "write": 2.358041
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 414261248,
+          "main_plus_wal": 423564240,
+          "shm": 32768,
+          "wal": 9302992
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 414261248,
+          "main_plus_wal": 423564240,
+          "shm": 32768,
+          "wal": 9302992
+        },
+        "tick": 112
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t119.db",
+        "bytes": 441167872,
+        "duration_s": 2.560412,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t119.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000473,
+          "record": 0.094194,
+          "retention": 0.093898,
+          "write": 2.465262
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 441028608,
+          "main_plus_wal": 450475800,
+          "shm": 32768,
+          "wal": 9447192
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 441028608,
+          "main_plus_wal": 450475800,
+          "shm": 32768,
+          "wal": 9447192
+        },
+        "tick": 119
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t120.db",
+        "bytes": 445911040,
+        "duration_s": 2.648594,
+        "manifest_artifact": "baseline-data/source/checkpoints/12b077fde7_t120.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000867,
+          "record": 0.08925,
+          "retention": 0.088937,
+          "write": 2.55799
+        },
+        "reason": "stop",
+        "source_after": {
+          "journal": 0,
+          "main": 445833216,
+          "main_plus_wal": 455280408,
+          "shm": 32768,
+          "wal": 9447192
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 445833216,
+          "main_plus_wal": 455280408,
+          "shm": 32768,
+          "wal": 9447192
+        },
+        "tick": 120
+      }
+    ],
+    "database": {
+      "final_closed": {
+        "journal": 0,
+        "main": 445911040,
+        "main_plus_wal": 445911040,
+        "shm": 0,
+        "wal": 0
+      },
+      "final_open": {
+        "freelist_count": 62,
+        "journal": 0,
+        "logical_bytes": 445911040,
+        "logical_used_bytes": 445657088,
+        "main": 445833216,
+        "main_plus_wal": 455280408,
+        "page_count": 108865,
+        "page_size": 4096,
+        "shm": 32768,
+        "wal": 9447192
+      },
+      "genesis": {
+        "freelist_count": 1,
+        "journal": 0,
+        "logical_bytes": 3723264,
+        "logical_used_bytes": 3719168,
+        "main": 3665920,
+        "main_plus_wal": 8276232,
+        "page_count": 909,
+        "page_size": 4096,
+        "shm": 32768,
+        "wal": 4610312
+      },
+      "logical_used_growth_bytes": 441937920
+    },
+    "genesis_wall_s": 6.494613,
+    "memory": {
+      "by_stage": {
+        "genesis": {
+          "max_system_memory_percent": 22.6,
+          "min_available_memory_gb": 93.99,
+          "peak_rss_mb": 54.16,
+          "samples": 129
+        },
+        "replay": {
+          "max_system_memory_percent": 24.3,
+          "min_available_memory_gb": 91.97,
+          "peak_rss_mb": 1319.21,
+          "samples": 43649
+        },
+        "source_run": {
+          "max_system_memory_percent": 25.7,
+          "min_available_memory_gb": 90.23,
+          "peak_rss_mb": 79.12,
+          "samples": 37617
+        }
+      },
+      "max_system_memory_percent": 25.7,
+      "min_available_memory_gb": 90.23,
+      "peak_rss_mb": 1319.21,
+      "sample_interval_s": 0.05,
+      "samples": 81395
+    },
+    "source_wall_s": 3088.026168,
+    "ticks": [
+      {
+        "database": {
+          "freelist_count": 70,
+          "journal": 0,
+          "logical_bytes": 5857280,
+          "logical_used_bytes": 5570560,
+          "main": 5820416,
+          "main_plus_wal": 10430728,
+          "page_count": 1430,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 4610312
+        },
+        "rss_mb": 56.44,
+        "tick": 1,
+        "wall_s": 2.274
+      },
+      {
+        "database": {
+          "freelist_count": 66,
+          "journal": 0,
+          "logical_bytes": 8261632,
+          "logical_used_bytes": 7991296,
+          "main": 8212480,
+          "main_plus_wal": 12822792,
+          "page_count": 2017,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 4610312
+        },
+        "rss_mb": 56.73,
+        "tick": 2,
+        "wall_s": 5.696
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 10948608,
+          "logical_used_bytes": 10686464,
+          "main": 10948608,
+          "main_plus_wal": 15558920,
+          "page_count": 2673,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 4610312
+        },
+        "rss_mb": 56.94,
+        "tick": 3,
+        "wall_s": 8.123
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 13635584,
+          "logical_used_bytes": 13381632,
+          "main": 13586432,
+          "main_plus_wal": 18196744,
+          "page_count": 3329,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 4610312
+        },
+        "rss_mb": 57.17,
+        "tick": 4,
+        "wall_s": 9.047
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 16191488,
+          "logical_used_bytes": 15937536,
+          "main": 16142336,
+          "main_plus_wal": 20752648,
+          "page_count": 3953,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 4610312
+        },
+        "rss_mb": 57.59,
+        "tick": 5,
+        "wall_s": 12.31
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 18944000,
+          "logical_used_bytes": 18690048,
+          "main": 18944000,
+          "main_plus_wal": 24197032,
+          "page_count": 4625,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5253032
+        },
+        "rss_mb": 57.76,
+        "tick": 6,
+        "wall_s": 12.062
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 22769664,
+          "logical_used_bytes": 22507520,
+          "main": 22605824,
+          "main_plus_wal": 27858856,
+          "page_count": 5559,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5253032
+        },
+        "rss_mb": 62.48,
+        "tick": 7,
+        "wall_s": 13.138
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 26132480,
+          "logical_used_bytes": 25870336,
+          "main": 26066944,
+          "main_plus_wal": 31373536,
+          "page_count": 6380,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5306592
+        },
+        "rss_mb": 62.48,
+        "tick": 8,
+        "wall_s": 12.165
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 29331456,
+          "logical_used_bytes": 29073408,
+          "main": 29274112,
+          "main_plus_wal": 34580704,
+          "page_count": 7161,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5306592
+        },
+        "rss_mb": 62.48,
+        "tick": 9,
+        "wall_s": 14.376
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 32452608,
+          "logical_used_bytes": 32190464,
+          "main": 32399360,
+          "main_plus_wal": 37705952,
+          "page_count": 7923,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5306592
+        },
+        "rss_mb": 62.52,
+        "tick": 10,
+        "wall_s": 17.643
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 35438592,
+          "logical_used_bytes": 35180544,
+          "main": 35377152,
+          "main_plus_wal": 41128704,
+          "page_count": 8652,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5751552
+        },
+        "rss_mb": 62.59,
+        "tick": 11,
+        "wall_s": 19.61
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 38805504,
+          "logical_used_bytes": 38547456,
+          "main": 38744064,
+          "main_plus_wal": 44495616,
+          "page_count": 9474,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5751552
+        },
+        "rss_mb": 62.74,
+        "tick": 12,
+        "wall_s": 18.734
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 42057728,
+          "logical_used_bytes": 41795584,
+          "main": 42057728,
+          "main_plus_wal": 47809280,
+          "page_count": 10268,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5751552
+        },
+        "rss_mb": 62.95,
+        "tick": 13,
+        "wall_s": 24.123
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 45989888,
+          "logical_used_bytes": 45731840,
+          "main": 45846528,
+          "main_plus_wal": 51598080,
+          "page_count": 11228,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5751552
+        },
+        "rss_mb": 63.38,
+        "tick": 14,
+        "wall_s": 18.292
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 49299456,
+          "logical_used_bytes": 49045504,
+          "main": 49233920,
+          "main_plus_wal": 54985472,
+          "page_count": 12036,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5751552
+        },
+        "rss_mb": 63.48,
+        "tick": 15,
+        "wall_s": 20.697
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 52850688,
+          "logical_used_bytes": 52588544,
+          "main": 52797440,
+          "main_plus_wal": 58548992,
+          "page_count": 12903,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5751552
+        },
+        "rss_mb": 63.6,
+        "tick": 16,
+        "wall_s": 22.692
+      },
+      {
+        "database": {
+          "freelist_count": 65,
+          "journal": 0,
+          "logical_bytes": 55894016,
+          "logical_used_bytes": 55627776,
+          "main": 55832576,
+          "main_plus_wal": 61584128,
+          "page_count": 13646,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5751552
+        },
+        "rss_mb": 63.6,
+        "tick": 17,
+        "wall_s": 25.481
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 59199488,
+          "logical_used_bytes": 58945536,
+          "main": 59138048,
+          "main_plus_wal": 64889600,
+          "page_count": 14453,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5751552
+        },
+        "rss_mb": 63.85,
+        "tick": 18,
+        "wall_s": 20.797
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 63275008,
+          "logical_used_bytes": 63012864,
+          "main": 63213568,
+          "main_plus_wal": 68965120,
+          "page_count": 15448,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 5751552
+        },
+        "rss_mb": 63.98,
+        "tick": 19,
+        "wall_s": 13.612
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 66363392,
+          "logical_used_bytes": 66105344,
+          "main": 66306048,
+          "main_plus_wal": 72873360,
+          "page_count": 16202,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 6567312
+        },
+        "rss_mb": 64.22,
+        "tick": 20,
+        "wall_s": 23.641
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 70496256,
+          "logical_used_bytes": 70234112,
+          "main": 70348800,
+          "main_plus_wal": 76916112,
+          "page_count": 17211,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 6567312
+        },
+        "rss_mb": 64.41,
+        "tick": 21,
+        "wall_s": 20.222
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 73916416,
+          "logical_used_bytes": 73658368,
+          "main": 73842688,
+          "main_plus_wal": 80410000,
+          "page_count": 18046,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 6567312
+        },
+        "rss_mb": 64.43,
+        "tick": 22,
+        "wall_s": 24.244
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 77492224,
+          "logical_used_bytes": 77234176,
+          "main": 77443072,
+          "main_plus_wal": 84010384,
+          "page_count": 18919,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 6567312
+        },
+        "rss_mb": 64.43,
+        "tick": 23,
+        "wall_s": 20.673
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 81293312,
+          "logical_used_bytes": 81035264,
+          "main": 81223680,
+          "main_plus_wal": 87790992,
+          "page_count": 19847,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 6567312
+        },
+        "rss_mb": 64.54,
+        "tick": 24,
+        "wall_s": 36.94
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 84430848,
+          "logical_used_bytes": 84168704,
+          "main": 84369408,
+          "main_plus_wal": 90936720,
+          "page_count": 20613,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 6567312
+        },
+        "rss_mb": 64.8,
+        "tick": 25,
+        "wall_s": 21.418
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 88485888,
+          "logical_used_bytes": 88223744,
+          "main": 88436736,
+          "main_plus_wal": 95543768,
+          "page_count": 21603,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7107032
+        },
+        "rss_mb": 64.92,
+        "tick": 26,
+        "wall_s": 17.337
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 91951104,
+          "logical_used_bytes": 91693056,
+          "main": 91881472,
+          "main_plus_wal": 98988504,
+          "page_count": 22449,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7107032
+        },
+        "rss_mb": 65.12,
+        "tick": 27,
+        "wall_s": 23.701
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 96313344,
+          "logical_used_bytes": 96055296,
+          "main": 96161792,
+          "main_plus_wal": 103268824,
+          "page_count": 23514,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7107032
+        },
+        "rss_mb": 65.31,
+        "tick": 28,
+        "wall_s": 28.69
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 99852288,
+          "logical_used_bytes": 99594240,
+          "main": 99799040,
+          "main_plus_wal": 107153272,
+          "page_count": 24378,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7354232
+        },
+        "rss_mb": 65.32,
+        "tick": 29,
+        "wall_s": 31.262
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 102854656,
+          "logical_used_bytes": 102596608,
+          "main": 102780928,
+          "main_plus_wal": 110135160,
+          "page_count": 25111,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7354232
+        },
+        "rss_mb": 65.46,
+        "tick": 30,
+        "wall_s": 24.865
+      },
+      {
+        "database": {
+          "freelist_count": 68,
+          "journal": 0,
+          "logical_bytes": 106860544,
+          "logical_used_bytes": 106582016,
+          "main": 106786816,
+          "main_plus_wal": 114141048,
+          "page_count": 26089,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7354232
+        },
+        "rss_mb": 65.65,
+        "tick": 31,
+        "wall_s": 20.928
+      },
+      {
+        "database": {
+          "freelist_count": 67,
+          "journal": 0,
+          "logical_bytes": 110555136,
+          "logical_used_bytes": 110280704,
+          "main": 110497792,
+          "main_plus_wal": 117852024,
+          "page_count": 26991,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7354232
+        },
+        "rss_mb": 65.91,
+        "tick": 32,
+        "wall_s": 23.611
+      },
+      {
+        "database": {
+          "freelist_count": 68,
+          "journal": 0,
+          "logical_bytes": 114241536,
+          "logical_used_bytes": 113963008,
+          "main": 114180096,
+          "main_plus_wal": 121534328,
+          "page_count": 27891,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7354232
+        },
+        "rss_mb": 66.04,
+        "tick": 33,
+        "wall_s": 27.269
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 117788672,
+          "logical_used_bytes": 117530624,
+          "main": 117727232,
+          "main_plus_wal": 125081464,
+          "page_count": 28757,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7354232
+        },
+        "rss_mb": 66.3,
+        "tick": 34,
+        "wall_s": 23.346
+      },
+      {
+        "database": {
+          "freelist_count": 68,
+          "journal": 0,
+          "logical_bytes": 121925632,
+          "logical_used_bytes": 121647104,
+          "main": 121774080,
+          "main_plus_wal": 129470272,
+          "page_count": 29767,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 66.33,
+        "tick": 35,
+        "wall_s": 19.16
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 125509632,
+          "logical_used_bytes": 125247488,
+          "main": 125452288,
+          "main_plus_wal": 133148480,
+          "page_count": 30642,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 66.33,
+        "tick": 36,
+        "wall_s": 14.968
+      },
+      {
+        "database": {
+          "freelist_count": 65,
+          "journal": 0,
+          "logical_bytes": 129351680,
+          "logical_used_bytes": 129085440,
+          "main": 129290240,
+          "main_plus_wal": 136986432,
+          "page_count": 31580,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 66.36,
+        "tick": 37,
+        "wall_s": 17.466
+      },
+      {
+        "database": {
+          "freelist_count": 66,
+          "journal": 0,
+          "logical_bytes": 133058560,
+          "logical_used_bytes": 132788224,
+          "main": 133001216,
+          "main_plus_wal": 140697408,
+          "page_count": 32485,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 66.56,
+        "tick": 38,
+        "wall_s": 16.513
+      },
+      {
+        "database": {
+          "freelist_count": 66,
+          "journal": 0,
+          "logical_bytes": 137068544,
+          "logical_used_bytes": 136798208,
+          "main": 136998912,
+          "main_plus_wal": 144695104,
+          "page_count": 33464,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 66.76,
+        "tick": 39,
+        "wall_s": 14.128
+      },
+      {
+        "database": {
+          "freelist_count": 66,
+          "journal": 0,
+          "logical_bytes": 140308480,
+          "logical_used_bytes": 140038144,
+          "main": 140238848,
+          "main_plus_wal": 147935040,
+          "page_count": 34255,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 66.77,
+        "tick": 40,
+        "wall_s": 22.183
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 144158720,
+          "logical_used_bytes": 143896576,
+          "main": 144105472,
+          "main_plus_wal": 151801664,
+          "page_count": 35195,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 66.77,
+        "tick": 41,
+        "wall_s": 20.572
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 148025344,
+          "logical_used_bytes": 147767296,
+          "main": 147881984,
+          "main_plus_wal": 155578176,
+          "page_count": 36139,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 66.83,
+        "tick": 42,
+        "wall_s": 26.04
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 152031232,
+          "logical_used_bytes": 151777280,
+          "main": 151973888,
+          "main_plus_wal": 159670080,
+          "page_count": 37117,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 66.97,
+        "tick": 43,
+        "wall_s": 25.227
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 155615232,
+          "logical_used_bytes": 155353088,
+          "main": 155561984,
+          "main_plus_wal": 163258176,
+          "page_count": 37992,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 67.3,
+        "tick": 44,
+        "wall_s": 34.018
+      },
+      {
+        "database": {
+          "freelist_count": 66,
+          "journal": 0,
+          "logical_bytes": 159281152,
+          "logical_used_bytes": 159010816,
+          "main": 159223808,
+          "main_plus_wal": 166920000,
+          "page_count": 38887,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 67.32,
+        "tick": 45,
+        "wall_s": 26.952
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 162455552,
+          "logical_used_bytes": 162193408,
+          "main": 162394112,
+          "main_plus_wal": 170090304,
+          "page_count": 39662,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 67.34,
+        "tick": 46,
+        "wall_s": 31.51
+      },
+      {
+        "database": {
+          "freelist_count": 65,
+          "journal": 0,
+          "logical_bytes": 166600704,
+          "logical_used_bytes": 166334464,
+          "main": 166539264,
+          "main_plus_wal": 174235456,
+          "page_count": 40674,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 67.53,
+        "tick": 47,
+        "wall_s": 25.67
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 170266624,
+          "logical_used_bytes": 170008576,
+          "main": 170205184,
+          "main_plus_wal": 177901376,
+          "page_count": 41569,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 67.68,
+        "tick": 48,
+        "wall_s": 30.151
+      },
+      {
+        "database": {
+          "freelist_count": 60,
+          "journal": 0,
+          "logical_bytes": 175345664,
+          "logical_used_bytes": 175099904,
+          "main": 175202304,
+          "main_plus_wal": 182898496,
+          "page_count": 42809,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 67.85,
+        "tick": 49,
+        "wall_s": 29.694
+      },
+      {
+        "database": {
+          "freelist_count": 60,
+          "journal": 0,
+          "logical_bytes": 178700288,
+          "logical_used_bytes": 178454528,
+          "main": 178638848,
+          "main_plus_wal": 186335040,
+          "page_count": 43628,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 68.04,
+        "tick": 50,
+        "wall_s": 24.149
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 182423552,
+          "logical_used_bytes": 182169600,
+          "main": 182358016,
+          "main_plus_wal": 190054208,
+          "page_count": 44537,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 68.05,
+        "tick": 51,
+        "wall_s": 30.785
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 186167296,
+          "logical_used_bytes": 185913344,
+          "main": 186114048,
+          "main_plus_wal": 193810240,
+          "page_count": 45451,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 68.05,
+        "tick": 52,
+        "wall_s": 27.235
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 189718528,
+          "logical_used_bytes": 189464576,
+          "main": 189657088,
+          "main_plus_wal": 197353280,
+          "page_count": 46318,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 68.22,
+        "tick": 53,
+        "wall_s": 19.531
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 193499136,
+          "logical_used_bytes": 193245184,
+          "main": 193437696,
+          "main_plus_wal": 201133888,
+          "page_count": 47241,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 68.33,
+        "tick": 54,
+        "wall_s": 23.13
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 197234688,
+          "logical_used_bytes": 196984832,
+          "main": 197177344,
+          "main_plus_wal": 204873536,
+          "page_count": 48153,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 68.62,
+        "tick": 55,
+        "wall_s": 25.752
+      },
+      {
+        "database": {
+          "freelist_count": 60,
+          "journal": 0,
+          "logical_bytes": 201584640,
+          "logical_used_bytes": 201338880,
+          "main": 201437184,
+          "main_plus_wal": 209133376,
+          "page_count": 49215,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 68.62,
+        "tick": 56,
+        "wall_s": 29.336
+      },
+      {
+        "database": {
+          "freelist_count": 57,
+          "journal": 0,
+          "logical_bytes": 205873152,
+          "logical_used_bytes": 205639680,
+          "main": 205815808,
+          "main_plus_wal": 213512000,
+          "page_count": 50262,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 68.62,
+        "tick": 57,
+        "wall_s": 27.019
+      },
+      {
+        "database": {
+          "freelist_count": 60,
+          "journal": 0,
+          "logical_bytes": 209620992,
+          "logical_used_bytes": 209375232,
+          "main": 209559552,
+          "main_plus_wal": 217255744,
+          "page_count": 51177,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 68.8,
+        "tick": 58,
+        "wall_s": 26.867
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 213557248,
+          "logical_used_bytes": 213307392,
+          "main": 213487616,
+          "main_plus_wal": 221183808,
+          "page_count": 52138,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 7696192
+        },
+        "rss_mb": 69.0,
+        "tick": 59,
+        "wall_s": 22.201
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 217067520,
+          "logical_used_bytes": 216805376,
+          "main": 216993792,
+          "main_plus_wal": 225485144,
+          "page_count": 52995,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8491352
+        },
+        "rss_mb": 69.2,
+        "tick": 60,
+        "wall_s": 26.309
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 220868608,
+          "logical_used_bytes": 220606464,
+          "main": 220811264,
+          "main_plus_wal": 229302616,
+          "page_count": 53923,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8491352
+        },
+        "rss_mb": 69.2,
+        "tick": 61,
+        "wall_s": 26.411
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 223997952,
+          "logical_used_bytes": 223739904,
+          "main": 223936512,
+          "main_plus_wal": 232427864,
+          "page_count": 54687,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8491352
+        },
+        "rss_mb": 69.4,
+        "tick": 62,
+        "wall_s": 19.318
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 228462592,
+          "logical_used_bytes": 228204544,
+          "main": 228311040,
+          "main_plus_wal": 236802392,
+          "page_count": 55777,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8491352
+        },
+        "rss_mb": 69.55,
+        "tick": 63,
+        "wall_s": 31.762
+      },
+      {
+        "database": {
+          "freelist_count": 60,
+          "journal": 0,
+          "logical_bytes": 232124416,
+          "logical_used_bytes": 231878656,
+          "main": 232062976,
+          "main_plus_wal": 240554328,
+          "page_count": 56671,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8491352
+        },
+        "rss_mb": 69.75,
+        "tick": 64,
+        "wall_s": 22.664
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 235794432,
+          "logical_used_bytes": 235532288,
+          "main": 235728896,
+          "main_plus_wal": 244220248,
+          "page_count": 57567,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8491352
+        },
+        "rss_mb": 69.75,
+        "tick": 65,
+        "wall_s": 23.112
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 238645248,
+          "logical_used_bytes": 238395392,
+          "main": 238575616,
+          "main_plus_wal": 247161728,
+          "page_count": 58263,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8586112
+        },
+        "rss_mb": 69.86,
+        "tick": 66,
+        "wall_s": 25.224
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 242548736,
+          "logical_used_bytes": 242286592,
+          "main": 242491392,
+          "main_plus_wal": 251077504,
+          "page_count": 59216,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8586112
+        },
+        "rss_mb": 70.01,
+        "tick": 67,
+        "wall_s": 27.536
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 246112256,
+          "logical_used_bytes": 245854208,
+          "main": 246050816,
+          "main_plus_wal": 254636928,
+          "page_count": 60086,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8586112
+        },
+        "rss_mb": 70.3,
+        "tick": 68,
+        "wall_s": 25.534
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 250068992,
+          "logical_used_bytes": 249810944,
+          "main": 250011648,
+          "main_plus_wal": 258597760,
+          "page_count": 61052,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8586112
+        },
+        "rss_mb": 70.31,
+        "tick": 69,
+        "wall_s": 19.501
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 254676992,
+          "logical_used_bytes": 254414848,
+          "main": 254525440,
+          "main_plus_wal": 263111552,
+          "page_count": 62177,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8586112
+        },
+        "rss_mb": 70.56,
+        "tick": 70,
+        "wall_s": 27.53
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 258031616,
+          "logical_used_bytes": 257777664,
+          "main": 257970176,
+          "main_plus_wal": 266556288,
+          "page_count": 62996,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8586112
+        },
+        "rss_mb": 70.74,
+        "tick": 71,
+        "wall_s": 22.249
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 261357568,
+          "logical_used_bytes": 261103616,
+          "main": 261296128,
+          "main_plus_wal": 270092360,
+          "page_count": 63808,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8796232
+        },
+        "rss_mb": 70.83,
+        "tick": 72,
+        "wall_s": 29.525
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 264957952,
+          "logical_used_bytes": 264695808,
+          "main": 264904704,
+          "main_plus_wal": 273700936,
+          "page_count": 64687,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8796232
+        },
+        "rss_mb": 70.89,
+        "tick": 73,
+        "wall_s": 22.605
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 268222464,
+          "logical_used_bytes": 267960320,
+          "main": 268156928,
+          "main_plus_wal": 276953160,
+          "page_count": 65484,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8796232
+        },
+        "rss_mb": 71.14,
+        "tick": 74,
+        "wall_s": 26.851
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 272166912,
+          "logical_used_bytes": 271912960,
+          "main": 272101376,
+          "main_plus_wal": 280897608,
+          "page_count": 66447,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8796232
+        },
+        "rss_mb": 71.36,
+        "tick": 75,
+        "wall_s": 35.537
+      },
+      {
+        "database": {
+          "freelist_count": 60,
+          "journal": 0,
+          "logical_bytes": 275587072,
+          "logical_used_bytes": 275341312,
+          "main": 275521536,
+          "main_plus_wal": 284317768,
+          "page_count": 67282,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8796232
+        },
+        "rss_mb": 71.54,
+        "tick": 76,
+        "wall_s": 31.179
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 280322048,
+          "logical_used_bytes": 280059904,
+          "main": 280174592,
+          "main_plus_wal": 288970824,
+          "page_count": 68438,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8796232
+        },
+        "rss_mb": 71.54,
+        "tick": 77,
+        "wall_s": 31.234
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 283967488,
+          "logical_used_bytes": 283717632,
+          "main": 283906048,
+          "main_plus_wal": 292788800,
+          "page_count": 69328,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8882752
+        },
+        "rss_mb": 71.6,
+        "tick": 78,
+        "wall_s": 23.133
+      },
+      {
+        "database": {
+          "freelist_count": 63,
+          "journal": 0,
+          "logical_bytes": 288223232,
+          "logical_used_bytes": 287965184,
+          "main": 288161792,
+          "main_plus_wal": 297044544,
+          "page_count": 70367,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8882752
+        },
+        "rss_mb": 71.96,
+        "tick": 79,
+        "wall_s": 27.872
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 291774464,
+          "logical_used_bytes": 291520512,
+          "main": 291713024,
+          "main_plus_wal": 300595776,
+          "page_count": 71234,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8882752
+        },
+        "rss_mb": 72.09,
+        "tick": 80,
+        "wall_s": 29.055
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 295378944,
+          "logical_used_bytes": 295116800,
+          "main": 295325696,
+          "main_plus_wal": 304208448,
+          "page_count": 72114,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8882752
+        },
+        "rss_mb": 72.09,
+        "tick": 81,
+        "wall_s": 35.306
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 299089920,
+          "logical_used_bytes": 298835968,
+          "main": 299032576,
+          "main_plus_wal": 307915328,
+          "page_count": 73020,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8882752
+        },
+        "rss_mb": 72.24,
+        "tick": 82,
+        "wall_s": 30.314
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 302825472,
+          "logical_used_bytes": 302571520,
+          "main": 302764032,
+          "main_plus_wal": 311646784,
+          "page_count": 73932,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 8882752
+        },
+        "rss_mb": 72.54,
+        "tick": 83,
+        "wall_s": 30.289
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 306966528,
+          "logical_used_bytes": 306712576,
+          "main": 306819072,
+          "main_plus_wal": 316006704,
+          "page_count": 74943,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 72.61,
+        "tick": 84,
+        "wall_s": 29.742
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 310501376,
+          "logical_used_bytes": 310239232,
+          "main": 310435840,
+          "main_plus_wal": 319623472,
+          "page_count": 75806,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 72.62,
+        "tick": 85,
+        "wall_s": 30.315
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 314847232,
+          "logical_used_bytes": 314585088,
+          "main": 314789888,
+          "main_plus_wal": 323977520,
+          "page_count": 76867,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 72.81,
+        "tick": 86,
+        "wall_s": 32.318
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 318484480,
+          "logical_used_bytes": 318222336,
+          "main": 318410752,
+          "main_plus_wal": 327598384,
+          "page_count": 77755,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 73.07,
+        "tick": 87,
+        "wall_s": 23.906
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 322363392,
+          "logical_used_bytes": 322101248,
+          "main": 322306048,
+          "main_plus_wal": 331493680,
+          "page_count": 78702,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 73.08,
+        "tick": 88,
+        "wall_s": 31.183
+      },
+      {
+        "database": {
+          "freelist_count": 64,
+          "journal": 0,
+          "logical_bytes": 326074368,
+          "logical_used_bytes": 325812224,
+          "main": 326004736,
+          "main_plus_wal": 335192368,
+          "page_count": 79608,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 73.15,
+        "tick": 89,
+        "wall_s": 32.972
+      },
+      {
+        "database": {
+          "freelist_count": 60,
+          "journal": 0,
+          "logical_bytes": 329580544,
+          "logical_used_bytes": 329334784,
+          "main": 329502720,
+          "main_plus_wal": 338690352,
+          "page_count": 80464,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 73.41,
+        "tick": 90,
+        "wall_s": 28.199
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 334479360,
+          "logical_used_bytes": 334225408,
+          "main": 334327808,
+          "main_plus_wal": 343515440,
+          "page_count": 81660,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 73.49,
+        "tick": 91,
+        "wall_s": 34.093
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 337960960,
+          "logical_used_bytes": 337707008,
+          "main": 337903616,
+          "main_plus_wal": 347091248,
+          "page_count": 82510,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 73.65,
+        "tick": 92,
+        "wall_s": 34.273
+      },
+      {
+        "database": {
+          "freelist_count": 60,
+          "journal": 0,
+          "logical_bytes": 341475328,
+          "logical_used_bytes": 341229568,
+          "main": 341417984,
+          "main_plus_wal": 350605616,
+          "page_count": 83368,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 73.92,
+        "tick": 93,
+        "wall_s": 34.75
+      },
+      {
+        "database": {
+          "freelist_count": 59,
+          "journal": 0,
+          "logical_bytes": 345100288,
+          "logical_used_bytes": 344858624,
+          "main": 345034752,
+          "main_plus_wal": 354222384,
+          "page_count": 84253,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 74.09,
+        "tick": 94,
+        "wall_s": 25.521
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 348770304,
+          "logical_used_bytes": 348520448,
+          "main": 348712960,
+          "main_plus_wal": 357900592,
+          "page_count": 85149,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 74.09,
+        "tick": 95,
+        "wall_s": 27.708
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 352739328,
+          "logical_used_bytes": 352485376,
+          "main": 352677888,
+          "main_plus_wal": 361865520,
+          "page_count": 86118,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 74.1,
+        "tick": 96,
+        "wall_s": 27.321
+      },
+      {
+        "database": {
+          "freelist_count": 59,
+          "journal": 0,
+          "logical_bytes": 356085760,
+          "logical_used_bytes": 355844096,
+          "main": 356024320,
+          "main_plus_wal": 365211952,
+          "page_count": 86935,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 74.33,
+        "tick": 97,
+        "wall_s": 27.632
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 360886272,
+          "logical_used_bytes": 360632320,
+          "main": 360742912,
+          "main_plus_wal": 369930544,
+          "page_count": 88107,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 74.41,
+        "tick": 98,
+        "wall_s": 35.659
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 364630016,
+          "logical_used_bytes": 364376064,
+          "main": 364572672,
+          "main_plus_wal": 373760304,
+          "page_count": 89021,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 74.57,
+        "tick": 99,
+        "wall_s": 28.178
+      },
+      {
+        "database": {
+          "freelist_count": 59,
+          "journal": 0,
+          "logical_bytes": 368205824,
+          "logical_used_bytes": 367964160,
+          "main": 368140288,
+          "main_plus_wal": 377327920,
+          "page_count": 89894,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 74.83,
+        "tick": 100,
+        "wall_s": 41.552
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 371757056,
+          "logical_used_bytes": 371503104,
+          "main": 371691520,
+          "main_plus_wal": 380879152,
+          "page_count": 90761,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 74.84,
+        "tick": 101,
+        "wall_s": 28.972
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 375345152,
+          "logical_used_bytes": 375095296,
+          "main": 375287808,
+          "main_plus_wal": 384475440,
+          "page_count": 91637,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 75.07,
+        "tick": 102,
+        "wall_s": 31.089
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 378638336,
+          "logical_used_bytes": 378388480,
+          "main": 378585088,
+          "main_plus_wal": 387772720,
+          "page_count": 92441,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 75.23,
+        "tick": 103,
+        "wall_s": 26.614
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 382681088,
+          "logical_used_bytes": 382431232,
+          "main": 382619648,
+          "main_plus_wal": 391807280,
+          "page_count": 93428,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 75.27,
+        "tick": 104,
+        "wall_s": 31.341
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 387674112,
+          "logical_used_bytes": 387424256,
+          "main": 387518464,
+          "main_plus_wal": 396706096,
+          "page_count": 94647,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 75.43,
+        "tick": 105,
+        "wall_s": 32.115
+      },
+      {
+        "database": {
+          "freelist_count": 60,
+          "journal": 0,
+          "logical_bytes": 391098368,
+          "logical_used_bytes": 390852608,
+          "main": 391041024,
+          "main_plus_wal": 400228656,
+          "page_count": 95483,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 75.61,
+        "tick": 106,
+        "wall_s": 34.766
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 395063296,
+          "logical_used_bytes": 394813440,
+          "main": 394997760,
+          "main_plus_wal": 404185392,
+          "page_count": 96451,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9187632
+        },
+        "rss_mb": 75.91,
+        "tick": 107,
+        "wall_s": 29.798
+      },
+      {
+        "database": {
+          "freelist_count": 59,
+          "journal": 0,
+          "logical_bytes": 399024128,
+          "logical_used_bytes": 398782464,
+          "main": 398954496,
+          "main_plus_wal": 408257488,
+          "page_count": 97418,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9302992
+        },
+        "rss_mb": 75.95,
+        "tick": 108,
+        "wall_s": 29.012
+      },
+      {
+        "database": {
+          "freelist_count": 58,
+          "journal": 0,
+          "logical_bytes": 402591744,
+          "logical_used_bytes": 402354176,
+          "main": 402522112,
+          "main_plus_wal": 411825104,
+          "page_count": 98289,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9302992
+        },
+        "rss_mb": 76.16,
+        "tick": 109,
+        "wall_s": 30.047
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 406482944,
+          "logical_used_bytes": 406228992,
+          "main": 406429696,
+          "main_plus_wal": 415732688,
+          "page_count": 99239,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9302992
+        },
+        "rss_mb": 76.44,
+        "tick": 110,
+        "wall_s": 32.644
+      },
+      {
+        "database": {
+          "freelist_count": 60,
+          "journal": 0,
+          "logical_bytes": 410112000,
+          "logical_used_bytes": 409866240,
+          "main": 410050560,
+          "main_plus_wal": 419353552,
+          "page_count": 100125,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9302992
+        },
+        "rss_mb": 76.44,
+        "tick": 111,
+        "wall_s": 33.863
+      },
+      {
+        "database": {
+          "freelist_count": 60,
+          "journal": 0,
+          "logical_bytes": 414404608,
+          "logical_used_bytes": 414158848,
+          "main": 414261248,
+          "main_plus_wal": 423564240,
+          "page_count": 101173,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9302992
+        },
+        "rss_mb": 76.46,
+        "tick": 112,
+        "wall_s": 30.511
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 418848768,
+          "logical_used_bytes": 418594816,
+          "main": 418795520,
+          "main_plus_wal": 428098512,
+          "page_count": 102258,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9302992
+        },
+        "rss_mb": 76.67,
+        "tick": 113,
+        "wall_s": 28.126
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 422514688,
+          "logical_used_bytes": 422264832,
+          "main": 422449152,
+          "main_plus_wal": 431896344,
+          "page_count": 103153,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9447192
+        },
+        "rss_mb": 76.76,
+        "tick": 114,
+        "wall_s": 30.602
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 426369024,
+          "logical_used_bytes": 426119168,
+          "main": 426307584,
+          "main_plus_wal": 435754776,
+          "page_count": 104094,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9447192
+        },
+        "rss_mb": 76.96,
+        "tick": 115,
+        "wall_s": 27.977
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 429993984,
+          "logical_used_bytes": 429740032,
+          "main": 429928448,
+          "main_plus_wal": 439375640,
+          "page_count": 104979,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9447192
+        },
+        "rss_mb": 77.18,
+        "tick": 116,
+        "wall_s": 33.907
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 433381376,
+          "logical_used_bytes": 433131520,
+          "main": 433319936,
+          "main_plus_wal": 442767128,
+          "page_count": 105806,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9447192
+        },
+        "rss_mb": 77.29,
+        "tick": 117,
+        "wall_s": 35.653
+      },
+      {
+        "database": {
+          "freelist_count": 58,
+          "journal": 0,
+          "logical_bytes": 437145600,
+          "logical_used_bytes": 436908032,
+          "main": 437084160,
+          "main_plus_wal": 446531352,
+          "page_count": 106725,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9447192
+        },
+        "rss_mb": 77.53,
+        "tick": 118,
+        "wall_s": 28.27
+      },
+      {
+        "database": {
+          "freelist_count": 61,
+          "journal": 0,
+          "logical_bytes": 441167872,
+          "logical_used_bytes": 440918016,
+          "main": 441028608,
+          "main_plus_wal": 450475800,
+          "page_count": 107707,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9447192
+        },
+        "rss_mb": 77.66,
+        "tick": 119,
+        "wall_s": 28.414
+      },
+      {
+        "database": {
+          "freelist_count": 62,
+          "journal": 0,
+          "logical_bytes": 445911040,
+          "logical_used_bytes": 445657088,
+          "main": 445833216,
+          "main_plus_wal": 455280408,
+          "page_count": 108865,
+          "page_size": 4096,
+          "shm": 32768,
+          "wal": 9447192
+        },
+        "rss_mb": 77.66,
+        "tick": 120,
+        "wall_s": 26.754
+      }
+    ]
+  },
+  "schema": "agent-economy-scale-validation-v1",
+  "schema_version": 1,
+  "source": {
+    "active_tick": null,
+    "artifact_manifest_after_replay": [
+      {
+        "artifact": "baseline-data/source/12b077fde7.db",
+        "bytes": 445911040,
+        "kind": "source_database",
+        "present": true,
+        "sha256": "2d05a147b837de644e11f50fe286ad9d75f36da3ac90dc8bda77a9fffb6ea6f0"
+      },
+      {
+        "artifact": "baseline-data/source/12b077fde7.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/12b077fde7.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/12b077fde7.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t105.db",
+        "bytes": 387674112,
+        "kind": "checkpoint_database",
+        "present": true,
+        "sha256": "bce9d7b9d25004665f2d107c87053ff4637ca7ede95dca260467f6c09a27e6ad"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t105.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t105.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t105.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t105.db.manifest.json",
+        "bytes": 2173,
+        "kind": "checkpoint_manifest",
+        "present": true,
+        "sha256": "63b564d37782b695a33a957050dc1bc0964a3be0793c4bd006f4d422ca1a4232"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t112.db",
+        "bytes": 414404608,
+        "kind": "checkpoint_database",
+        "present": true,
+        "sha256": "033037f43f3fe6684651a0cb6abba4640342428864a106c1b9361faa2d07773e"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t112.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t112.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t112.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t112.db.manifest.json",
+        "bytes": 2173,
+        "kind": "checkpoint_manifest",
+        "present": true,
+        "sha256": "522ebc4127df6b07dc615773623a3b8d65fd684d4d219c78e4fceec2f50c5fea"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t119.db",
+        "bytes": 441167872,
+        "kind": "checkpoint_database",
+        "present": true,
+        "sha256": "d49340c44804ba344e9a4411836da73d67772275be7392798dbcdc5c4475e71b"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t119.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t119.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t119.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t119.db.manifest.json",
+        "bytes": 2173,
+        "kind": "checkpoint_manifest",
+        "present": true,
+        "sha256": "896e737361622e2702d58a54a00cfe307a6296dc1243aeb4a509e785ec93cacd"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t120.db",
+        "bytes": 445911040,
+        "kind": "checkpoint_database",
+        "present": true,
+        "sha256": "76683845016c2ba253901853b34d03d68c0f2a2a7e13a410e36be5ed15337b8e"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t120.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t120.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t120.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t120.db.manifest.json",
+        "bytes": 2174,
+        "kind": "checkpoint_manifest",
+        "present": true,
+        "sha256": "ced7e971591d67c76ead2e7ecfcd0709465dc982d594c9d9969335aa89b07b5f"
+      }
+    ],
+    "artifact_manifest_before_replay": [
+      {
+        "artifact": "baseline-data/source/12b077fde7.db",
+        "bytes": 445911040,
+        "kind": "source_database",
+        "present": true,
+        "sha256": "2d05a147b837de644e11f50fe286ad9d75f36da3ac90dc8bda77a9fffb6ea6f0"
+      },
+      {
+        "artifact": "baseline-data/source/12b077fde7.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/12b077fde7.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/12b077fde7.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t105.db",
+        "bytes": 387674112,
+        "kind": "checkpoint_database",
+        "present": true,
+        "sha256": "bce9d7b9d25004665f2d107c87053ff4637ca7ede95dca260467f6c09a27e6ad"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t105.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t105.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t105.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t105.db.manifest.json",
+        "bytes": 2173,
+        "kind": "checkpoint_manifest",
+        "present": true,
+        "sha256": "63b564d37782b695a33a957050dc1bc0964a3be0793c4bd006f4d422ca1a4232"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t112.db",
+        "bytes": 414404608,
+        "kind": "checkpoint_database",
+        "present": true,
+        "sha256": "033037f43f3fe6684651a0cb6abba4640342428864a106c1b9361faa2d07773e"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t112.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t112.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t112.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t112.db.manifest.json",
+        "bytes": 2173,
+        "kind": "checkpoint_manifest",
+        "present": true,
+        "sha256": "522ebc4127df6b07dc615773623a3b8d65fd684d4d219c78e4fceec2f50c5fea"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t119.db",
+        "bytes": 441167872,
+        "kind": "checkpoint_database",
+        "present": true,
+        "sha256": "d49340c44804ba344e9a4411836da73d67772275be7392798dbcdc5c4475e71b"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t119.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t119.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t119.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t119.db.manifest.json",
+        "bytes": 2173,
+        "kind": "checkpoint_manifest",
+        "present": true,
+        "sha256": "896e737361622e2702d58a54a00cfe307a6296dc1243aeb4a509e785ec93cacd"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t120.db",
+        "bytes": 445911040,
+        "kind": "checkpoint_database",
+        "present": true,
+        "sha256": "76683845016c2ba253901853b34d03d68c0f2a2a7e13a410e36be5ed15337b8e"
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t120.db-journal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t120.db-shm",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t120.db-wal",
+        "bytes": 0,
+        "kind": "sqlite_sidecar",
+        "present": false,
+        "sha256": null
+      },
+      {
+        "artifact": "baseline-data/source/checkpoints/12b077fde7_t120.db.manifest.json",
+        "bytes": 2174,
+        "kind": "checkpoint_manifest",
+        "present": true,
+        "sha256": "ced7e971591d67c76ead2e7ecfcd0709465dc982d594c9d9969335aa89b07b5f"
+      }
+    ],
+    "database": "baseline-data/source/12b077fde7.db",
+    "run_id": "12b077fde7",
+    "sha256_after_replay": "2d05a147b837de644e11f50fe286ad9d75f36da3ac90dc8bda77a9fffb6ea6f0",
+    "sha256_before_replay": "2d05a147b837de644e11f50fe286ad9d75f36da3ac90dc8bda77a9fffb6ea6f0",
+    "status": "finished",
+    "tick": 120
+  },
+  "source_commit": "168a0677e124d7daa0c6b9ded7f25738c08d6cf3"
+}

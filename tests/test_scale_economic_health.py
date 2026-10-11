@@ -788,6 +788,42 @@ def test_ab_allows_only_exact_recovery_policy_difference_and_baseline_diagnostic
     )
 
 
+def test_ab_ignores_output_directories_but_keeps_checkpoint_policy_and_failures(
+        tmp_path: Path):
+    arms = []
+    for arm, profile in (("baseline", BASELINE_PROFILE), ("recovery", RECOVERY_PROFILE)):
+        fixture = _seed_fixture(tmp_path / arm, profile=profile)
+        receipt = evaluate_scale_economic_health(
+            fixture.source, fixture.replay, fixture.runtime)
+        config = receipt["runtime"]["effective_config"]
+        config["checkpoint_dir"] = f"{arm}-data/source/checkpoints"
+        config["report_dir"] = f"{arm}-output/reports"
+        receipt["runtime"]["effective_config_sha256"] = _canonical_hash(config)
+        arms.append(receipt)
+    baseline, recovery = arms
+    originals = deepcopy(arms)
+
+    assert evaluate_scale_ab(baseline, recovery)["passed"] is True
+    assert arms == originals
+
+    for key in ("checkpoint_every", "checkpoint_keep_last", "seed"):
+        drifted = deepcopy(recovery)
+        drifted["runtime"]["effective_config"][key] += 1
+        drifted["runtime"]["effective_config_sha256"] = _canonical_hash(
+            drifted["runtime"]["effective_config"])
+        rejected = evaluate_scale_ab(baseline, drifted)
+        assert rejected["checks"]["configs_differ_only_by_recovery_policy"] is False, key
+        assert rejected["passed"] is False, key
+
+    recovery["checks"]["purchase_windows_healthy"] = False
+    recovery["passed"] = False
+    recovery["outcome"] = "diagnostic_economic_failure"
+    failed = evaluate_scale_ab(baseline, recovery)
+    assert failed["checks"]["configs_differ_only_by_recovery_policy"] is True
+    assert failed["checks"]["recovery_economic_health"] is False
+    assert failed["passed"] is False
+
+
 def test_store_connection_factory_rejects_writable_connections(tmp_path: Path):
     connection = sqlite3.connect(":memory:")
     try:

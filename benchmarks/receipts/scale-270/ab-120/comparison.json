@@ -1,0 +1,80 @@
+{
+  "arms": {
+    "baseline": {
+      "economic": {
+        "final_unemployment_mean": 0.888021,
+        "final_window_production_units": 3600,
+        "final_window_sale_units": 2424,
+        "first_unemployment_mean": 0.79401,
+        "latest_purchase_rejection_rate": 0.948477
+      },
+      "effective_config_sha256": "7e0dcb71a98619c97093d70e75999066541bcb5aa8b41c4c6f17388dc85ceed4",
+      "failed_economic_checks": [
+        "managed_insolvency_absent",
+        "production_and_inventory_healthy",
+        "purchase_windows_healthy",
+        "unemployment_final_mean_not_worse",
+        "unemployment_rebound_bounded",
+        "unit_economics_valid"
+      ],
+      "outcome": "diagnostic_economic_failure",
+      "profile": "runs/acceptance/scale-270-baseline-120.yaml",
+      "run_id": "12b077fde7",
+      "source_sha256": "2d05a147b837de644e11f50fe286ad9d75f36da3ac90dc8bda77a9fffb6ea6f0"
+    },
+    "recovery": {
+      "economic": {
+        "final_unemployment_mean": 0.734375,
+        "final_window_production_units": 27720,
+        "final_window_sale_units": 27720,
+        "first_unemployment_mean": 0.80293,
+        "latest_purchase_rejection_rate": 0.605285
+      },
+      "effective_config_sha256": "88314a00d3fd015a1fa7d2738f97eb6e55e4b066c4c721af5e3d7f41bffcd77e",
+      "failed_economic_checks": [
+        "purchase_windows_healthy"
+      ],
+      "outcome": "diagnostic_economic_failure",
+      "profile": "runs/acceptance/scale-270-recovery-120.yaml",
+      "run_id": "22602e3a92",
+      "source_sha256": "c44b4b7692b2a57ccd7cd7e96e295ce2f8af25c1c20dc5344d90dbf8c69fced0"
+    }
+  },
+  "checks": {
+    "baseline_operational": true,
+    "baseline_outcome_valid": true,
+    "configs_differ_only_by_recovery_policy": true,
+    "receipt_schemas_valid": true,
+    "recovery_economic_health": false,
+    "recovery_operational": true,
+    "recovery_outcome_valid": false
+  },
+  "deltas_recovery_minus_baseline": {
+    "final_unemployment_mean": -0.153646,
+    "final_window_production_units": 24120.0,
+    "final_window_sale_units": 25296.0,
+    "first_unemployment_mean": 0.00892,
+    "latest_purchase_rejection_rate": -0.343192
+  },
+  "outcome": "failed",
+  "passed": false,
+  "policy_difference": {
+    "baseline": {
+      "enabled": false
+    },
+    "recovery": {
+      "activation_tick": 0,
+      "cash_payroll_coverage_periods": 2,
+      "demand_buffer_ticks": 5,
+      "enabled": true,
+      "gross_margin_coverage_bps": 12500,
+      "max_headcount_per_firm": 7,
+      "max_hires_per_firm_per_period": 1,
+      "policy_version": "supply-recovery-v1",
+      "sales_observation_ticks": 30,
+      "wage_floor_cents": 15000
+    }
+  },
+  "schema": "agent-economy-scale-ab-v1",
+  "schema_version": 1
+}
