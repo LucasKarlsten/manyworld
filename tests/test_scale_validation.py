@@ -243,3 +243,39 @@ def test_cli_reports_the_persisted_runtime_artifact(monkeypatch, capsys, tmp_pat
     result = json.loads(capsys.readouterr().out)
     assert result["receipt"] == str(
         (tmp_path / "different-output" / "exact.runtime.json").resolve())
+
+
+def test_checkpoint_phase_measurement_restores_methods_after_error(tmp_path, store):
+    from scripts.run_scale_validation import _checkpoint_phase_timings
+    from world.loop import World
+
+    # Use the actual static writer and inherited methods. No engine operation
+    # except the isolated writer is needed to test instrumentation cleanup.
+    world = World.__new__(World)
+    failure = OSError("checkpoint preparation failed")
+
+    def failed_prepare(tick):
+        raise failure
+
+    world._checkpoint_prepare = failed_prepare
+    original_write = world._checkpoint_write
+    with pytest.raises(OSError) as caught:
+        with _checkpoint_phase_timings(world) as phases:
+            world._checkpoint_prepare(1)
+
+    assert caught.value is failure
+    assert phases.keys() == {"prepare"}
+    assert phases["prepare"] >= 0
+    assert world.__dict__ == {"_checkpoint_prepare": failed_prepare}
+    assert world._checkpoint_write is original_write
+
+    # A later checkpoint must not retain measurements/wrappers from the failed
+    # one, and the restored static writer still produces a real artifact.
+    dest = tmp_path / "after-failure.db"
+    with _checkpoint_phase_timings(world) as next_phases:
+        result = world._checkpoint_write(store.path, dest)
+    assert result is None
+    assert next_phases.keys() == {"write"}
+    assert dest.is_file()
+    assert Path(f"{dest}.manifest.json").is_file()
+    assert world.__dict__ == {"_checkpoint_prepare": failed_prepare}
