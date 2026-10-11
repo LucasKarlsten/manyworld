@@ -1,5 +1,5 @@
-# Formal acceptance of the explicitly opted-in inventory-aware recovery.
+# Formal acceptance of inventory guidance after the same workforce warmup.
 extends: scale-270-recovery-1000.yaml
 
 behavior:
-  inventory_aware_shopping: true
+  inventory_aware_shopping_activation_tick: 60
