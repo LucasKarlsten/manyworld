@@ -1,0 +1,5 @@
+# Formal acceptance of the explicitly opted-in inventory-aware recovery.
+extends: scale-270-recovery-1000.yaml
+
+behavior:
+  inventory_aware_shopping: true

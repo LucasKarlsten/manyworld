@@ -500,8 +500,14 @@ def _mutate_both(fixture: ScaleFixture, mutate: Callable[[sqlite3.Connection], N
     _refresh_runtime(fixture)
 
 
-def test_healthy_persisted_fixture_produces_deterministic_all_green_receipt(tmp_path: Path):
-    fixture = _seed_fixture(tmp_path)
+@pytest.mark.parametrize("profile", [
+    BASELINE_PROFILE,
+    ROOT / "runs/acceptance/scale-270-recovery-inventory-120.yaml",
+])
+def test_healthy_persisted_fixture_produces_deterministic_all_green_receipt(
+    tmp_path: Path, profile: Path,
+):
+    fixture = _seed_fixture(tmp_path, profile=profile)
 
     first = evaluate_scale_economic_health(fixture.source, fixture.replay, fixture.runtime)
     second = evaluate_scale_economic_health(fixture.source, fixture.replay, fixture.runtime)

@@ -1,0 +1,6 @@
+# Stage 4 repair: retain the original diagnostic profile and its evidence.
+# Bound household quantity to advertised stock per scheduled local shopper.
+extends: scale-270-recovery-120.yaml
+
+behavior:
+  inventory_aware_shopping: true

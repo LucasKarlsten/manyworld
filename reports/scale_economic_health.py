@@ -57,6 +57,16 @@ PROFILE_CONTRACTS = {
         "diagnostic": False,
         "recovery_enabled": True,
     },
+    "runs/acceptance/scale-270-recovery-inventory-120.yaml": {
+        "required_ticks": 120,
+        "diagnostic": True,
+        "recovery_enabled": True,
+    },
+    "runs/acceptance/scale-270-recovery-inventory-1000.yaml": {
+        "required_ticks": 1000,
+        "diagnostic": False,
+        "recovery_enabled": True,
+    },
 }
 CHECK_NAMES = (
     "runtime_receipt_safe",
