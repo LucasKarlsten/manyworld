@@ -27,8 +27,22 @@ No engine or policy implementation changes are required for this candidate. The 
 
 ## Why guidance must follow the workforce ramp
 
-The first configuration candidate, commit `559301d`, enabled guidance from the start. Its fresh source `7ce4c5cc41` completed 120 ticks but failed both purchase windows: 1,079/12,952 (8.33%) at ticks 60–119 and 1,071/12,944 (8.27%) at ticks 61–120. Every rejection remained out of stock. Its replay and full receipt verification are pending; these counts come from the closed immutable source. The failed candidate and its original configuration remain preserved in a separate checkout.
+The first configuration candidate, commit `559301d`, enabled guidance from the start. Its fresh source `7ce4c5cc41` completed 120 ticks but failed both purchase windows: 1,079/12,952 (8.33%) at ticks 60–119 and 1,071/12,944 (8.27%) at ticks 61–120. Every rejection remained out of stock. The completed replay is exact across 130 tables and all 17 runtime checks pass, with zero provider spend. Final economic evaluation also fails production/inventory health; the diagnosis below explains this second failure. The failed candidate and its original configuration remain preserved in a separate checkout.
 
 The demand-limited hiring boundary explains why the successful fully staffed checkpoint-copy trial did not establish fresh-run success. At tick 2, firm 3's founder (actor 89, model call 151) observes 21 sales plus 104 unmet units in the original recovery, yielding demand-limited headcount 2 and one allowed hire. Guidance from the start instead records 16 sales and no unmet units, yielding demand-limited headcount 0 and no allowed hire. Both assessments have cash-limited headcount 24, identical prices, costs, wages and margins. Actual employment first diverges at tick 6. By tick 59 all 12 original goods firms have seven workers; the first candidate has only three to six each. Measured-window production falls from 27,720 to 23,309 units, with 23,299 sold.
 
 The next candidate uses the already supported activation option to preserve this ramp and then cap quantities. Tests pin tick 59 versus tick 60 and verify exact source/replay across a compressed cutover fixture. A fresh full 120-tick run is still required: the timing hypothesis is not a passing receipt.
+
+## October 13: production shortfall and stopped validation
+
+Three firms sold more than they produced in ticks 61–120. Their carried stock covered the difference; this is not evidence of negative inventory or a ledger imbalance. Persisted tick-61 contexts (model calls 7500 and 7556) advertise stock after that tick's production. Subtracting the corresponding production events gives opening stock of 8, 12 and 7 units. The complete window reconciles exactly:
+
+| Firm | Opening stock | Produced | Sold | Closing stock | Production shortfall |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 2 — Retail Co 2 | 8 | 1,380 | 1,388 | 0 | 8 |
+| 4 — Services Co 4 | 12 | 1,616 | 1,618 | 10 | 2 |
+| 8 — Retail Co 8 | 7 | 2,247 | 2,254 | 0 | 7 |
+
+The maintained acceptance contract explicitly requires each active goods firm's final-window production to cover accepted sales. Carried inventory therefore does not waive this failure. The evaluator now exposes `production_shortfall_units` alongside its existing totals; its decision and thresholds are unchanged. Regression fixtures cover surplus production, exact coverage and one/seven-unit shortfalls despite positive closing inventory, while retaining exact replay and ledger checks.
+
+The local validation orchestrator stopped before its broader tests or revised source run because it incorrectly assumed the previous attempt would fail only purchases. The corrected sequence explicitly recognizes both diagnosed failures, reproduces the original failed receipt using the frozen `559301d` checkout, verifies its artifacts, and only then starts the revised candidate's tests and fresh run. Neither historical failure becomes acceptance. Source SHA-256 remains `d740129ec88c9cea1bf42220ecfdf7469bfd0346a518591f511c4e0e9a0d3ad3`.

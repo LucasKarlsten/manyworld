@@ -706,6 +706,8 @@ def _production_inventory_evidence(
             row["terminal_inventory"] is not None
             and (row["terminal_inventory"] > 0 or row["production_units"] > 0))
         row["inventory_nonzero_evidenced"] = inventory_nonzero_evidenced
+        row["production_shortfall_units"] = max(
+            0, row["accepted_sale_units"] - row["production_units"])
         row["passed"] = bool(
             row["production_events"] > 0
             and row["production_units"] >= row["accepted_sale_units"]
