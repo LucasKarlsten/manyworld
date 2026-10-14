@@ -21,7 +21,7 @@ Raw copied databases, logs and `probe.json` remain ignored under `reports/out/sc
 
 ## Governed repair and evidence boundary
 
-New maintained profiles `scale-270-recovery-inventory-120.yaml` and `scale-270-recovery-inventory-1000.yaml` inherit their corresponding original recovery profiles. They retain `behavior.inventory_aware_shopping_activation_tick: 60` and opt into staff counting and a 2,000-basis-point stock margin, as described below. Quantity guidance starts after the original workforce ramp. Original baseline/recovery profiles and published failed receipts remain intact. Receipt evaluation recognizes each new profile explicitly and still binds persisted/effective configuration, horizon, population, semantics, artifacts and every original threshold. The repaired recovery is a separate intervention from the original policy-only A/B comparison.
+New maintained profiles `scale-270-recovery-inventory-120.yaml` and `scale-270-recovery-inventory-1000.yaml` inherit their corresponding original recovery profiles. They retain `behavior.inventory_aware_shopping_activation_tick: 60`, opt into staff counting and a 2,000-basis-point stock margin, and allow up to eight workers per firm instead of seven. The bounded capacity change follows the recorded hiring assessments below. Quantity guidance still starts at tick 60, but earlier hiring can now differ from the original workforce ramp. Original baseline/recovery profiles and published failed receipts remain intact. Receipt evaluation recognizes each new profile explicitly and still binds persisted/effective configuration, horizon, population, semantics, artifacts and every original threshold. The repaired recovery is a separate intervention from the original policy-only A/B comparison.
 
 The engine and settlement policy remain unchanged. Context generation gains two explicitly persisted options whose defaults preserve historical observations and quantities; no new semantics version is needed to retain old behavior. Component tests cover shared-snapshot stock exhaustion, both population tiers, staff consumption, regional isolation, partial fill/rejection, inventory conservation and ledger reconciliation. A fresh source/replay must pass every 120-tick gate before Stage 4 closes; a one-tick diagnostic establishes no long-horizon result. The formal 1,000-tick and live/browser/Hermes checks remain later gates.
 
@@ -59,3 +59,29 @@ Independent weighted seller choices also compete against the same morning snapsh
 - `behavior.inventory_aware_shopping_reserve_bps: 2000` calculates quantity guidance from 80% of visible stock. It retains the existing one-unit minimum and eight-unit maximum. This is a proposal-sizing margin, not an engine reservation: all inventory remains available for ordinary settlement.
 
 The defaults are `false` and `0`, preserving existing configurations and replay behavior. Both controls affect quantity guidance only after its configured activation. Invalid boolean or basis-point settings fail explicitly. A mixed citizen/staff regression demonstrates the original depletion, correct counting, the additional margin, successful and rejected settlements, and exact ledger conservation. Separate tests cover cached/uncached contexts, regional isolation and a replay across activation. These tests are prerequisites; the revised candidate still needs a fresh 120-tick source, replay and passing receipt.
+
+## Capacity limit after the shopping repair
+
+Source `fd708a3063` at commit `48ecbcd` completed 120 ticks with purchase rejection of 17/12,245 (0.1388%) for ticks 60–119 and 18/12,238 (0.1471%) for ticks 61–120, both below the unchanged 5% ceiling. Four goods firms still fail the per-firm production rule:
+
+| Firm | Opening stock, tick 61 | Production, ticks 61–120 | Accepted sales | Closing stock | Production shortfall |
+| --- | ---: | ---: | ---: | ---: | ---: |
+| 2 | 19 | 2,100 | 2,103 | 16 | 3 |
+| 3 | 15 | 1,680 | 1,695 | 0 | 15 |
+| 4 | 5 | 1,680 | 1,683 | 2 | 3 |
+| 8 | 37 | 2,940 | 2,953 | 24 | 13 |
+
+These are legitimate stock drawdowns, not negative inventory. Tick-61 calls 7525 and 7562 independently anchor morning inventory; production events 90674/90675/90676/90680 identify that morning's additions. Tick-1 contexts independently anchor genesis stock. Event-by-event reconstruction for all 12 firms remains nonnegative and matches the four retained checkpoints (105/112/119/120) and terminal inventory. Aggregate production is 27,720 against 27,698 sales, with aggregate stock increasing from 226 to 248. Aggregate coverage does not waive individual failures. The closed source SHA-256 remains `0da59131715bcdc3fcc1bb1dde5b4cd3a0a06c60a10ac3464a6e76883697fd41` after the read-only inspection. Replay and the full runtime/economic receipt remain pending at this diagnosis stage.
+
+All four failed firms have seven workers. During ticks 61–120, their recorded founder assessments support another worker while cash and wage checks pass, but the configured headcount ceiling blocks hiring: firm 2 has 26 such assessments, firm 3 has 31, firm 4 has 33 and firm 8 has 22. The latest examples are:
+
+| Firm | Tick / call ID | Demand-supported workers | Configured ceiling | Cash-supported additional workers | Safe wage ceiling / actual wage, cents |
+| --- | --- | ---: | ---: | ---: | ---: |
+| 2 | 113 / 14203 | 8 | 7 | 105 | 24,840 / 15,000 |
+| 3 | 119 / 14851 | 8 | 7 | 22 | 15,072 / 15,000 |
+| 4 | 118 / 14746 | 8 | 7 | 71 | 15,072 / 15,000 |
+| 8 | 89 / 11070 | 8 | 7 | 60 | 31,416 / 15,000 |
+
+The next candidate changes only `supply_recovery.max_headcount_per_firm` from seven to eight in the repaired profiles. It uses the existing assessment and ordinary job/application/offer settlement. Recorded-input regressions show the old profile allows zero hires while the repaired profile permits one, and still rejects excessive wages, insufficient cash, absent demand and a ninth worker. Six profile/assessment cases fail before the configuration change and pass after it. The original diagnostic profiles, economic thresholds, engine semantics, ledger and historical artifacts remain unchanged.
+
+This is a capacity experiment supported by a specific blocked hire, not evidence of acceptance. Binding assessments already occur before tick 60, so this candidate must not claim identical warmup history. More output can also raise stock-based purchasing; a fresh source/replay must demonstrate actual hiring, production and every existing gate. Further ceiling increases are not justified merely to obtain a passing seed. Formal 1,000-tick, browser, live-provider and Hermes follow-ons remain deferred by the user.

@@ -16,6 +16,7 @@ from reports.scale_economic_health import PROFILE_CONTRACTS
 from run import open_run, replay_headless
 from run_config import load_config
 from tests.conftest import make_agent, make_bank
+from world.recovery import assess_recovery, recovery_settings
 from world.replay_verify import verify_replay
 
 
@@ -23,7 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 @pytest.mark.parametrize("ticks", [120, 1000])
-def test_inventory_recovery_profile_changes_only_explicit_shopping_policy(ticks):
+def test_inventory_recovery_profile_changes_only_explicit_repair_policy(ticks):
     original = load_config(ROOT / f"runs/acceptance/scale-270-recovery-{ticks}.yaml")
     path = f"runs/acceptance/scale-270-recovery-inventory-{ticks}.yaml"
     repaired = load_config(ROOT / path)
@@ -33,11 +34,51 @@ def test_inventory_recovery_profile_changes_only_explicit_shopping_policy(ticks)
         "inventory_aware_shopping_include_staff": True,
         "inventory_aware_shopping_reserve_bps": 2000,
     })
+    expected["supply_recovery"]["max_headcount_per_firm"] = 8
     assert repaired == expected
     assert not original.get("behavior", {}).get("inventory_aware_shopping", False)
     assert PROFILE_CONTRACTS[path] == {
         "required_ticks": ticks, "diagnostic": ticks == 120, "recovery_enabled": True,
     }
+
+
+@pytest.mark.parametrize("price,cost,output,cash,sales,unmet", [
+    pytest.param(553, 346, 5, 3_374_975, 1050, 6, id="firm2-t113-call14203"),
+    pytest.param(279, 122, 4, 897_246, 861, 9, id="firm3-t119-call14851"),
+    pytest.param(304, 147, 4, 2_341_525, 841, 4, id="firm4-t118-call14746"),
+    pytest.param(500, 313, 7, 2_020_897, 1433, 80, id="firm8-t89-call11070"),
+])
+def test_recorded_replenishment_demand_can_add_one_worker(
+    price, cost, output, cash, sales, unmet,
+):
+    # Persisted assessments from source fd708a3063. All four shortfall firms
+    # support exactly eight workers at these ticks; cap seven is the only veto.
+    inputs = dict(
+        enabled=True, price_cents=price, input_cost_cents=cost,
+        output_per_worker=output, pay_interval_ticks=30, wage_cents=15_000,
+        cash_cents=cash, current_payroll_cents=105_000, current_headcount=7,
+        target_headcount=3, recent_sales_units=sales, unmet_demand_units=unmet,
+    )
+    control = load_config(ROOT / "runs/acceptance/scale-270-recovery-120.yaml")
+    repaired = load_config(ROOT / "runs/acceptance/scale-270-recovery-inventory-120.yaml")
+    old = assess_recovery(**inputs, settings=recovery_settings(control))
+    new = assess_recovery(**inputs, settings=recovery_settings(repaired))
+    assert old.demand_limited_headcount == new.demand_limited_headcount == 8
+    assert old.cash_limited_headcount == new.cash_limited_headcount > 0
+    assert old.safe_wage_ceiling_cents == new.safe_wage_ceiling_cents >= 15_000
+    assert old.allowed_new_hires == 0
+    assert new.allowed_new_hires == 1
+    assert new.reason == "eligible"
+    # The extra place does not waive profitability, payroll reserves, observed
+    # demand, the hiring rate or the upper bound once that place has been filled.
+    for overrides in (
+        {"wage_cents": new.safe_wage_ceiling_cents + 1},
+        {"cash_cents": 210_000},
+        {"recent_sales_units": 0, "unmet_demand_units": 0},
+        {"current_headcount": 8, "current_payroll_cents": 120_000},
+    ):
+        rejected = assess_recovery(**(inputs | overrides), settings=recovery_settings(repaired))
+        assert rejected.allowed_new_hires == 0
 
 
 @pytest.mark.parametrize("enabled,tick,accepted", [

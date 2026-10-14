@@ -438,7 +438,11 @@ and set `behavior.inventory_aware_shopping_reserve_bps: 2000`. The latter uses
 80% of advertised stock for quantity guidance while retaining the one-unit
 minimum; settlement can still use all stock. The new controls default to
 `false` and `0`, preserving historical observations and replay. Use distinct
-output/data directories and retain the original diagnostic arms. The
+output/data directories and retain the original diagnostic arms. The repaired
+profiles also set `supply_recovery.max_headcount_per_firm: 8`, allowing one
+additional demand-supported worker under the existing cash, wage and hiring-rate
+checks. This capacity change can alter hiring before tick 60; identical warmup
+history is not claimed. The
 [purchase diagnosis](qa/2026-10-11-scale-purchase-diagnosis.md) records the
 failed attempts and the validation boundary; a candidate must pass a fresh
 120-tick source/replay evaluation before formal or live acceptance.

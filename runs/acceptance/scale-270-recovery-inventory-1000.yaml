@@ -1,5 +1,8 @@
-# Formal acceptance of inventory guidance after the same workforce warmup.
+# Formal counterpart of the repaired shopping and bounded replenishment profile.
 extends: scale-270-recovery-1000.yaml
+
+supply_recovery:
+  max_headcount_per_firm: 8
 
 behavior:
   inventory_aware_shopping_activation_tick: 60

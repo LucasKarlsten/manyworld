@@ -1,6 +1,9 @@
 # Stage 4 repair: retain the original diagnostic profile and its evidence.
-# Preserve the workforce ramp, then bound quantity from the first measured tick.
+# Allow one additional demand-supported worker; quantity guidance starts at tick 60.
 extends: scale-270-recovery-120.yaml
+
+supply_recovery:
+  max_headcount_per_firm: 8
 
 behavior:
   inventory_aware_shopping_activation_tick: 60
