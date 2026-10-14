@@ -75,10 +75,16 @@ def test_recorded_replenishment_demand_can_add_one_worker(
         {"wage_cents": new.safe_wage_ceiling_cents + 1},
         {"cash_cents": 210_000},
         {"recent_sales_units": 0, "unmet_demand_units": 0},
-        {"current_headcount": 8, "current_payroll_cents": 120_000},
     ):
         rejected = assess_recovery(**(inputs | overrides), settings=recovery_settings(repaired))
         assert rejected.allowed_new_hires == 0
+    ninth = assess_recovery(**(inputs | {
+        "current_headcount": 8, "current_payroll_cents": 120_000,
+        "recent_sales_units": 9 * output * 30, "unmet_demand_units": 0,
+    }), settings=recovery_settings(repaired))
+    assert ninth.demand_limited_headcount == 9
+    assert ninth.headcount_cap == 8
+    assert ninth.allowed_new_hires == 0
 
 
 @pytest.mark.parametrize("enabled,tick,accepted", [
