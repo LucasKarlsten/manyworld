@@ -84,6 +84,42 @@ def test_uncached_guidance_uses_the_same_eligible_adults_and_settles_purchase(sc
 
 
 @pytest.mark.parametrize('local', [True, False])
+def test_staff_guidance_keeps_modern_residence_and_child_boundaries(scenario_world, local):
+    world = shopping_world(scenario_world, 'both', local)
+    actor, tick, seller = stock_for_two_units_per_scheduled_shopper(world)
+    people = world.store.query('SELECT * FROM agents ORDER BY id')
+    assert not world.economy.population.is_local(23, tick)
+    assert any(row['kind'] == 'citizen' and row['age'] < 18 for row in people)
+    # This fixture's one departed adult is 23. Staff have no citizen residence
+    # history; declare every eligible seat awake for the cached comparison.
+    cohort = [row for row in people if row['alive'] and row['health'] != 'critical'
+              and row['age'] >= 18 and row['kind'] in {'citizen', 'staff'}
+              and row['id'] != 23]
+    local_cohort = [row for row in cohort
+                    if not local or row['region_id'] == actor['region_id']]
+    assert any(row['kind'] == 'staff' for row in local_cohort)
+    world.store.update('firms', seller, inventory=2*len(local_cohort))
+    config = {**world.config, 'behavior': {**world.config['behavior'],
+                                         'inventory_aware_shopping_include_staff': True}}
+    before = contents(world.store)
+    for cached in (False, True):
+        builder = ContextBuilder(world.economy, world.runtime.mem, config)
+        if cached:
+            builder.prepare_decision_cohort(cohort, tick)
+        context = builder._citizen_context(actor, tick, retrieve_memories=False)
+        assert context['shopping_qty_cap'] == 2
+        assert contents(world.store) == before
+    purchase, = [action for action in citizen_decision(context)['actions']
+                 if action['type'] == 'buy_goods']
+    assert purchase['qty'] == 2 and purchase['firm_id'] == seller
+    result = world.economy.firms.buy_goods(tick, actor['id'], seller, purchase['qty'])
+    assert result['ok'], result
+    assert world.store.scalar('SELECT inventory FROM firms WHERE id=?',
+                              (seller,)) == 2*len(local_cohort) - 2
+    assert world.economy.ledger.reconcile()[0]
+
+
+@pytest.mark.parametrize('local', [True, False])
 def test_uncached_shopper_history_is_checked_without_read_context_effects(scenario_world, local):
     world = shopping_world(scenario_world, 'child', local)
     actor, tick, _ = stock_for_two_units_per_scheduled_shopper(world)
