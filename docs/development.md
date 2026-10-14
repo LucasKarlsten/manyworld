@@ -430,6 +430,19 @@ python scripts/run_scale_validation.py \
   --data-dir reports/out/scale-270/recovery/runs
 ```
 
+The inventory recovery candidates use
+`runs/acceptance/scale-270-recovery-inventory-120.yaml` and the matching
+`-1000.yaml` profile. They activate inventory guidance at tick 60, count staff
+as potential shoppers with `behavior.inventory_aware_shopping_include_staff`,
+and set `behavior.inventory_aware_shopping_reserve_bps: 2000`. The latter uses
+80% of advertised stock for quantity guidance while retaining the one-unit
+minimum; settlement can still use all stock. The new controls default to
+`false` and `0`, preserving historical observations and replay. Use distinct
+output/data directories and retain the original diagnostic arms. The
+[purchase diagnosis](qa/2026-10-11-scale-purchase-diagnosis.md) records the
+failed attempts and the validation boundary; a candidate must pass a fresh
+120-tick source/replay evaluation before formal or live acceptance.
+
 The harness prints the exact source database, replay database, and runtime
 receipt identities. Evaluate each finalized pair without opening a writer,
 replacing the three `<...>` values with those printed artifact paths:

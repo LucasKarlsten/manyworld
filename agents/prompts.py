@@ -201,6 +201,17 @@ class ContextBuilder:
             "inventory_aware_shopping_activation_tick")
         self.inventory_aware_shopping_activation_tick = (
             int(activation_tick) if activation_tick is not None else None)
+        include_staff = behavior.get("inventory_aware_shopping_include_staff", False)
+        if not isinstance(include_staff, bool):
+            raise ValueError("behavior.inventory_aware_shopping_include_staff must be a boolean")
+        self.inventory_shopper_kinds = (
+            ("citizen", "staff") if include_staff else ("citizen",))
+        reserve_bps = behavior.get("inventory_aware_shopping_reserve_bps", 0)
+        if (isinstance(reserve_bps, bool) or not isinstance(reserve_bps, int)
+                or not 0 <= reserve_bps < 10_000):
+            raise ValueError(
+                "behavior.inventory_aware_shopping_reserve_bps must be an integer from 0 to 9999")
+        self.inventory_aware_shopping_reserve_bps = reserve_bps
         self._decision_cohort_tick: int | None = None
         self._decision_shoppers_by_region: dict[int | None, int] = {}
         self.communication_projection = AgentKnowledgeProjection(self.store, config)
@@ -226,7 +237,7 @@ class ContextBuilder:
         shoppers: dict[int | None, int] = {}
         for agent in agents:
             if (
-                agent["kind"] != "citizen"
+                agent["kind"] not in self.inventory_shopper_kinds
                 or not bool(agent["alive"])
                 or agent["health"] == "critical"
             ):
@@ -732,31 +743,45 @@ class ContextBuilder:
                 else 0
             )
             if shoppers <= 0:
+                # Staff seats can use ordinary consumption policies too. Keep
+                # the historical citizen-only denominator unless opted in.
+                kind_filter = (
+                    "kind IN ('citizen','staff')"
+                    if "staff" in self.inventory_shopper_kinds
+                    else "kind='citizen'"
+                )
                 if self.engine_semantics_version >= 21:
                     # An uncached catalog/context has no scheduled cohort yet.
                     # Count eligible adult residents; children consume through
                     # household provisioning, and departed people retain assets.
                     region_filter = " AND region_id=?" if region_id is not None else ""
                     candidates = self.store.query(
-                        "SELECT id FROM agents WHERE kind='citizen' AND alive=1 "
+                        f"SELECT id,kind FROM agents WHERE {kind_filter} AND alive=1 "
                         "AND health<>'critical' AND age>=18" + region_filter + " ORDER BY id",
                         (region_id,) if region_id is not None else ())
-                    shoppers = sum(self.e.population.is_local(int(person['id']), tick)
-                                   for person in candidates)
+                    shoppers = sum(
+                        person["kind"] == "staff"
+                        or self.e.population.is_local(int(person["id"]), tick)
+                        for person in candidates)
                 elif region_id is None:
                     shoppers = int(self.store.scalar(
-                        "SELECT COUNT(*) FROM agents WHERE kind='citizen' "
+                        f"SELECT COUNT(*) FROM agents WHERE {kind_filter} "
                         "AND alive=1 AND health<>'critical'", default=1))
                 else:
                     shoppers = int(self.store.scalar(
-                        "SELECT COUNT(*) FROM agents WHERE kind='citizen' "
+                        f"SELECT COUNT(*) FROM agents WHERE {kind_filter} "
                         "AND alive=1 AND health<>'critical' AND region_id=?",
                         (region_id,), default=1))
             total_stock = sum(
                 max(0, int(offer.get("inventory", 0)))
                 for offer in goods_offers)
+            # Independent seller choices share one snapshot. Optional headroom
+            # bounds proposed quantities; it never reserves or mutates stock.
+            guided_stock = (
+                total_stock * (10_000 - self.inventory_aware_shopping_reserve_bps)
+                // 10_000)
             context["shopping_qty_cap"] = max(
-                1, min(8, total_stock // max(1, shoppers)))
+                1, min(8, guided_stock // max(1, shoppers)))
         behavior = self.config.get("behavior", {})
         job_application_tick = behavior.get(
             "job_application_aware_activation_tick")
