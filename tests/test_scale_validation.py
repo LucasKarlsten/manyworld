@@ -183,6 +183,9 @@ def test_one_tick_provider_free_validation_is_isolated_and_exact(tmp_path):
         assert all(value >= 0 for value in phases.values())
         # Retention is nested within catalog recording; do not sum both.
         assert phases["retention"] <= phases["record"]
+        writer_phases = ("write_backup", "write_finalize", "write_manifest")
+        assert set(writer_phases) <= phases.keys()
+        assert sum(phases[key] for key in writer_phases) <= phases["write"] + 0.000003
         measured = sum(phases[key] for key in ("prepare", "write", "record"))
         assert measured <= checkpoint["duration_s"] + 0.000003
     assert receipt["replay"]["proof"]["exact"] is True
@@ -275,7 +278,76 @@ def test_checkpoint_phase_measurement_restores_methods_after_error(tmp_path, sto
     with _checkpoint_phase_timings(world) as next_phases:
         result = world._checkpoint_write(store.path, dest)
     assert result is None
-    assert next_phases.keys() == {"write"}
+    assert next_phases.keys() == {
+        "write", "write_backup", "write_finalize", "write_manifest"}
     assert dest.is_file()
     assert Path(f"{dest}.manifest.json").is_file()
     assert world.__dict__ == {"_checkpoint_prepare": failed_prepare}
+
+
+@pytest.mark.parametrize("failed_phase", ("backup", "finalize", "manifest"))
+def test_checkpoint_writer_phase_failure_is_recorded_and_preserved(
+    tmp_path, store, monkeypatch, failed_phase,
+):
+    import sqlite3
+    from scripts.run_scale_validation import _checkpoint_phase_timings
+    from world.loop import World
+
+    world = World.__new__(World)
+    original_write = world._checkpoint_write
+    failure = OSError("injected checkpoint failure")
+
+    def fail(*args, **kwargs):
+        raise failure
+
+    source = store.path
+    if failed_phase == "backup":
+        source = str(tmp_path / "missing-parent" / "source.db")
+        expected_error = sqlite3.OperationalError
+    else:
+        operation = (
+            "finalize_sqlite_artifact" if failed_phase == "finalize"
+            else "write_checkpoint_manifest")
+        monkeypatch.setattr(f"world.loop.{operation}", fail)
+        expected_error = OSError
+
+    with pytest.raises(expected_error) as caught:
+        with _checkpoint_phase_timings(world) as phases:
+            world._checkpoint_write(source, tmp_path / "failed.db")
+
+    if failed_phase != "backup":
+        assert caught.value is failure
+    ordered = ("write_backup", "write_finalize", "write_manifest")
+    expected = ordered[:ordered.index(f"write_{failed_phase}") + 1]
+    assert phases.keys() == {"write", *expected}
+    assert all(value >= 0 for value in phases.values())
+    assert sum(phases[key] for key in expected) <= phases["write"] + 0.000003
+    assert world.__dict__ == {}
+    assert world._checkpoint_write is original_write
+
+
+def test_checkpoint_phase_measurement_preserves_custom_writer_signature():
+    from scripts.run_scale_validation import _checkpoint_phase_timings
+    from world.loop import World
+
+    world = World.__new__(World)
+    calls = []
+    sentinel = object()
+
+    def custom_writer(source, dest):
+        calls.append((source, dest))
+        return sentinel
+
+    # An identically named positional-only argument is not an opt-in to the
+    # diagnostic keyword either; ordinary overridden writers remain callable.
+    def positional_writer(source, dest, phase_timings=None, /):
+        assert phase_timings is None
+        return custom_writer(source, dest)
+
+    for writer in (custom_writer, positional_writer):
+        world._checkpoint_write = writer
+        with _checkpoint_phase_timings(world) as phases:
+            assert world._checkpoint_write("source.db", "checkpoint.db") is sentinel
+        assert phases.keys() == {"write"}
+        assert world.__dict__ == {"_checkpoint_write": writer}
+    assert calls == [("source.db", "checkpoint.db")] * 2

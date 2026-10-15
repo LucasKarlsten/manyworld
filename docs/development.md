@@ -516,7 +516,12 @@ receipt.
 Runtime checkpoint entries include `phases_s`: preparation, legacy writer,
 and catalog recording, plus legacy retention when it runs. Recording includes
 retention; do not add both durations. The legacy writer includes SQLite backup,
-artifact finalization and manifest generation. Storage-policy writers bypass
+artifact finalization and manifest generation; `write_backup`, `write_finalize`
+and `write_manifest` measure those operations separately inside `write`.
+Do not add these nested samples to the writer or total duration. They include
+failed operations and preserve the original exceptions. Custom legacy writers
+without the optional timing argument retain just the overall writer sample.
+Storage-policy writers bypass
 the legacy method and have no `write` sample. Total `duration_s` remains the
 resource-gate measurement, including Stop checkpoints; phase samples are only
 diagnostics. Measurement wraps one validation world and does not change its

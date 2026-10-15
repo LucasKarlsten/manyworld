@@ -1204,25 +1204,44 @@ class World:
         return ckpt_dir / f"{run_id}_t{tick}.db", run_id
 
     @staticmethod
-    def _checkpoint_write(source_path: str, dest: Path) -> None:
+    def _checkpoint_write(
+        source_path: str, dest: Path, *, phase_timings: dict[str, float] | None = None,
+    ) -> None:
         """Copy the database page by page — the expensive half of a checkpoint.
 
         Touches no shared state: its own source and destination connections,
         both opened and closed here. That is what makes it safe to hand to a
         worker thread, which matters because this is a full copy of the run
         database and took 27-78 s of a *serving* event loop when it ran inline.
+        Validation can collect nested writer timings in its own dictionary;
+        ordinary checkpoints incur no clock reads or persisted observations.
         """
         import sqlite3
-        src = sqlite3.connect(source_path)
-        dst = sqlite3.connect(str(dest))
+        started = time.perf_counter() if phase_timings is not None else None
         try:
-            with dst:
-                src.backup(dst)
+            src = sqlite3.connect(source_path)
+            dst = sqlite3.connect(str(dest))
+            try:
+                with dst:
+                    src.backup(dst)
+            finally:
+                src.close()
+                dst.close()
         finally:
-            src.close()
-            dst.close()
-        finalize_sqlite_artifact(dest)
-        write_checkpoint_manifest(dest)
+            if started is not None:
+                phase_timings["write_backup"] = round(time.perf_counter() - started, 6)
+        started = time.perf_counter() if phase_timings is not None else None
+        try:
+            finalize_sqlite_artifact(dest)
+        finally:
+            if started is not None:
+                phase_timings["write_finalize"] = round(time.perf_counter() - started, 6)
+        started = time.perf_counter() if phase_timings is not None else None
+        try:
+            write_checkpoint_manifest(dest)
+        finally:
+            if started is not None:
+                phase_timings["write_manifest"] = round(time.perf_counter() - started, 6)
 
     def _checkpoint_failed(self, tick: int, reason: str, exc: Exception) -> None:
         self.store.log_event(
