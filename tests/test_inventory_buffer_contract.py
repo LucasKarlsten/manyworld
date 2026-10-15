@@ -42,9 +42,14 @@ def _inventory_fixture(closes, *, production=10):
                                        currency_code TEXT, observation_json TEXT);
         CREATE TABLE scale_purchase_audit(proposal_id INTEGER PRIMARY KEY, tick INTEGER,
             buyer_id INTEGER, firm_id INTEGER, requested_units INTEGER, stock_units INTEGER,
-            unit_price_cents INTEGER, cash_cents INTEGER, unavailable_reason TEXT, result_json TEXT);
+            unit_price_cents INTEGER, cash_cents INTEGER, unavailable_reason TEXT, result_json TEXT,
+            preceding_goods_event_id INTEGER, following_goods_event_id INTEGER);
         CREATE TABLE action_proposals(id INTEGER PRIMARY KEY, tick INTEGER, actor_id INTEGER,
                     action_type TEXT, payload_json TEXT, validation_status TEXT, result_json TEXT);
+        CREATE TABLE agents(id INTEGER PRIMARY KEY, region_id INTEGER, checking_account_id INTEGER);
+        CREATE TABLE accounts(id INTEGER PRIMARY KEY, currency_code TEXT);
+        INSERT INTO agents VALUES (1,1,1);
+        INSERT INTO accounts VALUES (1,'USD');
     """)
     firm = {"firm_id": 1, "region_id": 1, "currency_code": "USD", "inventory": closes[0]}
     for tick, closing in enumerate(closes[1:], 1):
@@ -180,20 +185,20 @@ def test_missing_catalog_retains_unpriced_desired_demand():
 
 
 def _demand_fixture(*, requested=8, stock=3, cash=100000, pre_rejected=False):
-    connection = _inventory_fixture([20, 20])
+    filled = 0 if pre_rejected else min(requested, stock, cash // 500)
+    connection = _inventory_fixture([stock, stock - filled], production=0)
     connection.execute("DELETE FROM events")
     connection.execute("UPDATE scale_inventory_audit SET decision_agent_ids_json='[1]'")
     probe = probe_consumption_demand("decision", _context(), CATALOG)
     connection.execute("INSERT INTO scale_demand_audit VALUES (1,1,1,'USD',?)", (json.dumps(probe),))
-    filled = 0 if pre_rejected else min(requested, stock, cash // 500)
     result = ({"ok": True, "qty": filled, "total_cents": filled * 500, "unit_price_cents": 500}
               if filled else {"ok": False, "reason": "actor not alive" if pre_rejected else "out of stock" if stock == 0 else "insufficient funds"})
     connection.execute("INSERT INTO action_proposals VALUES (1,1,1,'buy_goods',?,?,?)", (
         json.dumps({"firm_id": 1, "qty": requested}), "accepted" if filled else "rejected", json.dumps(result)))
     if not pre_rejected:
-        connection.execute("INSERT INTO scale_purchase_audit VALUES (1,1,1,1,?,?,500,?,NULL,?)", (requested, stock, cash, json.dumps(result)))
+        connection.execute("INSERT INTO scale_purchase_audit VALUES (1,1,1,1,?,?,500,?,NULL,?,0,?)", (requested, stock, cash, json.dumps(result), 1 if filled else 0))
     if filled:
-        connection.execute("INSERT INTO events(tick,kind,payload_json) VALUES (1,'goods_sale',?)", (json.dumps({"firm_id": 1, "buyer_id": 1, "qty": filled}),))
+        connection.execute("INSERT INTO events(tick,kind,payload_json) VALUES (1,'goods_sale',?)", (json.dumps({"firm_id": 1, "buyer_id": 1, "qty": filled, "unit_price_cents": 500, "total_cents": filled * 500}),))
     return connection
 
 
@@ -236,6 +241,49 @@ def test_demand_audit_fails_closed_for_missing_or_inconsistent_evidence(damage):
     else:
         probe = probe_consumption_demand("decision", _context(), CATALOG)
         probe["desired_units"] = -1
+        connection.execute("UPDATE scale_demand_audit SET observation_json=?", (json.dumps(probe),))
+    assert not demand_evidence(connection, 1, THRESHOLDS)[0]
+
+
+@pytest.mark.parametrize("damage", ["wrong_region", "wrong_currency", "unknown_reference", "mixed_unpriced",
+                                    "altered_price_and_stock", "unknown_unavailable_reason", "zero_cap",
+                                    "wrong_price", "wrong_total", "wrong_event_price", "wrong_boundary",
+                                    "wrong_rejection", "null_cash", "wrong_reference_currency"])
+def test_demand_does_not_certify_inconsistent_identity_or_loss_attribution(damage):
+    connection = _demand_fixture(stock=0 if damage in {"unknown_unavailable_reason", "wrong_rejection"} else 3)
+    if damage == "wrong_region":
+        connection.execute("UPDATE scale_demand_audit SET region_id=999")
+    elif damage == "wrong_currency":
+        connection.execute("UPDATE scale_demand_audit SET currency_code='BOGUS'")
+    elif damage == "altered_price_and_stock":
+        connection.execute("UPDATE scale_purchase_audit SET stock_units=8,unit_price_cents=30000")
+    elif damage == "unknown_unavailable_reason":
+        connection.execute("UPDATE scale_purchase_audit SET unavailable_reason='invented'")
+    elif damage == "wrong_reference_currency":
+        connection.execute("UPDATE firms SET currency_code='EUR'")
+    elif damage == "wrong_price":
+        connection.execute("UPDATE scale_purchase_audit SET unit_price_cents=400")
+    elif damage == "wrong_total":
+        for table in ("scale_purchase_audit", "action_proposals"):
+            connection.execute(f"UPDATE {table} SET result_json=json_set(result_json,'$.total_cents',1)")
+    elif damage == "wrong_event_price":
+        connection.execute("UPDATE events SET payload_json=json_set(payload_json,'$.unit_price_cents',1)")
+    elif damage == "wrong_boundary":
+        connection.execute("UPDATE scale_purchase_audit SET preceding_goods_event_id=following_goods_event_id")
+    elif damage == "wrong_rejection":
+        for table in ("scale_purchase_audit", "action_proposals"):
+            connection.execute(f"UPDATE {table} SET result_json=json_set(result_json,'$.reason','insufficient funds')")
+    elif damage == "null_cash":
+        connection.execute("UPDATE scale_purchase_audit SET cash_cents=NULL")
+    else:
+        probe = probe_consumption_demand("decision", _context(), CATALOG)
+        if damage == "unknown_reference":
+            probe["reference_firm_id"] = 999
+        elif damage == "zero_cap":
+            probe.update(shopping_qty_cap=0, guidance_limited_units=8)
+        else:
+            probe.update(affordable_units=4, unpriced_units=4, guidance_limited_units=2,
+                         reference_firm_id=None, reference_price_cents=None)
         connection.execute("UPDATE scale_demand_audit SET observation_json=?", (json.dumps(probe),))
     assert not demand_evidence(connection, 1, THRESHOLDS)[0]
 
@@ -308,10 +356,11 @@ def test_canonical_v2_receipt_requires_demand_and_does_not_promote_v1_comparison
                 tick, json.dumps([{**identity, "inventory": tick - 1}]), json.dumps([{**identity, "inventory": tick}])) )
             connection.execute("INSERT INTO scale_demand_audit VALUES (?,1,1,'NSD',?)", (tick, json.dumps(probe)))
             connection.execute("INSERT INTO action_proposals(id,tick,actor_id,action_type,payload_json,validation_status,result_json) VALUES (?,?,1,'buy_goods',?,'accepted',?)", (tick, tick, json.dumps({"firm_id": 1, "qty": 1}), result))
-            connection.execute("INSERT INTO scale_purchase_audit VALUES (?,?,1,1,1,?,600,100000,NULL,?)", (tick, tick, tick + 1, result))
+            boundaries = []
             for kind, payload in (("production", {"firm_id": 1, "units": 2, "unit_cost_cents": 180}),
                                   ("goods_sale", {"firm_id": 1, "buyer_id": 1, "qty": 1, "unit_price_cents": 600, "total_cents": 600})):
-                connection.execute("INSERT INTO events(tick,kind,payload_json) VALUES (?,?,?)", (tick, kind, json.dumps(payload)))
+                boundaries.append(connection.execute("INSERT INTO events(tick,kind,payload_json) VALUES (?,?,?)", (tick, kind, json.dumps(payload))).lastrowid)
+            connection.execute("INSERT INTO scale_purchase_audit VALUES (?,?,1,1,1,?,600,100000,NULL,?,?,?)", (tick, tick, tick + 1, result, *boundaries))
 
     _mutate_both(fixture, populate)
     receipt = evaluate_scale_economic_health(fixture.source, fixture.replay, fixture.runtime)
@@ -324,6 +373,13 @@ def test_canonical_v2_receipt_requires_demand_and_does_not_promote_v1_comparison
     assert "Household demand adequacy is not certified" in markdown
     assert "Limited by guidance" in markdown
     assert evaluate_scale_ab(receipt, receipt)["checks"]["receipt_schemas_valid"] is False
+    _mutate_both(fixture, lambda connection: connection.execute(
+        "UPDATE scale_inventory_audit SET closing_json=json_set(closing_json,'$[0].inventory',999) WHERE tick=75"))
+    corrupt = evaluate_scale_economic_health(fixture.source, fixture.replay, fixture.runtime)
+    assert corrupt["outcome"] == "failed"
+    assert corrupt["checks"]["inventory_accounting_valid"] is False
+    _mutate_both(fixture, lambda connection: connection.execute(
+        "UPDATE scale_inventory_audit SET closing_json=json_set(closing_json,'$[0].inventory',75) WHERE tick=75"))
     _mutate_both(fixture, lambda connection: connection.execute("DELETE FROM scale_demand_audit WHERE tick=75"))
     missing = evaluate_scale_economic_health(fixture.source, fixture.replay, fixture.runtime)
     assert missing["outcome"] == "failed"

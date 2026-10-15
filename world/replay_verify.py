@@ -86,6 +86,8 @@ NESTED_EVENT_REFERENCE_JSON_COLUMNS = {
     ("causal_links", "provenance_json"),
 }
 EVENT_REFERENCE_COLUMNS = {
+    ("scale_purchase_audit", "preceding_goods_event_id"),
+    ("scale_purchase_audit", "following_goods_event_id"),
     ("person_residence_events", "event_id"),
     ("population_movements", "proposal_event_id"),
     ("population_movements", "outcome_event_id"),

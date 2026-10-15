@@ -78,6 +78,12 @@ Capture purchase-time stock, price and checking cash in a third audit table to
 separate stock clipping from affordability clipping for partial or rejected
 orders. Bind the pre-clamp request and outcome to the immutable action-proposal
 ID. Reconcile each dispatched proposal exactly once. Stock-then-cash losses
+are checked against opening stock plus production and sales at the recorded
+goods-event boundary. Bind accepted orders to exactly one sale and reconcile
+its price and total with the proposal result. Validate rejected orders against
+the executor's stock, account, currency and cash rejection ordering. Check each
+probe's actor region, checking currency and reference firm's goods-catalog
+membership, and reject impossible mixed priced/unpriced demand. Losses
 follow the executor's ordering; both constraints can bind. Other validation
 failures remain separate. Audit snapshot/cohort/probe
 retries are idempotent only for identical payloads; mismatches fail.
@@ -92,7 +98,9 @@ separately and label shadow fill ratios accordingly (they may exceed one).
 Publish unit fill rates with their exact denominators, including regional
 breakdowns and zero-denominator handling. Preserve the original 5% attempt
 rejection gate. Demand measurement completeness is a new mandatory integrity
-gate. Demand adequacy is explicitly reported, not silently certified by the
+gate, alongside a separate inventory-accounting integrity gate. Broken stock
+accounting is an operational failure, not an economic-only diagnosis. Demand
+adequacy is explicitly reported, not silently certified by the
 attempt-rejection gate or by lowering a demand target. No new household-service
 percentage is invented in this amendment. If the measurements show material
 unserved demand, report it prominently before deciding the deferred work.

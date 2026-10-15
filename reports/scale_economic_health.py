@@ -1169,6 +1169,7 @@ def evaluate_scale_economic_health(
         if thresholds.get("schema_version") == 2:
             checks["production_and_inventory_healthy"], evidence["production_and_inventory"] = (
                 buffer_inventory_evidence(source_connection, evaluation_ticks, thresholds))
+            checks["inventory_accounting_valid"] = evidence["production_and_inventory"].get("daily_conservation_exact") is True
             checks["demand_measurement_complete"], evidence["demand"] = (
                 demand_evidence(source_connection, evaluation_ticks, thresholds))
         else:

@@ -48,7 +48,9 @@ class InventoryAudit:
             proposal_id INTEGER PRIMARY KEY, tick INTEGER NOT NULL, buyer_id INTEGER NOT NULL,
             firm_id INTEGER NOT NULL, requested_units INTEGER NOT NULL,
             stock_units INTEGER, unit_price_cents INTEGER, cash_cents INTEGER,
-            unavailable_reason TEXT, result_json TEXT)""")
+            unavailable_reason TEXT, result_json TEXT,
+            preceding_goods_event_id INTEGER NOT NULL,
+            following_goods_event_id INTEGER)""")
 
     def _bind(self, tick: int, column: str, value: str) -> None:
         # Callers supply internal column constants, never user-provided SQL.
@@ -120,9 +122,16 @@ class InventoryAudit:
                     reason = "currency mismatch"
         self.store.execute(
             "INSERT INTO scale_purchase_audit(proposal_id,tick,buyer_id,firm_id,requested_units,"
-            "stock_units,unit_price_cents,cash_cents,unavailable_reason) VALUES (?,?,?,?,?,?,?,?,?)",
-            (proposal_id, tick, buyer, firm_id, qty, stock, price, cash, reason))
+            "stock_units,unit_price_cents,cash_cents,unavailable_reason,preceding_goods_event_id) "
+            "VALUES (?,?,?,?,?,?,?,?,?,?)",
+            (proposal_id, tick, buyer, firm_id, qty, stock, price, cash, reason, self._goods_boundary()))
+
+    def _goods_boundary(self) -> int:
+        # Bind only deterministic goods events, whose IDs exact replay normalizes.
+        return int(self.store.scalar(
+            "SELECT id FROM events WHERE kind IN ('production','goods_sale') ORDER BY id DESC LIMIT 1",
+            default=0) or 0)
 
     def complete_purchase(self, proposal_id: int, result: dict) -> None:
-        self.store.execute("UPDATE scale_purchase_audit SET result_json=? WHERE proposal_id=?",
-                           (json.dumps(result, sort_keys=True, default=str), proposal_id))
+        self.store.execute("UPDATE scale_purchase_audit SET result_json=?,following_goods_event_id=? WHERE proposal_id=?",
+                           (json.dumps(result, sort_keys=True, default=str), self._goods_boundary(), proposal_id))

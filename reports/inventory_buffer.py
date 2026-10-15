@@ -2,6 +2,7 @@
 from __future__ import annotations
 
 from collections import Counter, defaultdict
+from bisect import bisect_right
 import json
 import sqlite3
 
@@ -178,6 +179,29 @@ def demand_evidence(connection, ticks, thresholds):
     """Require complete observation/order evidence; expose, never hide, rationing."""
     try:
         start = _int(thresholds["warmup_ticks"], 1)
+        actors = {row["id"]: row for row in connection.execute(
+            "SELECT a.id,a.region_id,c.id AS checking_account_id,COALESCE(NULLIF(c.currency_code,''),'USD') AS currency_code "
+            "FROM agents a LEFT JOIN accounts c ON c.id=a.checking_account_id")}
+        firms = {row["id"]: row for row in connection.execute("SELECT id,status,currency_code,product_json FROM firms")}
+        goods = {firm_id: row for firm_id, row in firms.items() if row["status"] in {"private", "listed"}
+                 and _object(row["product_json"]).get("output_per_worker", 0) > 0}
+        openings = {row["tick"]: _stocks(row["opening_json"]) for row in connection.execute(
+            "SELECT tick,opening_json FROM scale_inventory_audit ORDER BY tick")}
+        # Prefix sums bind each execution snapshot to independently observed
+        # opening stock and the goods events before its settlement boundary.
+        goods_events = {}
+        goods_ids = [0]
+        flow_ids, flow_sums = defaultdict(list), defaultdict(lambda: [0])
+        for row in connection.execute("SELECT id,tick,kind,payload_json FROM events WHERE kind IN ('production','goods_sale') ORDER BY id"):
+            payload = _object(row["payload_json"])
+            firm = _int(payload["firm_id"], 1)
+            quantity = _int(payload["units" if row["kind"] == "production" else "qty"], 1)
+            key = (row["tick"], firm)
+            goods_events[row["id"]] = (row["tick"], row["kind"], payload)
+            goods_ids.append(row["id"])
+            flow_ids[key].append(row["id"])
+            flow_sums[key].append(flow_sums[key][-1] + (quantity if row["kind"] == "production" else -quantity))
+        goods_positions = {event_id: index for index, event_id in enumerate(goods_ids)}
         expected = set()
         audit_ticks = list(connection.execute("SELECT tick,decision_agent_ids_json FROM scale_inventory_audit ORDER BY tick"))
         if [row["tick"] for row in audit_ticks] != list(range(1, ticks + 1)):
@@ -197,24 +221,32 @@ def demand_evidence(connection, ticks, thresholds):
                 raise ValueError("unknown demand observation contract")
             for field in DEMAND_FIELDS + ("budget_cents", "liquid_cash_cents", "shopping_qty_cap"):
                 _int(probe[field])
+            _int(probe["shopping_qty_cap"], 1)
+            region = _int(row["region_id"], 1)
+            currency = row["currency_code"]
+            actor = actors.get(key[1])
+            if actor is None or (region, currency) != (actor["region_id"], actor["currency_code"]):
+                raise ValueError("demand identity differs from actor region or checking currency")
             desired, affordable = probe["desired_units"], probe["affordable_units"]
             if (desired != (8 if probe["eligibility"] == "eligible" else 0)
                     or desired != affordable + probe["affordability_limited_units"] + probe["unpriced_units"]
                     or probe["guidance_limited_units"] != max(0, affordable - probe["shopping_qty_cap"])):
                 raise ValueError("demand probe quantities do not reconcile")
             if desired and not probe["unpriced_units"]:
-                _int(probe["reference_firm_id"], 1)
+                reference = goods.get(_int(probe["reference_firm_id"], 1))
+                if reference is None or reference["currency_code"] != currency:
+                    raise ValueError("demand reference is outside the local-currency goods cohort")
                 price = _int(probe["reference_price_cents"], 1)
                 expected_affordable = (max(1, min(8, probe["budget_cents"] // price))
                                        if probe["liquid_cash_cents"] > 2 * price else 0)
                 if affordable != expected_affordable:
                     raise ValueError("demand affordability does not match policy")
-            elif probe["reference_firm_id"] is not None or probe["reference_price_cents"] is not None:
-                raise ValueError("unexpected reference price for unpriced/preempted demand")
-            region = _int(row["region_id"], 1)
-            currency = row["currency_code"]
-            if not isinstance(currency, str) or not currency:
-                raise ValueError("missing demand currency")
+            elif (probe["reference_firm_id"] is not None or probe["reference_price_cents"] is not None
+                  or affordable != 0 or probe["affordability_limited_units"] != 0
+                  or probe["unpriced_units"] != desired):
+                raise ValueError("inconsistent unpriced/preempted demand shape")
+            if probe["unpriced_units"] and any(firm["currency_code"] == currency for firm in goods.values()):
+                raise ValueError("unpriced demand despite an available price catalog")
             observations[key] = {**probe, "region_id": region, "currency_code": currency,
                                  **{field: 0 for field in ACTUAL_FIELDS}}
         if not expected or set(observations) != expected:
@@ -259,20 +291,65 @@ def demand_evidence(connection, ticks, thresholds):
             # causal attribution: both constraints can bind on the same order.
             stock = audit["stock_units"]
             reason = audit["unavailable_reason"]
+            if reason not in {None, "firm unavailable", "no account", "currency mismatch"}:
+                raise ValueError("unknown purchase audit unavailability")
+            seller, buyer = firms.get(firm), actors[key[1]]
+            actual_unavailability = ("firm unavailable" if seller is None or seller["status"] == "bankrupt"
+                                    else "no account" if buyer["checking_account_id"] is None
+                                    else "currency mismatch" if buyer["currency_code"] != seller["currency_code"] else None)
+            if reason != actual_unavailability:
+                raise ValueError("purchase availability differs from the fixed actor/firm cohort")
+            before, after = _int(audit["preceding_goods_event_id"]), _int(audit["following_goods_event_id"])
+            if before not in goods_positions or after not in goods_positions or before > after:
+                raise ValueError("invalid purchase goods-event boundary")
+            if before and goods_events[before][0] > key[0]:
+                raise ValueError("purchase boundary belongs to a later tick")
+            if filled:
+                if goods_positions[after] != goods_positions[before] + 1:
+                    raise ValueError("purchase is not bound to exactly one goods event")
+                event_tick, event_kind, sale = goods_events[after]
+                price = _int(audit["unit_price_cents"])
+                if (event_tick != key[0] or event_kind != "goods_sale"
+                        or (sale.get("buyer_id"), sale.get("firm_id"), sale.get("qty")) != (key[1], firm, filled)
+                        or result.get("unit_price_cents") != price or result.get("total_cents") != filled * price
+                        or sale.get("unit_price_cents") != price or sale.get("total_cents") != filled * price):
+                    raise ValueError("purchase price or settlement differs from its goods sale")
+            elif before != after:
+                raise ValueError("rejected purchase emitted a goods event")
+            expected_reason = None
             if stock is not None:
                 stock = _int(stock)
+                opening = openings[key[0]][firm]["inventory"]
+                reconstructed = opening + flow_sums[key[0], firm][bisect_right(flow_ids[key[0], firm], before)]
+                if stock != reconstructed:
+                    raise ValueError("purchase stock differs from opening plus preceding goods flows")
+                _int(audit["unit_price_cents"])
                 stock_lost = max(0, requested - stock)
+            if reason == "firm unavailable":
+                if any(audit[field] is not None for field in ("stock_units", "unit_price_cents", "cash_cents")):
+                    raise ValueError("unavailable firm has purchase limits")
+            elif stock is None or (reason == "no account" and audit["cash_cents"] is not None):
+                raise ValueError("purchase audit has inconsistent account/stock shape")
+            elif reason != "no account":
+                _int(audit["cash_cents"])
             if reason is not None:
                 other_lost = requested - stock_lost
                 expected_fill = 0
+                expected_reason = ("firm unavailable" if reason == "firm unavailable" else "out of stock" if stock == 0
+                                   else "no account" if reason == "no account"
+                                   else "cross-border purchases require a trade shipment and FX")
             else:
                 stock = _int(stock)
                 price, cash = _int(audit["unit_price_cents"]), _int(audit["cash_cents"])
                 stock_available = min(requested, stock)
                 expected_fill = min(stock_available, cash // price if price else stock_available)
                 cash_lost = stock_available - expected_fill
+                if not expected_fill:
+                    expected_reason = "out of stock" if stock == 0 else "insufficient funds"
             if expected_fill != filled:
                 raise ValueError("purchase result differs from recorded stock/cash limits")
+            if not filled and result.get("reason") != expected_reason:
+                raise ValueError("purchase rejection differs from stock/account/cash ordering")
             observation["stock_limited_units"] += stock_lost
             observation["cash_limited_units"] += cash_lost
             observation["other_execution_shortfall_units"] += other_lost
