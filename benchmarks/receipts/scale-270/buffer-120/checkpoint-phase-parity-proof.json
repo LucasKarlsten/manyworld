@@ -1,0 +1,1135 @@
+{
+  "added_audit_tables": [],
+  "canonical_common_tables_exact": 132,
+  "common_tables": 133,
+  "database_sha256": {
+    "candidate": "1c3b4a2486ac5db719fe984f5ff353515ee9dfe726e788e79e4930cc3fe91b34",
+    "previous": "e3599645df169a4eb4228b3535e343607cd2909e30ba552e19208d81b3c79ae5"
+  },
+  "differences": [
+    "llm_calls"
+  ],
+  "exact": false,
+  "exact_source_replay_rules_changed": false,
+  "method": "Derived canonical comparison from hash-bound exact source/replay proof entries; exhaustive immutable raw-row comparison of three named tables under explicit operational-field projection.",
+  "observational_comparison": [
+    {
+      "candidate_projected_sha256": "67bc3f2b81f9ea23bd73dec59488946bdd3e6dbe7816da81a0fe72a13eeb1669",
+      "excluded_columns": [],
+      "previous_projected_sha256": "67bc3f2b81f9ea23bd73dec59488946bdd3e6dbe7816da81a0fe72a13eeb1669",
+      "projected_rows_exact": true,
+      "raw_differing_columns": {},
+      "rows": 37179,
+      "table": "action_proposals",
+      "validated_terminal_report_paths_removed": 0
+    },
+    {
+      "candidate_projected_sha256": "bec50499c9954ac5a269a060bbde323207b3b1c177d4e3ee0b903d5dd29a8d10",
+      "excluded_columns": [
+        "created_at"
+      ],
+      "previous_projected_sha256": "bec50499c9954ac5a269a060bbde323207b3b1c177d4e3ee0b903d5dd29a8d10",
+      "projected_rows_exact": true,
+      "raw_differing_columns": {
+        "created_at": 163979,
+        "payload_json": 1
+      },
+      "rows": 163979,
+      "table": "events",
+      "validated_terminal_report_paths_removed": 1
+    },
+    {
+      "candidate_projected_sha256": "c0f4e2bc0d01fa825e5f6d7682c0af57db590232b1f0845e283a7749946f202d",
+      "excluded_columns": [
+        "created_at",
+        "latency_ms"
+      ],
+      "previous_projected_sha256": "c0f4e2bc0d01fa825e5f6d7682c0af57db590232b1f0845e283a7749946f202d",
+      "projected_rows_exact": true,
+      "raw_differing_columns": {
+        "created_at": 15073,
+        "latency_ms": 89
+      },
+      "rows": 15073,
+      "table": "llm_calls",
+      "validated_terminal_report_paths_removed": 0
+    }
+  ],
+  "observational_match": true,
+  "run_ids": {
+    "candidate": "f35fc3a790",
+    "previous": "4755fd98a9"
+  },
+  "runtime_receipt_sha256": {
+    "candidate": "59b8440c9e6406dc10be2fcb832e6cf87ba1138bd816306b7361c3794de3c1b8",
+    "previous": "8df650336427a2290ef2a887aef0ac2051ef3aafc0dfe7f1298a8960c6896344"
+  },
+  "schema": "manyworld-cross-source-observations-v1",
+  "source_hashes_unchanged": true,
+  "tables": [
+    {
+      "candidate_hash": "083917405331690b94007c70ac0bbba31a3b2f8fba2a44f0481d3f03a3306c5b",
+      "candidate_rows": 610,
+      "exact": true,
+      "previous_hash": "083917405331690b94007c70ac0bbba31a3b2f8fba2a44f0481d3f03a3306c5b",
+      "previous_rows": 610,
+      "table": "account_ledger_totals"
+    },
+    {
+      "candidate_hash": "cfad492dbb27bef3a16b664d0853eb39eafa247f48742af68d9a5de4ad81899b",
+      "candidate_rows": 633,
+      "exact": true,
+      "previous_hash": "cfad492dbb27bef3a16b664d0853eb39eafa247f48742af68d9a5de4ad81899b",
+      "previous_rows": 633,
+      "table": "accounts"
+    },
+    {
+      "candidate_hash": "810bfcc03042f3d75be592d9ddc36e62d1fdc51bf1eadf64ed4f4a457d5b54c2",
+      "candidate_rows": 37179,
+      "exact": true,
+      "previous_hash": "810bfcc03042f3d75be592d9ddc36e62d1fdc51bf1eadf64ed4f4a457d5b54c2",
+      "previous_rows": 37179,
+      "table": "action_proposals"
+    },
+    {
+      "candidate_hash": "f5f10b855afbdbfd2e3fb45bcdab280f0551defbc3da1f99da243185cad4d4eb",
+      "candidate_rows": 3,
+      "exact": true,
+      "previous_hash": "f5f10b855afbdbfd2e3fb45bcdab280f0551defbc3da1f99da243185cad4d4eb",
+      "previous_rows": 3,
+      "table": "agencies"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "agency_staff"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "agent_decisions"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "agent_skill_history"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "agent_skills"
+    },
+    {
+      "candidate_hash": "845e5465669d95758dd1b4cf82deb188b9627ef36032411d6d7c34a43d7034a0",
+      "candidate_rows": 172,
+      "exact": true,
+      "previous_hash": "845e5465669d95758dd1b4cf82deb188b9627ef36032411d6d7c34a43d7034a0",
+      "previous_rows": 172,
+      "table": "agent_tier_history"
+    },
+    {
+      "candidate_hash": "035a2969a15459eddbae85592001b19983908851e1265e91a691bef4afcca271",
+      "candidate_rows": 308,
+      "exact": true,
+      "previous_hash": "035a2969a15459eddbae85592001b19983908851e1265e91a691bef4afcca271",
+      "previous_rows": 308,
+      "table": "agents"
+    },
+    {
+      "candidate_hash": "0310a2bcf0990edb5b1a0204b9941a28da925f37bcbb4d87c4760252394712a7",
+      "candidate_rows": 5180,
+      "exact": true,
+      "previous_hash": "0310a2bcf0990edb5b1a0204b9941a28da925f37bcbb4d87c4760252394712a7",
+      "previous_rows": 5180,
+      "table": "applications"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "attention_context_items"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "attention_contexts"
+    },
+    {
+      "candidate_hash": "3e7140248793ed0d714bfc4ab9af512b8ab6e3e655b837bc6f3bab92c621eb67",
+      "candidate_rows": 3,
+      "exact": true,
+      "previous_hash": "3e7140248793ed0d714bfc4ab9af512b8ab6e3e655b837bc6f3bab92c621eb67",
+      "previous_rows": 3,
+      "table": "banks"
+    },
+    {
+      "candidate_hash": "52ff423166d97e83aadde76dc0c64da2867cd374b8af831fe82025a38b836b6a",
+      "candidate_rows": 58796,
+      "exact": true,
+      "previous_hash": "52ff423166d97e83aadde76dc0c64da2867cd374b8af831fe82025a38b836b6a",
+      "previous_rows": 58796,
+      "table": "beliefs"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "bill_actions"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "bill_versions"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "bills"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "calibration_targets"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "causal_links"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "child_needs"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "civic_authorizations"
+    },
+    {
+      "candidate_hash": "152353917d2f1ab813033bca224c3161b5129cf8d175a14904566a07dbb87ddf",
+      "candidate_rows": 240,
+      "exact": true,
+      "previous_hash": "152353917d2f1ab813033bca224c3161b5129cf8d175a14904566a07dbb87ddf",
+      "previous_rows": 240,
+      "table": "claims"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "comm_audiences"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "comm_deliveries"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "comm_disclosure_authorities"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "comm_disclosures"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "comm_messages"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "comm_threads"
+    },
+    {
+      "candidate_hash": "313497c1121b0a1e2c63c01b27618d92998b1344262f9c1af51b72d47a3f8ee0",
+      "candidate_rows": 20,
+      "exact": true,
+      "previous_hash": "313497c1121b0a1e2c63c01b27618d92998b1344262f9c1af51b72d47a3f8ee0",
+      "previous_rows": 20,
+      "table": "committee_members"
+    },
+    {
+      "candidate_hash": "413e5e7c60cc14afd10636800665c6b31e0a0a951f8d48d0ada5ce229c781fd6",
+      "candidate_rows": 8,
+      "exact": true,
+      "previous_hash": "413e5e7c60cc14afd10636800665c6b31e0a0a951f8d48d0ada5ce229c781fd6",
+      "previous_rows": 8,
+      "table": "committees"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "commons_appeals"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "commons_communities"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "commons_entries"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "commons_feed_impressions"
+    },
+    {
+      "candidate_hash": "8a02fec885fbad0af359a37379eb9c5c8b7033e1666c2840cc70ab52ee089869",
+      "candidate_rows": 2,
+      "exact": true,
+      "previous_hash": "8a02fec885fbad0af359a37379eb9c5c8b7033e1666c2840cc70ab52ee089869",
+      "previous_rows": 2,
+      "table": "commons_feed_policies"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "commons_follows"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "commons_memberships"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "commons_moderation_actions"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "commons_profiles"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "commons_reactions"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "compute_subscriptions"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "construction_action_receipts"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "construction_contributions"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "construction_permit_cases"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "construction_projects"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "contract_acceptances"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "contract_clauses"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "contract_parties"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "contracts"
+    },
+    {
+      "candidate_hash": "c496b58f539135d17438fb82208e35d59219f1615b34c538191329c9b33fa895",
+      "candidate_rows": 3000,
+      "exact": true,
+      "previous_hash": "c496b58f539135d17438fb82208e35d59219f1615b34c538191329c9b33fa895",
+      "previous_rows": 3000,
+      "table": "conversations"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "counterfactual_experiments"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "counterfactual_results"
+    },
+    {
+      "candidate_hash": "4cbe3e03d7b76489ca359b558bd2631b27f00662047ed4dd3010513ae7e99dfb",
+      "candidate_rows": 3,
+      "exact": true,
+      "previous_hash": "4cbe3e03d7b76489ca359b558bd2631b27f00662047ed4dd3010513ae7e99dfb",
+      "previous_rows": 3,
+      "table": "currencies"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "dataset_manifests"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "due_diligence_checks"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "effective_presence"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "elections"
+    },
+    {
+      "candidate_hash": "760f8712d855a3591c7a7ba37fedee92b0719e0dab9c3675eeb6c5e7a4cda630",
+      "candidate_rows": 99,
+      "exact": true,
+      "previous_hash": "760f8712d855a3591c7a7ba37fedee92b0719e0dab9c3675eeb6c5e7a4cda630",
+      "previous_rows": 99,
+      "table": "employments"
+    },
+    {
+      "candidate_hash": "f5296b451167fd9d07c8d71d48504c56c6245195681ad26dc5d41dc8ec4c30dc",
+      "candidate_rows": 163978,
+      "exact": true,
+      "previous_hash": "f5296b451167fd9d07c8d71d48504c56c6245195681ad26dc5d41dc8ec4c30dc",
+      "previous_rows": 163978,
+      "table": "events"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "external_action_submissions"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "external_actor_requests"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "external_agent_connections"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "external_turn_attendance"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "firm_disclosures"
+    },
+    {
+      "candidate_hash": "5785cfe99bf8bd69c8cbd6009aea0b05cd4238a92d453673ae814ee21a6809c4",
+      "candidate_rows": 14,
+      "exact": true,
+      "previous_hash": "5785cfe99bf8bd69c8cbd6009aea0b05cd4238a92d453673ae814ee21a6809c4",
+      "previous_rows": 14,
+      "table": "firms"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "funding_rounds"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "fx_orders"
+    },
+    {
+      "candidate_hash": "7519d9b0dcbcf130afce26bdc69d9bc0df9cdc084f67bc9811b6a6b6bef9c735",
+      "candidate_rows": 3,
+      "exact": true,
+      "previous_hash": "7519d9b0dcbcf130afce26bdc69d9bc0df9cdc084f67bc9811b6a6b6bef9c735",
+      "previous_rows": 3,
+      "table": "fx_reserves"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "fx_trades"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "guardianships"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "household_memberships"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "households"
+    },
+    {
+      "candidate_hash": "1718e3cb4869cd19dba349b4e778ce157c19abb9f05a87685c211facbda1d357",
+      "candidate_rows": 57308,
+      "exact": true,
+      "previous_hash": "1718e3cb4869cd19dba349b4e778ce157c19abb9f05a87685c211facbda1d357",
+      "previous_rows": 57308,
+      "table": "information_exposures"
+    },
+    {
+      "candidate_hash": "865d0b5ef1aaca2cbcc7a546fa52fa1522fd80e9b7a6c92556bb9627a6899ec9",
+      "candidate_rows": 240,
+      "exact": true,
+      "previous_hash": "865d0b5ef1aaca2cbcc7a546fa52fa1522fd80e9b7a6c92556bb9627a6899ec9",
+      "previous_rows": 240,
+      "table": "information_items"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "institution_tasks"
+    },
+    {
+      "candidate_hash": "6620edd57f34f73ec4f37624405a2fcc0b45c37f10c86858e2e1397299668f88",
+      "candidate_rows": 115,
+      "exact": true,
+      "previous_hash": "6620edd57f34f73ec4f37624405a2fcc0b45c37f10c86858e2e1397299668f88",
+      "previous_rows": 115,
+      "table": "insurance_policies"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "ip_assets"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "ip_licenses"
+    },
+    {
+      "candidate_hash": "de7032ace89df87186c3f5c60aebad2024dc7515679335c80ef9bde34335da12",
+      "candidate_rows": 342,
+      "exact": true,
+      "previous_hash": "de7032ace89df87186c3f5c60aebad2024dc7515679335c80ef9bde34335da12",
+      "previous_rows": 342,
+      "table": "ipo_bids"
+    },
+    {
+      "candidate_hash": "d9496ea493c1786290a47939ab791c96f3a17fdcde38c562161f4eb08e6bc7eb",
+      "candidate_rows": 11,
+      "exact": true,
+      "previous_hash": "d9496ea493c1786290a47939ab791c96f3a17fdcde38c562161f4eb08e6bc7eb",
+      "previous_rows": 11,
+      "table": "ipo_offerings"
+    },
+    {
+      "candidate_hash": "2ceaaa5a8283a1226a54f45b6fd46984a0b84045ea228c6161c605f2333889b2",
+      "candidate_rows": 174,
+      "exact": true,
+      "previous_hash": "2ceaaa5a8283a1226a54f45b6fd46984a0b84045ea228c6161c605f2333889b2",
+      "previous_rows": 174,
+      "table": "job_offers"
+    },
+    {
+      "candidate_hash": "ecb600295639cc717f94c5e729e3c8984307b5cf612307d2945408e8f94a9483",
+      "candidate_rows": 85,
+      "exact": true,
+      "previous_hash": "ecb600295639cc717f94c5e729e3c8984307b5cf612307d2945408e8f94a9483",
+      "previous_rows": 85,
+      "table": "jobs"
+    },
+    {
+      "candidate_hash": "b8449b41db3f81fda63e9ed369b26445f1f265b028f5cda79f3691dfa41b6d7e",
+      "candidate_rows": 61598,
+      "exact": true,
+      "previous_hash": "b8449b41db3f81fda63e9ed369b26445f1f265b028f5cda79f3691dfa41b6d7e",
+      "previous_rows": 61598,
+      "table": "ledger_entries"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "legal_decisions"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "legal_filings"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "legal_matters"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "legal_notices"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "legal_restrictions"
+    },
+    {
+      "candidate_hash": "9a981fe98fe4aa49f8399350ef52aecffac978d95c3f86e50e9889038b8c9c63",
+      "candidate_rows": 1,
+      "exact": true,
+      "previous_hash": "9a981fe98fe4aa49f8399350ef52aecffac978d95c3f86e50e9889038b8c9c63",
+      "previous_rows": 1,
+      "table": "legal_rulesets"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "legislative_votes"
+    },
+    {
+      "candidate_hash": "1315f7410a49e5da67ec77ddc3fbf75b191d616fce07545b5dbd6a5598df7f4e",
+      "candidate_rows": 18,
+      "exact": true,
+      "previous_hash": "1315f7410a49e5da67ec77ddc3fbf75b191d616fce07545b5dbd6a5598df7f4e",
+      "previous_rows": 18,
+      "table": "legislators"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "liquidity_support_requests"
+    },
+    {
+      "candidate_hash": "b3e37f424fb776512ce35fc54d7c74272f2c8f6068e28387468f8ea0a90806e3",
+      "candidate_rows": 15073,
+      "exact": false,
+      "previous_hash": "7db34b32d267b3a99ceeb91859c2779629dd8555a224cbc3d5874def92a2fce9",
+      "previous_rows": 15073,
+      "table": "llm_calls"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "loan_applications"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "loans"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "lobbying_activities"
+    },
+    {
+      "candidate_hash": "755931003de692f46af2045f513192fe5dabaa8d60d4b9b4844eb5d2814b1fc8",
+      "candidate_rows": 133324,
+      "exact": true,
+      "previous_hash": "755931003de692f46af2045f513192fe5dabaa8d60d4b9b4844eb5d2814b1fc8",
+      "previous_rows": 133324,
+      "table": "memories"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "merger_reviews"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "mergers"
+    },
+    {
+      "candidate_hash": "7e680304d549ce67bf46a42b1285d97a24974f912ad8d2c884d0b2c8427155e2",
+      "candidate_rows": 9000,
+      "exact": true,
+      "previous_hash": "7e680304d549ce67bf46a42b1285d97a24974f912ad8d2c884d0b2c8427155e2",
+      "previous_rows": 9000,
+      "table": "messages"
+    },
+    {
+      "candidate_hash": "05c2eabf55830685ff85b7243fb50a4f0ec1da94d1b8d0543a03e56c4f15718f",
+      "candidate_rows": 3938,
+      "exact": true,
+      "previous_hash": "05c2eabf55830685ff85b7243fb50a4f0ec1da94d1b8d0543a03e56c4f15718f",
+      "previous_rows": 3938,
+      "table": "metrics"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "migrations"
+    },
+    {
+      "candidate_hash": "745e975d197bd988c87a2d9bcd203717ae78354d3e49e8c5ab9035f47641d1fd",
+      "candidate_rows": 240,
+      "exact": true,
+      "previous_hash": "745e975d197bd988c87a2d9bcd203717ae78354d3e49e8c5ab9035f47641d1fd",
+      "previous_rows": 240,
+      "table": "news_articles"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "obligations"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "occupancy_leases"
+    },
+    {
+      "candidate_hash": "c74a8fd4d0bdde435c4e2c27a74c775dab0220474ace4615e3349bfc1fb99184",
+      "candidate_rows": 2600,
+      "exact": true,
+      "previous_hash": "c74a8fd4d0bdde435c4e2c27a74c775dab0220474ace4615e3349bfc1fb99184",
+      "previous_rows": 2600,
+      "table": "orders"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "parent_child_relations"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "person_lifecycle"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "pitches"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "places"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "policy_rules"
+    },
+    {
+      "candidate_hash": "cb260eb53b4142360816c147ffe68fbc4521e735b0249371ae9e5ca0c9397f51",
+      "candidate_rows": 2,
+      "exact": true,
+      "previous_hash": "cb260eb53b4142360816c147ffe68fbc4521e735b0249371ae9e5ca0c9397f51",
+      "previous_rows": 2,
+      "table": "political_parties"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "population_census"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "predictions"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "projection_commits"
+    },
+    {
+      "candidate_hash": "27d703981ab7da84fd8c20ad09a4900d67f7df88a7705075d1bd7f024c1781c8",
+      "candidate_rows": 3,
+      "exact": true,
+      "previous_hash": "27d703981ab7da84fd8c20ad09a4900d67f7df88a7705075d1bd7f024c1781c8",
+      "previous_rows": 3,
+      "table": "regions"
+    },
+    {
+      "candidate_hash": "fc1c71f764c6b1d54fa874ab118a50519e5bf34aa229bf4acf95ddc13dde4bc3",
+      "candidate_rows": 26245,
+      "exact": true,
+      "previous_hash": "fc1c71f764c6b1d54fa874ab118a50519e5bf34aa229bf4acf95ddc13dde4bc3",
+      "previous_rows": 26245,
+      "table": "scale_demand_audit"
+    },
+    {
+      "candidate_hash": "b36a5edcf70d467d1bbe822695662242a55c7e0f8fe091dc2bf08619e1e052c5",
+      "candidate_rows": 120,
+      "exact": true,
+      "previous_hash": "b36a5edcf70d467d1bbe822695662242a55c7e0f8fe091dc2bf08619e1e052c5",
+      "previous_rows": 120,
+      "table": "scale_inventory_audit"
+    },
+    {
+      "candidate_hash": "a69d1769d26347e26ec8747a5b052ad51179bb11adf2996c01f00e97ff8f0cdb",
+      "candidate_rows": 24820,
+      "exact": true,
+      "previous_hash": "a69d1769d26347e26ec8747a5b052ad51179bb11adf2996c01f00e97ff8f0cdb",
+      "previous_rows": 24820,
+      "table": "scale_purchase_audit"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "scenario_packs"
+    },
+    {
+      "candidate_hash": "5f6df8d6f4469e91783f885c0c2fe15f68df66d54980785f261c0e6de8fbc66b",
+      "candidate_rows": 11,
+      "exact": true,
+      "previous_hash": "5f6df8d6f4469e91783f885c0c2fe15f68df66d54980785f261c0e6de8fbc66b",
+      "previous_rows": 11,
+      "table": "schema_migrations"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "service_appointments"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "service_cases"
+    },
+    {
+      "candidate_hash": "abbba85c0980e7b91bf4711ffd85425582eea43b45c7efbf0e002523bd58e641",
+      "candidate_rows": 360,
+      "exact": true,
+      "previous_hash": "abbba85c0980e7b91bf4711ffd85425582eea43b45c7efbf0e002523bd58e641",
+      "previous_rows": 360,
+      "table": "share_movements"
+    },
+    {
+      "candidate_hash": "f75960b07485e2ff0e1385869042d1f144b4089f84a48c084f59d2760aed3bda",
+      "candidate_rows": 352,
+      "exact": true,
+      "previous_hash": "f75960b07485e2ff0e1385869042d1f144b4089f84a48c084f59d2760aed3bda",
+      "previous_rows": 352,
+      "table": "shares"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "shocks"
+    },
+    {
+      "candidate_hash": "0120be30642937aa6c523a02cbf3d0491884a40f77c6f6af6b41e7e0536467f9",
+      "candidate_rows": 1240,
+      "exact": true,
+      "previous_hash": "0120be30642937aa6c523a02cbf3d0491884a40f77c6f6af6b41e7e0536467f9",
+      "previous_rows": 1240,
+      "table": "social_ties"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "term_sheets"
+    },
+    {
+      "candidate_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "candidate_rows": 0,
+      "exact": true,
+      "previous_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "previous_rows": 0,
+      "table": "trade_shipments"
+    },
+    {
+      "candidate_hash": "1ba34c7e1ebd1c54d5ebc14867b05179f54aeb5e46b8580d29b9593bbe3c65ef",
+      "candidate_rows": 308,
+      "exact": true,
+      "previous_hash": "1ba34c7e1ebd1c54d5ebc14867b05179f54aeb5e46b8580d29b9593bbe3c65ef",
+      "previous_rows": 308,
+      "table": "trader_profiles"
+    },
+    {
+      "candidate_hash": "dfa9c3828d77d1087eaeab61aa124495e967b1dc2306a42d1715a97e7b53583d",
+      "candidate_rows": 205,
+      "exact": true,
+      "previous_hash": "dfa9c3828d77d1087eaeab61aa124495e967b1dc2306a42d1715a97e7b53583d",
+      "previous_rows": 205,
+      "table": "trades"
+    },
+    {
+      "candidate_hash": "711f4ab09114388b09367a682df9cd1443647645628725df8a359fd32bbb007b",
+      "candidate_rows": 30659,
+      "exact": true,
+      "previous_hash": "711f4ab09114388b09367a682df9cd1443647645628725df8a359fd32bbb007b",
+      "previous_rows": 30659,
+      "table": "transactions"
+    }
+  ]
+}

@@ -460,6 +460,12 @@ completeness is required, and household demand adequacy is not certified by a
 low rejection rate. The original v1 A/B evaluator deliberately rejects a v2
 arm as directly comparable. Retain each arm's contract version in comparisons.
 
+The [120-tick buffer and demand evidence](../benchmarks/receipts/scale-270/buffer-120/README.md)
+keeps the prospective v2 verdict separate from the unchanged failed v1 arms,
+retains the first v2 resource failure, and reports demand quantities by region.
+Its short scripted scope does not certify
+household demand adequacy, longer runs, live providers or release readiness.
+
 The harness prints the exact source database, replay database, and runtime
 receipt identities. Evaluate each finalized pair without opening a writer,
 replacing the three `<...>` values with those printed artifact paths:

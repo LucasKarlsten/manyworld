@@ -1,0 +1,264 @@
+{
+  "conclusion": "success",
+  "event": "workflow_dispatch",
+  "headSha": "d7809d11041dc8ec6481e10e408171b51190db41",
+  "jobs": [
+    {
+      "conclusion": "success",
+      "name": "Python smoke test",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 14",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 10",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Storage and real SFTP recovery",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 9",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 1",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 13",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population civic and startup decisions, phase recovery (windows-latest, Python 3.12)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population Commons (windows-latest, Python 3.12)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Research evidence and portability",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Core subset guard (engine/world/agents)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population research exports (ubuntu-latest, Python 3.11)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population civic and startup decisions, phase recovery (ubuntu-latest, Python 3.11)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 2",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population civic and startup decisions, phase recovery (windows-latest, Python 3.11)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 4",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population research exports (windows-latest, Python 3.12)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population lifecycle, care and work (ubuntu-latest, Python 3.11)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Replacement recovery and alert delivery",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population research exports (windows-latest, Python 3.11)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 5",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 0",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Typed Jev decisions and exact replay",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 3",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 15",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population lifecycle, care and work (ubuntu-latest, Python 3.12)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Saved-world study execution and operator recovery (2)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population civic and startup decisions, phase recovery (ubuntu-latest, Python 3.12)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Policy-study budget and recovery (1)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Policy-study budget and recovery (3)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population research exports (ubuntu-latest, Python 3.12)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Private policy evidence and portability",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population lifecycle, care and work (windows-latest, Python 3.11)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Policy-study budget and recovery (0)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population lifecycle, care and work (windows-latest, Python 3.12)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population Commons (windows-latest, Python 3.11)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population Commons (ubuntu-latest, Python 3.12)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Saved-world study execution and operator recovery (0)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Saved-world study execution and operator recovery (1)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Policy operator review, launch and recovery",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 12",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Saved-world study execution and operator recovery (3)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 7",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 11",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Population Commons (ubuntu-latest, Python 3.11)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "Policy-study budget and recovery (2)",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 8",
+      "status": "completed"
+    },
+    {
+      "conclusion": "success",
+      "name": "ubuntu-latest / Python 3.11 / 6",
+      "status": "completed"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "City and price studies against the production backend",
+      "status": "completed"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "Hosted PostgreSQL / S3 integration",
+      "status": "completed"
+    },
+    {
+      "conclusion": "skipped",
+      "name": "Dashboard production build",
+      "status": "completed"
+    }
+  ],
+  "status": "completed",
+  "url": "https://github.com/alinojoumi8/manyworld/actions/runs/38682198493"
+}
