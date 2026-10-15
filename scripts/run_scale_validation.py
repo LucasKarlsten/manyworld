@@ -8,6 +8,7 @@ from contextlib import contextmanager
 from copy import deepcopy
 from datetime import datetime, timezone
 import hashlib
+import inspect
 import json
 import os
 from pathlib import Path
@@ -537,7 +538,8 @@ def _checkpoint_phase_timings(world):
     """Measure one checkpoint without changing its operations or error handling.
 
     Record includes retention, so those two durations must not be summed.
-    The legacy writer covers backup, finalization, and manifest generation.
+    The legacy writer covers backup, finalization, and manifest generation;
+    its optional subphase timings are nested inside `write`, not additive.
     Storage-policy writers bypass that method and have no `write` sample.
     Wrappers belong to this world only and are restored even on failure.
     """
@@ -552,10 +554,23 @@ def _checkpoint_phase_timings(world):
         original = getattr(world, name)
         # Preserve instance lookup as well as the callable (write is static).
         originals[name] = (name in world.__dict__, world.__dict__.get(name))
+        accepts_writer_phases = False
+        if phase == "write":
+            try:
+                parameter = inspect.signature(original).parameters.get("phase_timings")
+            except (TypeError, ValueError):
+                parameter = None
+            accepts_writer_phases = parameter is not None and parameter.kind in (
+                inspect.Parameter.KEYWORD_ONLY, inspect.Parameter.POSITIONAL_OR_KEYWORD)
 
-        def measured(*args, _original=original, _phase=phase, **kwargs):
+        def measured(
+            *args, _original=original, _phase=phase,
+            _writer_phases=accepts_writer_phases, **kwargs,
+        ):
             started = time.perf_counter()
             try:
+                if _writer_phases:
+                    kwargs.setdefault("phase_timings", phases)
                 return _original(*args, **kwargs)
             finally:
                 phases[_phase] = round(time.perf_counter() - started, 6)

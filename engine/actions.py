@@ -392,7 +392,14 @@ class ActionExecutor:
                     "SELECT COALESCE(MAX(id),0) FROM transactions", default=0))
                 if atype == "study_skill":
                     action = {**action, "_proposal_id": proposal_id}
+                purchase_audit = self.e.firms.inventory_audit if atype == "buy_goods" else None
+                if purchase_audit is not None:
+                    purchase_audit.record_purchase(
+                        proposal_id, tick, actor_id, int(action.get("firm_id", 0)),
+                        int(action.get("qty", 0)), self.e.firms)
                 result = handler(tick, actor_id, action, phase)
+                if purchase_audit is not None:
+                    purchase_audit.complete_purchase(proposal_id, result)
                 # Only the new construction contract has durable accepted receipts.
                 # A receipt retry is auditable, but is not a second economic action.
                 idempotent_retry = (

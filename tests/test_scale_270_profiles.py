@@ -393,13 +393,17 @@ def test_scale_270_seven_tick_budget_covers_every_agent(tmp_path):
         world.close()
 
 
+@pytest.mark.parametrize("profile", [
+    REHEARSAL,
+    ROOT / "runs/acceptance/scale-270-recovery-inventory-120.yaml",
+])
 def test_scale_270_replay_uses_distinct_read_only_source_root(
-    tmp_path, monkeypatch,
+    tmp_path, monkeypatch, profile,
 ):
     """Catch source writes or replay output created beside source evidence."""
     source_dir = tmp_path / "source"
     replay_dir = tmp_path / "replay"
-    config = load_config(REHEARSAL)
+    config = load_config(profile)
     config["checkpoint_dir"] = str(source_dir / "checkpoints")
     config["report_dir"] = str(source_dir / "reports")
     source_store, source_world, source_run_id = open_run(

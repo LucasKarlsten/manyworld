@@ -1,0 +1,10 @@
+# Formal counterpart of the repaired shopping and bounded replenishment profile.
+extends: scale-270-recovery-1000.yaml
+
+supply_recovery:
+  max_headcount_per_firm: 8
+
+behavior:
+  inventory_aware_shopping_activation_tick: 60
+  inventory_aware_shopping_include_staff: true
+  inventory_aware_shopping_reserve_bps: 2000

@@ -430,6 +430,42 @@ python scripts/run_scale_validation.py \
   --data-dir reports/out/scale-270/recovery/runs
 ```
 
+The inventory recovery candidates use
+`runs/acceptance/scale-270-recovery-inventory-120.yaml` and the matching
+`-1000.yaml` profile. They activate inventory guidance at tick 60, count staff
+as potential shoppers with `behavior.inventory_aware_shopping_include_staff`,
+and set `behavior.inventory_aware_shopping_reserve_bps: 2000`. The latter uses
+80% of advertised stock for quantity guidance while retaining the one-unit
+minimum; settlement can still use all stock. The new controls default to
+`false` and `0`, preserving historical observations and replay. Use distinct
+output/data directories and retain the original diagnostic arms. The repaired
+profiles also set `supply_recovery.max_headcount_per_firm: 8`, allowing one
+additional demand-supported worker under the existing cash, wage and hiring-rate
+checks. This capacity change can alter hiring before tick 60; identical warmup
+history is not claimed. The
+[purchase diagnosis](qa/2026-10-11-scale-purchase-diagnosis.md) records the
+failed attempts and the validation boundary; a candidate must pass a fresh
+120-tick source/replay evaluation before formal or live acceptance.
+
+The prospective `runs/acceptance/scale-270-recovery-buffer-120.yaml` profile
+keeps those economic settings and opts into the
+[buffer/demand v2 contract](superpowers/specs/2026-10-14-inventory-buffer-demand-v2.md).
+It records independent daily inventory, stock-free scripted demand and
+purchase-time stock/cash limits in three additive audit tables. These tables
+are absent by default and included in exact replay when enabled. The v2 report
+allows ordinary buffer drawdown but requires conserved inventory, continued
+production and no persistent empty/unsafe buffers. Its separate demand table
+exposes desired, affordable, submitted and fulfilled quantities; measurement
+completeness is required, and household demand adequacy is not certified by a
+low rejection rate. The original v1 A/B evaluator deliberately rejects a v2
+arm as directly comparable. Retain each arm's contract version in comparisons.
+
+The [120-tick buffer and demand evidence](../benchmarks/receipts/scale-270/buffer-120/README.md)
+keeps the prospective v2 verdict separate from the unchanged failed v1 arms,
+retains the first v2 resource failure, and reports demand quantities by region.
+Its short scripted scope does not certify
+household demand adequacy, longer runs, live providers or release readiness.
+
 The harness prints the exact source database, replay database, and runtime
 receipt identities. Evaluate each finalized pair without opening a writer,
 replacing the three `<...>` values with those printed artifact paths:
@@ -486,7 +522,12 @@ receipt.
 Runtime checkpoint entries include `phases_s`: preparation, legacy writer,
 and catalog recording, plus legacy retention when it runs. Recording includes
 retention; do not add both durations. The legacy writer includes SQLite backup,
-artifact finalization and manifest generation. Storage-policy writers bypass
+artifact finalization and manifest generation; `write_backup`, `write_finalize`
+and `write_manifest` measure those operations separately inside `write`.
+Do not add these nested samples to the writer or total duration. They include
+failed operations and preserve the original exceptions. Custom legacy writers
+without the optional timing argument retain just the overall writer sample.
+Storage-policy writers bypass
 the legacy method and have no `write` sample. Total `duration_s` remains the
 resource-gate measurement, including Stop checkpoints; phase samples are only
 diagnostics. Measurement wraps one validation world and does not change its

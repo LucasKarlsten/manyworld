@@ -1,0 +1,1637 @@
+{
+  "aligned_flow_window": {
+    "accepted_sale_units": 31479,
+    "equal_to_previous_v1": true,
+    "production_units": 31672,
+    "ticks": [
+      61,
+      120
+    ]
+  },
+  "arms": {
+    "always-on-diagnostic": {
+      "failed_checks": [
+        "production_and_inventory_healthy",
+        "purchase_windows_healthy"
+      ],
+      "latest_purchase_window": {
+        "attempts": 12944,
+        "end_tick": 120,
+        "passed": false,
+        "rate": 0.082741,
+        "rejected": 1071,
+        "start_tick": 61,
+        "unresolved": 0
+      },
+      "outcome": "diagnostic_economic_failure",
+      "purchase_rejection_percent": 8.274104,
+      "receipt_sha256": "0a565c661080cee829198f9a0de97e1144014391fb1cbed7d1949dfc2d4da3e5",
+      "resources": {
+        "checkpoint_p95_seconds": 4.707457,
+        "checkpoint_samples": 18,
+        "database_growth_bytes": 467382272,
+        "database_growth_bytes_per_tick": 3894852.266667,
+        "limits": {
+          "max_checkpoint_p95_seconds": 5.0,
+          "max_database_growth_bytes_per_tick": 8388608,
+          "max_peak_rss_mb": 2048.0,
+          "min_available_memory_gb": 8.0
+        },
+        "min_available_memory_gb": 79.03,
+        "peak_rss_mb": 1418.68,
+        "runtime_tick_records": 120
+      },
+      "run": {
+        "active_tick": null,
+        "engine_semantics_version": 7,
+        "replay_run_id": "replay-7ce4c5cc41-ebd087fa2a",
+        "run_id": "7ce4c5cc41",
+        "seed": 42,
+        "status": "finished",
+        "tick": 120
+      },
+      "schema": "agent-economy-scale-economic-health-v1",
+      "source_commit": "559301d11b2f0242f3d180a77c0823932353090f",
+      "source_sha256": "d740129ec88c9cea1bf42220ecfdf7469bfd0346a518591f511c4e0e9a0d3ad3"
+    },
+    "buffer-v2-resource-diagnostic": {
+      "failed_checks": [
+        "resources_within_caps"
+      ],
+      "latest_purchase_window": {
+        "attempts": 12014,
+        "end_tick": 120,
+        "passed": true,
+        "rate": 0.000916,
+        "rejected": 11,
+        "start_tick": 61,
+        "unresolved": 0
+      },
+      "outcome": "failed",
+      "purchase_rejection_percent": 0.09156,
+      "receipt_sha256": "24b06d5e62bcd170e145ca2a21544ba54c9d17f3d6760a2d2c0de487e0295afd",
+      "resources": {
+        "checkpoint_p95_seconds": 5.148764,
+        "checkpoint_samples": 18,
+        "database_growth_bytes": 475316224,
+        "database_growth_bytes_per_tick": 3960968.533333,
+        "limits": {
+          "max_checkpoint_p95_seconds": 5.0,
+          "max_database_growth_bytes_per_tick": 8388608,
+          "max_peak_rss_mb": 2048.0,
+          "min_available_memory_gb": 8.0
+        },
+        "min_available_memory_gb": 72.68,
+        "peak_rss_mb": 1406.8,
+        "runtime_tick_records": 120
+      },
+      "run": {
+        "active_tick": null,
+        "engine_semantics_version": 7,
+        "replay_run_id": "replay-4755fd98a9-ecd274c862",
+        "run_id": "4755fd98a9",
+        "seed": 42,
+        "status": "finished",
+        "tick": 120
+      },
+      "schema": "agent-economy-scale-economic-health-v2",
+      "source_commit": "70ece3e5139423731c68051de0dea1ee6dde59e2",
+      "source_sha256": "e3599645df169a4eb4228b3535e343607cd2909e30ba552e19208d81b3c79ae5"
+    },
+    "recovery": {
+      "failed_checks": [],
+      "latest_purchase_window": {
+        "attempts": 12014,
+        "end_tick": 120,
+        "passed": true,
+        "rate": 0.000916,
+        "rejected": 11,
+        "start_tick": 61,
+        "unresolved": 0
+      },
+      "outcome": "passed",
+      "purchase_rejection_percent": 0.09156,
+      "receipt_sha256": "ec96c0fd92591ead1bb8d96d61572be23570e6d39bae739f6ca9a7651aaab108",
+      "resources": {
+        "checkpoint_p95_seconds": 2.944941,
+        "checkpoint_samples": 18,
+        "database_growth_bytes": 475316224,
+        "database_growth_bytes_per_tick": 3960968.533333,
+        "limits": {
+          "max_checkpoint_p95_seconds": 5.0,
+          "max_database_growth_bytes_per_tick": 8388608,
+          "max_peak_rss_mb": 2048.0,
+          "min_available_memory_gb": 8.0
+        },
+        "min_available_memory_gb": 63.57,
+        "peak_rss_mb": 1407.07,
+        "runtime_tick_records": 120
+      },
+      "run": {
+        "active_tick": null,
+        "engine_semantics_version": 7,
+        "replay_run_id": "replay-f35fc3a790-1d23c5ec83",
+        "run_id": "f35fc3a790",
+        "seed": 42,
+        "status": "finished",
+        "tick": 120
+      },
+      "schema": "agent-economy-scale-economic-health-v2",
+      "source_commit": "d7809d11041dc8ec6481e10e408171b51190db41",
+      "source_sha256": "1c3b4a2486ac5db719fe984f5ff353515ee9dfe726e788e79e4930cc3fe91b34"
+    },
+    "replenishment-v1-diagnostic": {
+      "failed_checks": [
+        "production_and_inventory_healthy"
+      ],
+      "latest_purchase_window": {
+        "attempts": 12014,
+        "end_tick": 120,
+        "passed": true,
+        "rate": 0.000916,
+        "rejected": 11,
+        "start_tick": 61,
+        "unresolved": 0
+      },
+      "outcome": "diagnostic_economic_failure",
+      "purchase_rejection_percent": 0.09156,
+      "receipt_sha256": "41e3b85e0e832b0daa3921f4b78954bdcbb76e2ce7480220c362ee942a0cf01a",
+      "resources": {
+        "checkpoint_p95_seconds": 3.303793,
+        "checkpoint_samples": 18,
+        "database_growth_bytes": 463872000,
+        "database_growth_bytes_per_tick": 3865600.0,
+        "limits": {
+          "max_checkpoint_p95_seconds": 5.0,
+          "max_database_growth_bytes_per_tick": 8388608,
+          "max_peak_rss_mb": 2048.0,
+          "min_available_memory_gb": 8.0
+        },
+        "min_available_memory_gb": 70.6,
+        "peak_rss_mb": 1413.4,
+        "runtime_tick_records": 120
+      },
+      "run": {
+        "active_tick": null,
+        "engine_semantics_version": 7,
+        "replay_run_id": "replay-0436daa1d5-d3373c86e4",
+        "run_id": "0436daa1d5",
+        "seed": 42,
+        "status": "finished",
+        "tick": 120
+      },
+      "schema": "agent-economy-scale-economic-health-v1",
+      "source_commit": "1fa3f289017b98448293ed8995db59bbf64b11fa",
+      "source_sha256": "d4cf5c32e181eb8c7af96ddfba454c92256fd2f48eb4ce6486056c1ed438021a"
+    },
+    "staff-counting-diagnostic": {
+      "failed_checks": [
+        "production_and_inventory_healthy"
+      ],
+      "latest_purchase_window": {
+        "attempts": 12238,
+        "end_tick": 120,
+        "passed": true,
+        "rate": 0.001471,
+        "rejected": 18,
+        "start_tick": 61,
+        "unresolved": 0
+      },
+      "outcome": "diagnostic_economic_failure",
+      "purchase_rejection_percent": 0.147083,
+      "receipt_sha256": "07c221a1cc8dbee4bdf78733cdeb2af15feae622697683eb711f9094f9da0cf7",
+      "resources": {
+        "checkpoint_p95_seconds": 2.918095,
+        "checkpoint_samples": 18,
+        "database_growth_bytes": 464715776,
+        "database_growth_bytes_per_tick": 3872631.466667,
+        "limits": {
+          "max_checkpoint_p95_seconds": 5.0,
+          "max_database_growth_bytes_per_tick": 8388608,
+          "max_peak_rss_mb": 2048.0,
+          "min_available_memory_gb": 8.0
+        },
+        "min_available_memory_gb": 68.39,
+        "peak_rss_mb": 1406.65,
+        "runtime_tick_records": 120
+      },
+      "run": {
+        "active_tick": null,
+        "engine_semantics_version": 7,
+        "replay_run_id": "replay-fd708a3063-f352afbeb8",
+        "run_id": "fd708a3063",
+        "seed": 42,
+        "status": "finished",
+        "tick": 120
+      },
+      "schema": "agent-economy-scale-economic-health-v1",
+      "source_commit": "48ecbcd3d3cb6d9518a4c1e57518980b9f025199",
+      "source_sha256": "0da59131715bcdc3fcc1bb1dde5b4cd3a0a06c60a10ac3464a6e76883697fd41"
+    },
+    "timing-only-diagnostic": {
+      "failed_checks": [
+        "production_and_inventory_healthy",
+        "purchase_windows_healthy"
+      ],
+      "latest_purchase_window": {
+        "attempts": 12228,
+        "end_tick": 120,
+        "passed": false,
+        "rate": 0.052911,
+        "rejected": 647,
+        "start_tick": 61,
+        "unresolved": 0
+      },
+      "outcome": "diagnostic_economic_failure",
+      "purchase_rejection_percent": 5.291135,
+      "receipt_sha256": "7c31787e6b83d754479dfd00143507b5d9b334c8ffa58d20f123e0be4e6caee5",
+      "resources": {
+        "checkpoint_p95_seconds": 3.722033,
+        "checkpoint_samples": 18,
+        "database_growth_bytes": 464740352,
+        "database_growth_bytes_per_tick": 3872836.266667,
+        "limits": {
+          "max_checkpoint_p95_seconds": 5.0,
+          "max_database_growth_bytes_per_tick": 8388608,
+          "max_peak_rss_mb": 2048.0,
+          "min_available_memory_gb": 8.0
+        },
+        "min_available_memory_gb": 72.08,
+        "peak_rss_mb": 1409.21,
+        "runtime_tick_records": 120
+      },
+      "run": {
+        "active_tick": null,
+        "engine_semantics_version": 7,
+        "replay_run_id": "replay-21eb569b27-633f5d2344",
+        "run_id": "21eb569b27",
+        "seed": 42,
+        "status": "finished",
+        "tick": 120
+      },
+      "schema": "agent-economy-scale-economic-health-v1",
+      "source_commit": "fc4c55d3e46e4328ed2e1aa689b0c3d5c0e8e828",
+      "source_sha256": "1125c44ee56f10b36690599626ff48ccfe9d344e03d0945b6ba476617a5a535c"
+    }
+  },
+  "checkpoint_history": {
+    "canonical_common_tables_exact": 132,
+    "canonical_differences": [
+      "llm_calls"
+    ],
+    "causal_performance_fix_established": false,
+    "common_tables": 133,
+    "copied_writer_trials": [
+      {
+        "database_bytes": 479272960,
+        "finalization_seconds": 0.011216173000000001,
+        "manifest_seconds": 1.121093807,
+        "sqlite_backup_seconds": 1.769098067,
+        "total_seconds": 2.9036621970008127,
+        "trial": 1
+      },
+      {
+        "database_bytes": 479272960,
+        "finalization_seconds": 0.009124426,
+        "manifest_seconds": 1.0457651350000001,
+        "sqlite_backup_seconds": 1.748364481,
+        "total_seconds": 2.8061932119890116,
+        "trial": 2
+      },
+      {
+        "database_bytes": 479272960,
+        "finalization_seconds": 0.010756553,
+        "manifest_seconds": 1.157822675,
+        "sqlite_backup_seconds": 1.7591338360000002,
+        "total_seconds": 2.9283488909713924,
+        "trial": 3
+      }
+    ],
+    "copied_writer_trials_scope": "Warm copied-source writer profiling only; excludes world preparation, catalog and retention. Not acceptance evidence or reproduction of the pruned tick-91 artifact.",
+    "current_checkpoints": [
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t7.db",
+        "bytes": 24866816,
+        "duration_s": 0.257744,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t7.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.00095,
+          "record": 0.001053,
+          "retention": 0.000683,
+          "write": 0.2536,
+          "write_backup": 0.131581,
+          "write_finalize": 0.024663,
+          "write_manifest": 0.097324
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 24866816,
+          "main_plus_wal": 29917968,
+          "shm": 32768,
+          "wal": 5051152
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 24866816,
+          "main_plus_wal": 29917968,
+          "shm": 32768,
+          "wal": 5051152
+        },
+        "tick": 7
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t14.db",
+        "bytes": 51097600,
+        "duration_s": 0.425601,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t14.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000881,
+          "record": 0.001326,
+          "retention": 0.000961,
+          "write": 0.422438,
+          "write_backup": 0.233657,
+          "write_finalize": 0.026658,
+          "write_manifest": 0.162075
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 50937856,
+          "main_plus_wal": 56376288,
+          "shm": 32768,
+          "wal": 5438432
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 50937856,
+          "main_plus_wal": 56376288,
+          "shm": 32768,
+          "wal": 5438432
+        },
+        "tick": 14
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t21.db",
+        "bytes": 78069760,
+        "duration_s": 0.618155,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t21.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000566,
+          "record": 0.001535,
+          "retention": 0.001185,
+          "write": 0.615099,
+          "write_backup": 0.354483,
+          "write_finalize": 0.026476,
+          "write_manifest": 0.234079
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 77914112,
+          "main_plus_wal": 83706864,
+          "shm": 32768,
+          "wal": 5792752
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 77914112,
+          "main_plus_wal": 83706864,
+          "shm": 32768,
+          "wal": 5792752
+        },
+        "tick": 21
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t28.db",
+        "bytes": 107401216,
+        "duration_s": 0.774986,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t28.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000596,
+          "record": 0.001812,
+          "retention": 0.001482,
+          "write": 0.771709,
+          "write_backup": 0.431142,
+          "write_finalize": 0.027614,
+          "write_manifest": 0.312921
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 107241472,
+          "main_plus_wal": 113034224,
+          "shm": 32768,
+          "wal": 5792752
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 107241472,
+          "main_plus_wal": 113034224,
+          "shm": 32768,
+          "wal": 5792752
+        },
+        "tick": 28
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t35.db",
+        "bytes": 136392704,
+        "duration_s": 0.927361,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t35.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000559,
+          "record": 0.007681,
+          "retention": 0.007384,
+          "write": 0.918334,
+          "write_backup": 0.524083,
+          "write_finalize": 0.025834,
+          "write_manifest": 0.368375
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 136232960,
+          "main_plus_wal": 143661352,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 136232960,
+          "main_plus_wal": 143661352,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 35
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t42.db",
+        "bytes": 164962304,
+        "duration_s": 1.115718,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t42.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000621,
+          "record": 0.012111,
+          "retention": 0.011825,
+          "write": 1.10239,
+          "write_backup": 0.636881,
+          "write_finalize": 0.031137,
+          "write_manifest": 0.434336
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 164818944,
+          "main_plus_wal": 172247336,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 164818944,
+          "main_plus_wal": 172247336,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 42
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t49.db",
+        "bytes": 192483328,
+        "duration_s": 1.274881,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t49.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000537,
+          "record": 0.020479,
+          "retention": 0.020148,
+          "write": 1.253194,
+          "write_backup": 0.727574,
+          "write_finalize": 0.027169,
+          "write_manifest": 0.498411
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 192335872,
+          "main_plus_wal": 199764264,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 192335872,
+          "main_plus_wal": 199764264,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 49
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t56.db",
+        "bytes": 220418048,
+        "duration_s": 1.477046,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t56.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000552,
+          "record": 0.026398,
+          "retention": 0.026053,
+          "write": 1.449189,
+          "write_backup": 0.870269,
+          "write_finalize": 0.026994,
+          "write_manifest": 0.551882
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 220278784,
+          "main_plus_wal": 227707176,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 220278784,
+          "main_plus_wal": 227707176,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 56
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t63.db",
+        "bytes": 248377344,
+        "duration_s": 1.572533,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t63.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000578,
+          "record": 0.030745,
+          "retention": 0.030113,
+          "write": 1.540298,
+          "write_backup": 0.931865,
+          "write_finalize": 0.028367,
+          "write_manifest": 0.580032
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 248242176,
+          "main_plus_wal": 255670568,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 248242176,
+          "main_plus_wal": 255670568,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 63
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t70.db",
+        "bytes": 275501056,
+        "duration_s": 1.698722,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t70.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000507,
+          "record": 0.038456,
+          "retention": 0.038123,
+          "write": 1.659157,
+          "write_backup": 0.979251,
+          "write_finalize": 0.02829,
+          "write_manifest": 0.651562
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 275361792,
+          "main_plus_wal": 282790184,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 275361792,
+          "main_plus_wal": 282790184,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 70
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t77.db",
+        "bytes": 303689728,
+        "duration_s": 1.882813,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t77.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000526,
+          "record": 0.042775,
+          "retention": 0.04241,
+          "write": 1.838686,
+          "write_backup": 1.108898,
+          "write_finalize": 0.026507,
+          "write_manifest": 0.703236
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 303550464,
+          "main_plus_wal": 310978856,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 303550464,
+          "main_plus_wal": 310978856,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 77
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t84.db",
+        "bytes": 332005376,
+        "duration_s": 2.050059,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t84.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000532,
+          "record": 0.050917,
+          "retention": 0.050577,
+          "write": 1.997782,
+          "write_backup": 1.218637,
+          "write_finalize": 0.026887,
+          "write_manifest": 0.752217
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 331874304,
+          "main_plus_wal": 339302696,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 331874304,
+          "main_plus_wal": 339302696,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 84
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t91.db",
+        "bytes": 359510016,
+        "duration_s": 2.213465,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t91.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000538,
+          "record": 0.07206,
+          "retention": 0.071719,
+          "write": 2.140023,
+          "write_backup": 1.288285,
+          "write_finalize": 0.026614,
+          "write_manifest": 0.825077
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 359374848,
+          "main_plus_wal": 366803240,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 359374848,
+          "main_plus_wal": 366803240,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 91
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t98.db",
+        "bytes": 388259840,
+        "duration_s": 2.324107,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t98.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000491,
+          "record": 0.078464,
+          "retention": 0.078119,
+          "write": 2.244371,
+          "write_backup": 1.364416,
+          "write_finalize": 0.027434,
+          "write_manifest": 0.852483
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 388116480,
+          "main_plus_wal": 395804432,
+          "shm": 32768,
+          "wal": 7687952
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 388116480,
+          "main_plus_wal": 395804432,
+          "shm": 32768,
+          "wal": 7687952
+        },
+        "tick": 98
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t105.db",
+        "bytes": 417480704,
+        "duration_s": 2.55755,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t105.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000512,
+          "record": 0.087249,
+          "retention": 0.086928,
+          "write": 2.469016,
+          "write_backup": 1.508964,
+          "write_finalize": 0.025918,
+          "write_manifest": 0.934109
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 417337344,
+          "main_plus_wal": 425210696,
+          "shm": 32768,
+          "wal": 7873352
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 417337344,
+          "main_plus_wal": 425210696,
+          "shm": 32768,
+          "wal": 7873352
+        },
+        "tick": 105
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t112.db",
+        "bytes": 445947904,
+        "duration_s": 2.729018,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t112.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000472,
+          "record": 0.091201,
+          "retention": 0.090912,
+          "write": 2.636753,
+          "write_backup": 1.578774,
+          "write_finalize": 0.027675,
+          "write_manifest": 1.030261
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 445812736,
+          "main_plus_wal": 453686088,
+          "shm": 32768,
+          "wal": 7873352
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 445812736,
+          "main_plus_wal": 453686088,
+          "shm": 32768,
+          "wal": 7873352
+        },
+        "tick": 112
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t119.db",
+        "bytes": 475353088,
+        "duration_s": 2.848219,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t119.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000506,
+          "record": 0.095642,
+          "retention": 0.095327,
+          "write": 2.751292,
+          "write_backup": 1.669067,
+          "write_finalize": 0.0266,
+          "write_manifest": 1.055588
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 475209728,
+          "main_plus_wal": 483124280,
+          "shm": 32768,
+          "wal": 7914552
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 475209728,
+          "main_plus_wal": 483124280,
+          "shm": 32768,
+          "wal": 7914552
+        },
+        "tick": 119
+      },
+      {
+        "artifact": "data/source/checkpoints/f35fc3a790_t120.db",
+        "bytes": 479272960,
+        "duration_s": 2.944941,
+        "manifest_artifact": "data/source/checkpoints/f35fc3a790_t120.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000548,
+          "record": 0.081999,
+          "retention": 0.081713,
+          "write": 2.861644,
+          "write_backup": 1.719256,
+          "write_finalize": 0.038442,
+          "write_manifest": 1.103904
+        },
+        "reason": "stop",
+        "source_after": {
+          "journal": 0,
+          "main": 479211520,
+          "main_plus_wal": 487480392,
+          "shm": 32768,
+          "wal": 8268872
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 479211520,
+          "main_plus_wal": 487480392,
+          "shm": 32768,
+          "wal": 8268872
+        },
+        "tick": 120
+      }
+    ],
+    "failed_checkpoints": [
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t7.db",
+        "bytes": 24866816,
+        "duration_s": 0.2742,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t7.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.00099,
+          "record": 0.000896,
+          "retention": 0.000544,
+          "write": 0.270839
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 24866816,
+          "main_plus_wal": 29917968,
+          "shm": 32768,
+          "wal": 5051152
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 24866816,
+          "main_plus_wal": 29917968,
+          "shm": 32768,
+          "wal": 5051152
+        },
+        "tick": 7
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t14.db",
+        "bytes": 51097600,
+        "duration_s": 0.427286,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t14.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000685,
+          "record": 0.001263,
+          "retention": 0.000909,
+          "write": 0.42437
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 50937856,
+          "main_plus_wal": 56376288,
+          "shm": 32768,
+          "wal": 5438432
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 50937856,
+          "main_plus_wal": 56376288,
+          "shm": 32768,
+          "wal": 5438432
+        },
+        "tick": 14
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t21.db",
+        "bytes": 78069760,
+        "duration_s": 0.624585,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t21.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000688,
+          "record": 0.001151,
+          "retention": 0.000846,
+          "write": 0.622073
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 77914112,
+          "main_plus_wal": 83706864,
+          "shm": 32768,
+          "wal": 5792752
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 77914112,
+          "main_plus_wal": 83706864,
+          "shm": 32768,
+          "wal": 5792752
+        },
+        "tick": 21
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t28.db",
+        "bytes": 107401216,
+        "duration_s": 0.755764,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t28.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000494,
+          "record": 0.001757,
+          "retention": 0.001405,
+          "write": 0.752728
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 107241472,
+          "main_plus_wal": 113034224,
+          "shm": 32768,
+          "wal": 5792752
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 107241472,
+          "main_plus_wal": 113034224,
+          "shm": 32768,
+          "wal": 5792752
+        },
+        "tick": 28
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t35.db",
+        "bytes": 136392704,
+        "duration_s": 0.936378,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t35.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000572,
+          "record": 0.011149,
+          "retention": 0.010757,
+          "write": 0.923855
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 136232960,
+          "main_plus_wal": 143661352,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 136232960,
+          "main_plus_wal": 143661352,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 35
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t42.db",
+        "bytes": 164962304,
+        "duration_s": 1.130654,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t42.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000466,
+          "record": 0.022455,
+          "retention": 0.022036,
+          "write": 1.10682
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 164818944,
+          "main_plus_wal": 172247336,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 164818944,
+          "main_plus_wal": 172247336,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 42
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t49.db",
+        "bytes": 192483328,
+        "duration_s": 1.26016,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t49.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000595,
+          "record": 0.022136,
+          "retention": 0.021643,
+          "write": 1.236284
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 192335872,
+          "main_plus_wal": 199764264,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 192335872,
+          "main_plus_wal": 199764264,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 49
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t56.db",
+        "bytes": 220418048,
+        "duration_s": 1.408121,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t56.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.00047,
+          "record": 0.024737,
+          "retention": 0.024378,
+          "write": 1.382226
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 220278784,
+          "main_plus_wal": 227707176,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 220278784,
+          "main_plus_wal": 227707176,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 56
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t63.db",
+        "bytes": 248377344,
+        "duration_s": 1.523363,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t63.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000469,
+          "record": 0.030284,
+          "retention": 0.029924,
+          "write": 1.491421
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 248242176,
+          "main_plus_wal": 255670568,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 248242176,
+          "main_plus_wal": 255670568,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 63
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t70.db",
+        "bytes": 275501056,
+        "duration_s": 1.750709,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t70.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000492,
+          "record": 0.046454,
+          "retention": 0.046112,
+          "write": 1.703042
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 275361792,
+          "main_plus_wal": 282790184,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 275361792,
+          "main_plus_wal": 282790184,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 70
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t77.db",
+        "bytes": 303689728,
+        "duration_s": 1.88993,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t77.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000508,
+          "record": 0.042132,
+          "retention": 0.041784,
+          "write": 1.846656
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 303550464,
+          "main_plus_wal": 310978856,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 303550464,
+          "main_plus_wal": 310978856,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 77
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t84.db",
+        "bytes": 332005376,
+        "duration_s": 2.153867,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t84.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000556,
+          "record": 0.070308,
+          "retention": 0.069984,
+          "write": 2.082335
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 331874304,
+          "main_plus_wal": 339302696,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 331874304,
+          "main_plus_wal": 339302696,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 84
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t91.db",
+        "bytes": 359510016,
+        "duration_s": 5.148764,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t91.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.00052,
+          "record": 0.072255,
+          "retention": 0.071931,
+          "write": 5.075369
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 359374848,
+          "main_plus_wal": 366803240,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 359374848,
+          "main_plus_wal": 366803240,
+          "shm": 32768,
+          "wal": 7428392
+        },
+        "tick": 91
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t98.db",
+        "bytes": 388259840,
+        "duration_s": 2.613893,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t98.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000624,
+          "record": 0.081114,
+          "retention": 0.080786,
+          "write": 2.531399
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 388116480,
+          "main_plus_wal": 395804432,
+          "shm": 32768,
+          "wal": 7687952
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 388116480,
+          "main_plus_wal": 395804432,
+          "shm": 32768,
+          "wal": 7687952
+        },
+        "tick": 98
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t105.db",
+        "bytes": 417480704,
+        "duration_s": 2.718703,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t105.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000536,
+          "record": 0.09238,
+          "retention": 0.092034,
+          "write": 2.62516
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 417337344,
+          "main_plus_wal": 425210696,
+          "shm": 32768,
+          "wal": 7873352
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 417337344,
+          "main_plus_wal": 425210696,
+          "shm": 32768,
+          "wal": 7873352
+        },
+        "tick": 105
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t112.db",
+        "bytes": 445947904,
+        "duration_s": 2.82452,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t112.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000488,
+          "record": 0.093407,
+          "retention": 0.093046,
+          "write": 2.730096
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 445812736,
+          "main_plus_wal": 453686088,
+          "shm": 32768,
+          "wal": 7873352
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 445812736,
+          "main_plus_wal": 453686088,
+          "shm": 32768,
+          "wal": 7873352
+        },
+        "tick": 112
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t119.db",
+        "bytes": 475353088,
+        "duration_s": 2.98302,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t119.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000614,
+          "record": 0.104645,
+          "retention": 0.104279,
+          "write": 2.877148
+        },
+        "reason": "interval",
+        "source_after": {
+          "journal": 0,
+          "main": 475209728,
+          "main_plus_wal": 483124280,
+          "shm": 32768,
+          "wal": 7914552
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 475209728,
+          "main_plus_wal": 483124280,
+          "shm": 32768,
+          "wal": 7914552
+        },
+        "tick": 119
+      },
+      {
+        "artifact": "data/source/checkpoints/4755fd98a9_t120.db",
+        "bytes": 479272960,
+        "duration_s": 3.070882,
+        "manifest_artifact": "data/source/checkpoints/4755fd98a9_t120.db.manifest.json",
+        "phases_s": {
+          "prepare": 0.000501,
+          "record": 0.094668,
+          "retention": 0.094313,
+          "write": 2.975062
+        },
+        "reason": "stop",
+        "source_after": {
+          "journal": 0,
+          "main": 479211520,
+          "main_plus_wal": 487480392,
+          "shm": 32768,
+          "wal": 8268872
+        },
+        "source_before": {
+          "journal": 0,
+          "main": 479211520,
+          "main_plus_wal": 487480392,
+          "shm": 32768,
+          "wal": 8268872
+        },
+        "tick": 120
+      }
+    ],
+    "failed_run_id": "4755fd98a9",
+    "failed_source_commit": "70ece3e5139423731c68051de0dea1ee6dde59e2",
+    "failed_source_sha256": "e3599645df169a4eb4228b3535e343607cd2909e30ba552e19208d81b3c79ae5",
+    "failure": "resources_within_caps",
+    "observational_match": true,
+    "timing_change_only": true
+  },
+  "checkpoint_inventory_checks": [
+    {
+      "closing_stocks_exact": true,
+      "sha256": "5e929e41fe078edb5c2e52f8c706459a84f15fccadfc739c14afe22326247524",
+      "tick": 105
+    },
+    {
+      "closing_stocks_exact": true,
+      "sha256": "ce93f42d8d1c0436fbf17cb40640b318bacae0b563b319f06f4efd42b1ddd6a2",
+      "tick": 112
+    },
+    {
+      "closing_stocks_exact": true,
+      "sha256": "de668a0bd4a7134486197b81345678ff3d26ba638823d6f20071556cc0fd9096",
+      "tick": 119
+    },
+    {
+      "closing_stocks_exact": true,
+      "sha256": "4a7967cc40d1993539244342ec52f8aa43a6a2a59a784148e0f780fa425cb1de",
+      "tick": 120
+    }
+  ],
+  "contract_change": "Prospectively permit ordinary carried-stock drawdown with conservation, rolling production/depletion and empty-stock checks. v1 failures are unchanged and not directly comparable with the v2 inventory verdict.",
+  "demand": {
+    "contract": "buffer-demand-v2",
+    "demand_adequacy_certified": false,
+    "execution_decomposition": "Requested units are limited by stock, then cash; other validation failures are separate. Both stock and cash constraints may bind.",
+    "interpretation": "Desired/affordable units are a stock-independent scripted-policy counterfactual. Actual seller choice may differ; shadow fill ratios can exceed one. Measurement completeness and low rejection do not certify adequate household service.",
+    "measured_window": [
+      60,
+      120
+    ],
+    "observation_coverage_window": [
+      1,
+      120
+    ],
+    "observed_decisions": 26245,
+    "regions": [
+      {
+        "affordability_limited_units": 12536,
+        "affordable_units": 49328,
+        "cash_limited_units": 0,
+        "currency_code": "NSD",
+        "decision_observations": 8052,
+        "desired_units": 61864,
+        "eligible_consumption_decisions": 7733,
+        "execution_shortfall_units": 48,
+        "fulfilled_units": 22625,
+        "guidance_limited_units": 26802,
+        "other_execution_shortfall_units": 0,
+        "partial_orders": 5,
+        "pre_execution_rejected_units": 0,
+        "region_id": 1,
+        "rejected_orders": 9,
+        "shadow_affordable_unit_fill_rate": 0.458664,
+        "shadow_desired_unit_fill_rate": 0.365722,
+        "stock_limited_units": 48,
+        "submitted_above_probe_units": 474,
+        "submitted_unit_fill_rate": 0.997883,
+        "submitted_units": 22673,
+        "unpriced_units": 0,
+        "unsubmitted_affordable_units": 27129
+      },
+      {
+        "affordability_limited_units": 0,
+        "affordable_units": 0,
+        "cash_limited_units": 0,
+        "currency_code": "USD",
+        "decision_observations": 9,
+        "desired_units": 0,
+        "eligible_consumption_decisions": 0,
+        "execution_shortfall_units": 0,
+        "fulfilled_units": 0,
+        "guidance_limited_units": 0,
+        "other_execution_shortfall_units": 0,
+        "partial_orders": 0,
+        "pre_execution_rejected_units": 0,
+        "region_id": 1,
+        "rejected_orders": 0,
+        "shadow_affordable_unit_fill_rate": null,
+        "shadow_desired_unit_fill_rate": null,
+        "stock_limited_units": 0,
+        "submitted_above_probe_units": 0,
+        "submitted_unit_fill_rate": null,
+        "submitted_units": 0,
+        "unpriced_units": 0,
+        "unsubmitted_affordable_units": 0
+      },
+      {
+        "affordability_limited_units": 0,
+        "affordable_units": 22576,
+        "cash_limited_units": 0,
+        "currency_code": "IVC",
+        "decision_observations": 2823,
+        "desired_units": 22576,
+        "eligible_consumption_decisions": 2822,
+        "execution_shortfall_units": 3,
+        "fulfilled_units": 4355,
+        "guidance_limited_units": 18218,
+        "other_execution_shortfall_units": 0,
+        "partial_orders": 1,
+        "pre_execution_rejected_units": 0,
+        "region_id": 2,
+        "rejected_orders": 1,
+        "shadow_affordable_unit_fill_rate": 0.192904,
+        "shadow_desired_unit_fill_rate": 0.192904,
+        "stock_limited_units": 3,
+        "submitted_above_probe_units": 0,
+        "submitted_unit_fill_rate": 0.999312,
+        "submitted_units": 4358,
+        "unpriced_units": 0,
+        "unsubmitted_affordable_units": 18218
+      },
+      {
+        "affordability_limited_units": 0,
+        "affordable_units": 17408,
+        "cash_limited_units": 0,
+        "currency_code": "SCD",
+        "decision_observations": 2176,
+        "desired_units": 17408,
+        "eligible_consumption_decisions": 2176,
+        "execution_shortfall_units": 4,
+        "fulfilled_units": 4846,
+        "guidance_limited_units": 12558,
+        "other_execution_shortfall_units": 0,
+        "partial_orders": 1,
+        "pre_execution_rejected_units": 0,
+        "region_id": 3,
+        "rejected_orders": 1,
+        "shadow_affordable_unit_fill_rate": 0.278378,
+        "shadow_desired_unit_fill_rate": 0.278378,
+        "stock_limited_units": 4,
+        "submitted_above_probe_units": 0,
+        "submitted_unit_fill_rate": 0.999175,
+        "submitted_units": 4850,
+        "unpriced_units": 0,
+        "unsubmitted_affordable_units": 12558
+      }
+    ],
+    "scheduled_decisions": 26245,
+    "totals": {
+      "affordability_limited_units": 12536,
+      "affordable_units": 89312,
+      "cash_limited_units": 0,
+      "decision_observations": 13060,
+      "desired_units": 101848,
+      "eligible_consumption_decisions": 12731,
+      "execution_shortfall_units": 55,
+      "fulfilled_units": 31826,
+      "guidance_limited_units": 57578,
+      "other_execution_shortfall_units": 0,
+      "partial_orders": 7,
+      "pre_execution_rejected_units": 0,
+      "rejected_orders": 11,
+      "shadow_affordable_unit_fill_rate": 0.356346,
+      "shadow_desired_unit_fill_rate": 0.312485,
+      "stock_limited_units": 55,
+      "submitted_above_probe_units": 474,
+      "submitted_unit_fill_rate": 0.998275,
+      "submitted_units": 31881,
+      "unpriced_units": 0,
+      "unsubmitted_affordable_units": 57905
+    }
+  },
+  "demand_window": [
+    60,
+    120
+  ],
+  "economic_settings_changed_from_replenishment_v1": false,
+  "observational_parity": {
+    "added_audit_tables": [
+      "scale_demand_audit",
+      "scale_inventory_audit",
+      "scale_purchase_audit"
+    ],
+    "candidate_run_id": "f35fc3a790",
+    "canonical_common_tables_exact": 127,
+    "canonical_differences": [
+      "action_proposals",
+      "events",
+      "llm_calls",
+      "scale_demand_audit",
+      "scale_inventory_audit",
+      "scale_purchase_audit"
+    ],
+    "common_tables": 130,
+    "comparison_method": "Derived canonical comparison from hash-bound exact source/replay proof entries; exhaustive immutable raw-row comparison of three named tables under explicit operational-field projection.",
+    "observational_match": true,
+    "previous_run_id": "0436daa1d5",
+    "source_hashes": {
+      "candidate": "1c3b4a2486ac5db719fe984f5ff353515ee9dfe726e788e79e4930cc3fe91b34",
+      "previous": "d4cf5c32e181eb8c7af96ddfba454c92256fd2f48eb4ce6486056c1ed438021a"
+    },
+    "source_hashes_unchanged": true
+  },
+  "passed": true,
+  "prior_ab_comparison": "../ab-120/README.md",
+  "prior_ab_unchanged": true,
+  "schema": "manyworld-inventory-policy-amendment-v2",
+  "scope": "120-tick scripted mechanics prerequisite; household adequacy, long-run, live and release acceptance deferred",
+  "source_commit": "d7809d11041dc8ec6481e10e408171b51190db41",
+  "v2_inventory_window": [
+    60,
+    120
+  ],
+  "verification": {
+    "artifact_entries_verified": 48,
+    "economic_and_integrity_checks": {
+      "checkpoints_valid": true,
+      "communications_exact": true,
+      "demand_measurement_complete": true,
+      "employment_currency_and_terms_valid": true,
+      "exact_replay": true,
+      "horizon_completed": true,
+      "identity_exact": true,
+      "inventory_accounting_valid": true,
+      "labor_backlog_bounded": true,
+      "ledger_reconciles": true,
+      "managed_insolvency_absent": true,
+      "population_exact": true,
+      "production_and_inventory_healthy": true,
+      "provider_and_spend_exact": true,
+      "purchase_windows_healthy": true,
+      "resources_within_caps": true,
+      "runtime_receipt_safe": true,
+      "source_immutable": true,
+      "sqlite_integrity": true,
+      "unemployment_final_mean_not_worse": true,
+      "unemployment_rebound_bounded": true,
+      "unit_economics_valid": true
+    },
+    "repeated_json_markdown_byte_identical": true,
+    "runtime_checks": {
+      "checkpoint_succeeded": true,
+      "communications_exact": true,
+      "database_growth_measured": true,
+      "exact_replay": true,
+      "foreign_keys_clean": true,
+      "ledger_reconciles": true,
+      "live_preflight": true,
+      "memory_measured": true,
+      "no_failure_events": true,
+      "no_sqlite_sidecars": true,
+      "population_exact": true,
+      "provider_model_exact": true,
+      "replay_no_live_dispatch": true,
+      "source_immutable_during_replay": true,
+      "spend_contract": true,
+      "sqlite_quick_check": true,
+      "target_tick_completed": true
+    },
+    "source_replay_tables_exact": 133
+  }
+}

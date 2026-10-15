@@ -500,8 +500,14 @@ def _mutate_both(fixture: ScaleFixture, mutate: Callable[[sqlite3.Connection], N
     _refresh_runtime(fixture)
 
 
-def test_healthy_persisted_fixture_produces_deterministic_all_green_receipt(tmp_path: Path):
-    fixture = _seed_fixture(tmp_path)
+@pytest.mark.parametrize("profile", [
+    BASELINE_PROFILE,
+    ROOT / "runs/acceptance/scale-270-recovery-inventory-120.yaml",
+])
+def test_healthy_persisted_fixture_produces_deterministic_all_green_receipt(
+    tmp_path: Path, profile: Path,
+):
+    fixture = _seed_fixture(tmp_path, profile=profile)
 
     first = evaluate_scale_economic_health(fixture.source, fixture.replay, fixture.runtime)
     second = evaluate_scale_economic_health(fixture.source, fixture.replay, fixture.runtime)
@@ -513,6 +519,40 @@ def test_healthy_persisted_fixture_produces_deterministic_all_green_receipt(tmp_
     assert all(first["checks"].values())
     assert first["population"] == EXPECTED_POPULATION
     assert first["run"]["tick"] == 120
+
+
+@pytest.mark.parametrize("last_sale_qty,sales,shortfall,passed", [
+    (1, 60, 0, True),
+    (61, 120, 0, True),
+    (62, 121, 1, False),
+    (68, 127, 7, False),
+])
+def test_production_shortfall_remains_a_failure_despite_carried_inventory(
+    tmp_path: Path, last_sale_qty: int, sales: int, shortfall: int, passed: bool,
+):
+    fixture = _seed_fixture(tmp_path)
+
+    def adjust_sale(connection: sqlite3.Connection) -> None:
+        connection.execute(
+            "UPDATE events SET payload_json=? WHERE kind='goods_sale' AND tick=120",
+            (json.dumps({"firm_id": 1, "buyer_id": 2, "qty": last_sale_qty,
+                         "unit_price_cents": 600, "total_cents": last_sale_qty * 600}),),
+        )
+
+    _mutate_both(fixture, adjust_sale)
+    evaluated = evaluate_scale_economic_health(
+        fixture.source, fixture.replay, fixture.runtime)
+    firm, = evaluated["evidence"]["production_and_inventory"]["active_goods_firms"]
+    assert firm["terminal_inventory"] == 120
+    assert firm["production_units"] == 120
+    assert firm["accepted_sale_units"] == sales
+    assert firm["production_shortfall_units"] == shortfall
+    assert firm["passed"] is passed
+    assert evaluated["checks"]["production_and_inventory_healthy"] is passed
+    assert evaluated["checks"]["exact_replay"]
+    assert evaluated["checks"]["ledger_reconciles"]
+    assert evaluated["passed"] is passed
+    assert evaluated["outcome"] == ("passed" if passed else "diagnostic_economic_failure")
 
 
 @pytest.mark.parametrize(

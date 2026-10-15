@@ -86,6 +86,8 @@ NESTED_EVENT_REFERENCE_JSON_COLUMNS = {
     ("causal_links", "provenance_json"),
 }
 EVENT_REFERENCE_COLUMNS = {
+    ("scale_purchase_audit", "preceding_goods_event_id"),
+    ("scale_purchase_audit", "following_goods_event_id"),
     ("person_residence_events", "event_id"),
     ("population_movements", "proposal_event_id"),
     ("population_movements", "outcome_event_id"),
@@ -850,6 +852,9 @@ def _table_digest(
             elif (table, column) in EVENT_REFERENCE_COLUMNS:
                 if row[column] is None:
                     resolved, valid = None, True
+                elif (table == "scale_purchase_audit" and column in {
+                        "preceding_goods_event_id", "following_goods_event_id"} and row[column] == 0):
+                    resolved, valid = 0, True
                 else:
                     resolved, valid = _canonical_event_reference(
                         row[column], event_references)

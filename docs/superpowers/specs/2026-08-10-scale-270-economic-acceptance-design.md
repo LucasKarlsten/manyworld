@@ -210,6 +210,12 @@ growth, checkpoint timings, and source/replay identity.
 
 ### Purchases, production, and inventory
 
+The bullets below remain the **v1 contract** for historical profiles/receipts.
+The user-approved [October 14 v2 amendment](2026-10-14-inventory-buffer-demand-v2.md)
+adds a separate buffer profile, exact daily stock accounting, persistent
+depletion checks and independent demand/fulfillment observations. V1 failed
+results are not promoted or rewritten by that amendment.
+
 - Warmup is 60 ticks and the rolling evaluation window is 60 ticks.
 - Every completed post-warmup rolling window has at least one resolved
   `buy_goods` proposal, zero unresolved proposals, and rejection rate at or

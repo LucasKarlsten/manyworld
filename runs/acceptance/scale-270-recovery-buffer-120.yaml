@@ -1,0 +1,12 @@
+# Prospective v2 contract; frozen v1 profiles and failed receipts are unchanged.
+extends: scale-270-recovery-inventory-120.yaml
+
+observability:
+  scale_inventory_contract: buffer-demand-v2
+
+acceptance:
+  scale_economic_health:
+    schema_version: 2
+    # Pinned recovery response and sales-observation horizons, not fitted tolerances.
+    inventory_response_ticks: 5
+    inventory_observation_ticks: 30

@@ -21,6 +21,7 @@ from engine.ledger import Ledger
 from engine.schema import SchemaCompatibilityError, assert_schema_compatible
 from engine.store import Store
 from reports import supply_recovery
+from reports.inventory_buffer import buffer_inventory_evidence, demand_evidence
 from run_config import load_config
 from scripts.run_scale_validation import ReceiptSafetyError, validate_receipt_safety
 from world.replay_verify import verify_replay
@@ -28,6 +29,7 @@ from world.replay_verify import verify_replay
 
 ROOT = Path(__file__).resolve().parents[1]
 SCHEMA = "agent-economy-scale-economic-health-v1"
+SCHEMA_V2 = "agent-economy-scale-economic-health-v2"
 AB_SCHEMA = "agent-economy-scale-ab-v1"
 RUNTIME_SCHEMA = "agent-economy-scale-validation-v1"
 SQLITE_SIDECARS = ("-wal", "-shm", "-journal")
@@ -42,6 +44,12 @@ EXPECTED_POPULATION = {
     "regions": {"ironvale": 69, "northstar": 184, "suncoast": 55},
 }
 PROFILE_CONTRACTS = {
+    "runs/acceptance/scale-270-recovery-buffer-120.yaml": {
+        "required_ticks": 120,
+        "diagnostic": True,
+        "recovery_enabled": True,
+        "schema_version": 2,
+    },
     "runs/acceptance/scale-270-baseline-120.yaml": {
         "required_ticks": 120,
         "diagnostic": True,
@@ -53,6 +61,16 @@ PROFILE_CONTRACTS = {
         "recovery_enabled": True,
     },
     "runs/acceptance/scale-270-recovery-1000.yaml": {
+        "required_ticks": 1000,
+        "diagnostic": False,
+        "recovery_enabled": True,
+    },
+    "runs/acceptance/scale-270-recovery-inventory-120.yaml": {
+        "required_ticks": 120,
+        "diagnostic": True,
+        "recovery_enabled": True,
+    },
+    "runs/acceptance/scale-270-recovery-inventory-1000.yaml": {
         "required_ticks": 1000,
         "diagnostic": False,
         "recovery_enabled": True,
@@ -258,6 +276,12 @@ def _thresholds(config: Mapping[str, Any]) -> dict[str, Any] | None:
         "max_database_growth_bytes_per_tick": int,
         "max_checkpoint_p95_seconds": (int, float),
     }
+    if scale.get("schema_version") == 2:
+        expected_types.update(inventory_response_ticks=int, inventory_observation_ticks=int)
+        if scale.get("inventory_response_ticks") != 5 or scale.get("inventory_observation_ticks") != 30:
+            return None
+    elif scale.get("schema_version") != 1:
+        return None
     if set(scale) != set(expected_types):
         return None
     for name, kind in expected_types.items():
@@ -310,7 +334,8 @@ def _identity_evidence(
         "effective_config_matches_persisted": effective_config is not None
         and _semantic_config(effective_config) == _semantic_config(persisted_config),
         "threshold_contract": thresholds is not None
-        and thresholds.get("required_ticks") == required_ticks,
+        and thresholds.get("required_ticks") == required_ticks
+        and thresholds.get("schema_version") == (contract or {}).get("schema_version", 1),
         "source_identity": (
             source_section.get("run_id") == source_meta["run_id"]
             and source_section.get("status") == source_meta["status"]
@@ -696,6 +721,8 @@ def _production_inventory_evidence(
             row["terminal_inventory"] is not None
             and (row["terminal_inventory"] > 0 or row["production_units"] > 0))
         row["inventory_nonzero_evidenced"] = inventory_nonzero_evidenced
+        row["production_shortfall_units"] = max(
+            0, row["accepted_sale_units"] - row["production_units"])
         row["passed"] = bool(
             row["production_events"] > 0
             and row["production_units"] >= row["accepted_sale_units"]
@@ -1011,7 +1038,8 @@ def _resource_evidence(
 def _outcome(checks: Mapping[str, bool], *, diagnostic: bool) -> str:
     if all(checks.values()):
         return "passed"
-    if diagnostic and all(checks[name] for name in OPERATIONAL_CHECKS):
+    if diagnostic and all(checks.get(name) is True for name in OPERATIONAL_CHECKS) and all(
+            passed is True for name, passed in checks.items() if name not in ECONOMIC_CHECKS):
         failed = {name for name in ECONOMIC_CHECKS if not checks[name]}
         if failed:
             return "diagnostic_economic_failure"
@@ -1138,10 +1166,17 @@ def evaluate_scale_economic_health(
             checks["unemployment_final_mean_not_worse"],
             evidence["unemployment"],
         ) = _unemployment_evidence(source_connection, evaluation_ticks, thresholds)
-        (
-            checks["production_and_inventory_healthy"],
-            evidence["production_and_inventory"],
-        ) = _production_inventory_evidence(source_connection, evaluation_ticks, thresholds)
+        if thresholds.get("schema_version") == 2:
+            checks["production_and_inventory_healthy"], evidence["production_and_inventory"] = (
+                buffer_inventory_evidence(source_connection, evaluation_ticks, thresholds))
+            checks["inventory_accounting_valid"] = evidence["production_and_inventory"].get("daily_conservation_exact") is True
+            checks["demand_measurement_complete"], evidence["demand"] = (
+                demand_evidence(source_connection, evaluation_ticks, thresholds))
+        else:
+            (
+                checks["production_and_inventory_healthy"],
+                evidence["production_and_inventory"],
+            ) = _production_inventory_evidence(source_connection, evaluation_ticks, thresholds)
 
         activation_tick = 0
         recovery = _json_mapping(persisted_config.get("supply_recovery")) or {}
@@ -1193,8 +1228,8 @@ def evaluate_scale_economic_health(
         policy_version = recovery.get("policy_version") if recovery.get("enabled") is True else None
         effective_config = _json_mapping(runtime.get("effective_config")) or {}
         result: dict[str, object] = {
-            "schema": SCHEMA,
-            "schema_version": 1,
+            "schema": SCHEMA_V2 if thresholds.get("schema_version") == 2 else SCHEMA,
+            "schema_version": 2 if thresholds.get("schema_version") == 2 else 1,
             "outcome": outcome,
             "passed": outcome == "passed",
             "profile": {
@@ -1220,7 +1255,7 @@ def evaluate_scale_economic_health(
             "checks": checks,
             "check_groups": {
                 "economic": sorted(ECONOMIC_CHECKS),
-                "operational": sorted(OPERATIONAL_CHECKS),
+                "operational": sorted(set(checks) - ECONOMIC_CHECKS),
             },
             "population": evidence["population"]["observed"],
             "evidence": evidence,
@@ -1305,6 +1340,8 @@ def render_scale_economic_health_markdown(receipt: Mapping[str, object]) -> str:
     ]
     for name in CHECK_NAMES:
         lines.append(f"- [{'x' if checks.get(name) is True else ' '}] `{name}`")
+    for name in sorted(set(checks) - set(CHECK_NAMES)):
+        lines.append(f"- [{'x' if checks.get(name) is True else ' '}] `{name}`")
     evidence = _json_mapping(receipt.get("evidence")) or {}
     unemployment = _json_mapping(evidence.get("unemployment")) or {}
     purchases = _json_mapping(evidence.get("purchase_windows")) or {}
@@ -1325,6 +1362,23 @@ def render_scale_economic_health_markdown(receipt: Mapping[str, object]) -> str:
         f"- Checkpoint p95 seconds: `{resources.get('checkpoint_p95_seconds')}`",
         "",
     ]
+    if receipt.get("schema_version") == 2:
+        demand = _json_mapping(evidence.get("demand")) or {}
+        inventory = _json_mapping(evidence.get("production_and_inventory")) or {}
+        lines += [
+            "## Contract v2: buffers and independent demand", "",
+            "Inventory buffers may be drawn down. Conservation, continued production, persistent empty stock and sustained depletion are checked per firm and region.", "",
+            "**Household demand adequacy is not certified.** Desired/affordable quantities are a stock-independent scripted-policy probe; actual seller choices can differ. The rejection gate alone cannot establish adequate service.", "",
+            "| Scope | Desired | Affordable | Submitted | Fulfilled | Limited by guidance | Unsubmitted affordable | Execution stock loss | Execution cash loss |",
+            "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+        ]
+        scopes = [("All regions", _json_mapping(demand.get("totals")) or {})]
+        scopes += [(f"Region {row.get('region_id')} ({row.get('currency_code')})", row) for row in demand.get("regions", [])]
+        fields = ("desired_units", "affordable_units", "submitted_units", "fulfilled_units", "guidance_limited_units", "unsubmitted_affordable_units", "stock_limited_units", "cash_limited_units")
+        for label, row in scopes:
+            lines.append(f"| {label} | " + " | ".join(str(row.get(field, "unavailable")) for field in fields) + " |")
+        lines += ["", f"Inventory observation window: `{inventory.get('measured_window')}`.",
+                  "Declining windows and linear buffer coverage are retained in the JSON receipt. A short pass does not establish long-run sustainability.", ""]
     return "\n".join(lines)
 
 

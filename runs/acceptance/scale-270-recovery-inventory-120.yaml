@@ -1,0 +1,12 @@
+# Stage 4 repair: retain the original diagnostic profile and its evidence.
+# Allow one additional demand-supported worker; quantity guidance starts at tick 60.
+extends: scale-270-recovery-120.yaml
+
+supply_recovery:
+  max_headcount_per_firm: 8
+
+behavior:
+  inventory_aware_shopping_activation_tick: 60
+  inventory_aware_shopping_include_staff: true
+  # Use 80% of advertised stock for quantity guidance, retaining the one-unit minimum.
+  inventory_aware_shopping_reserve_bps: 2000

@@ -1,0 +1,5541 @@
+{
+  "check_groups": {
+    "economic": [
+      "employment_currency_and_terms_valid",
+      "labor_backlog_bounded",
+      "managed_insolvency_absent",
+      "production_and_inventory_healthy",
+      "purchase_windows_healthy",
+      "unemployment_final_mean_not_worse",
+      "unemployment_rebound_bounded",
+      "unit_economics_valid"
+    ],
+    "operational": [
+      "checkpoints_valid",
+      "communications_exact",
+      "exact_replay",
+      "horizon_completed",
+      "identity_exact",
+      "ledger_reconciles",
+      "population_exact",
+      "provider_and_spend_exact",
+      "resources_within_caps",
+      "runtime_receipt_safe",
+      "source_immutable",
+      "sqlite_integrity"
+    ]
+  },
+  "checks": {
+    "checkpoints_valid": true,
+    "communications_exact": true,
+    "employment_currency_and_terms_valid": true,
+    "exact_replay": true,
+    "horizon_completed": true,
+    "identity_exact": true,
+    "labor_backlog_bounded": true,
+    "ledger_reconciles": true,
+    "managed_insolvency_absent": true,
+    "population_exact": true,
+    "production_and_inventory_healthy": false,
+    "provider_and_spend_exact": true,
+    "purchase_windows_healthy": false,
+    "resources_within_caps": true,
+    "runtime_receipt_safe": true,
+    "source_immutable": true,
+    "sqlite_integrity": true,
+    "unemployment_final_mean_not_worse": true,
+    "unemployment_rebound_bounded": true,
+    "unit_economics_valid": true
+  },
+  "evidence": {
+    "checkpoints": {
+      "artifacts_match_current_rows": true,
+      "checkpoint_p95_seconds": 3.722033,
+      "configured_checkpoint_dir": "<absolute>/checkpoints",
+      "configured_keep_last": 4,
+      "current_database_artifact_count": 4,
+      "current_manifest_artifact_count": 4,
+      "current_row_count": 4,
+      "current_rows": [
+        {
+          "artifact": "21eb569b27_t105.db",
+          "checkpoint_id": 15,
+          "database_exists": true,
+          "manifest": "21eb569b27_t105.db.manifest.json",
+          "manifest_exists": true,
+          "manifest_valid": true,
+          "manifest_validation_errors": [],
+          "sqlite_artifact": {
+            "foreign_key_violation_count": 0,
+            "integrity_check": [
+              "ok"
+            ],
+            "journal_mode": "delete",
+            "quick_check": [
+              "ok"
+            ]
+          },
+          "tick": 105
+        },
+        {
+          "artifact": "21eb569b27_t112.db",
+          "checkpoint_id": 16,
+          "database_exists": true,
+          "manifest": "21eb569b27_t112.db.manifest.json",
+          "manifest_exists": true,
+          "manifest_valid": true,
+          "manifest_validation_errors": [],
+          "sqlite_artifact": {
+            "foreign_key_violation_count": 0,
+            "integrity_check": [
+              "ok"
+            ],
+            "journal_mode": "delete",
+            "quick_check": [
+              "ok"
+            ]
+          },
+          "tick": 112
+        },
+        {
+          "artifact": "21eb569b27_t119.db",
+          "checkpoint_id": 17,
+          "database_exists": true,
+          "manifest": "21eb569b27_t119.db.manifest.json",
+          "manifest_exists": true,
+          "manifest_valid": true,
+          "manifest_validation_errors": [],
+          "sqlite_artifact": {
+            "foreign_key_violation_count": 0,
+            "integrity_check": [
+              "ok"
+            ],
+            "journal_mode": "delete",
+            "quick_check": [
+              "ok"
+            ]
+          },
+          "tick": 119
+        },
+        {
+          "artifact": "21eb569b27_t120.db",
+          "checkpoint_id": 18,
+          "database_exists": true,
+          "manifest": "21eb569b27_t120.db.manifest.json",
+          "manifest_exists": true,
+          "manifest_valid": true,
+          "manifest_validation_errors": [],
+          "sqlite_artifact": {
+            "foreign_key_violation_count": 0,
+            "integrity_check": [
+              "ok"
+            ],
+            "journal_mode": "delete",
+            "quick_check": [
+              "ok"
+            ]
+          },
+          "tick": 120
+        }
+      ],
+      "excluded_rows": [],
+      "required_retained_rows": 4,
+      "runtime_record_count": 18,
+      "runtime_records_valid": true,
+      "terminal_catalog_rows": 1,
+      "terminal_runtime_records": 1,
+      "terminal_tick": 120
+    },
+    "communications": {
+      "expected_conversations": 3000,
+      "expected_messages": 9000,
+      "malformed_conversations": 0,
+      "observed": {
+        "conversations": 3000,
+        "empty_messages": 0,
+        "invalid_message_memberships": 0,
+        "message_count_per_conversation": [
+          3
+        ],
+        "messages": 9000,
+        "unique_participants": 308
+      },
+      "runtime_observed": {
+        "conversations": 3000,
+        "empty_messages": 0,
+        "invalid_message_memberships": 0,
+        "message_count_per_conversation": [
+          3
+        ],
+        "messages": 9000,
+        "unique_participants": 308
+      }
+    },
+    "employment": {
+      "active_employment_count": 87,
+      "active_employments": [
+        {
+          "agent_id": 143,
+          "employee_currency": "SCD",
+          "employment_id": 1,
+          "firm_currency": "SCD",
+          "firm_id": 1,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 37,
+          "employee_currency": "NSD",
+          "employment_id": 2,
+          "firm_currency": "NSD",
+          "firm_id": 2,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 38,
+          "employee_currency": "NSD",
+          "employment_id": 3,
+          "firm_currency": "NSD",
+          "firm_id": 3,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 114,
+          "employee_currency": "IVC",
+          "employment_id": 4,
+          "firm_currency": "IVC",
+          "firm_id": 4,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 116,
+          "employee_currency": "IVC",
+          "employment_id": 5,
+          "firm_currency": "IVC",
+          "firm_id": 5,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 39,
+          "employee_currency": "NSD",
+          "employment_id": 6,
+          "firm_currency": "NSD",
+          "firm_id": 6,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 40,
+          "employee_currency": "NSD",
+          "employment_id": 7,
+          "firm_currency": "NSD",
+          "firm_id": 7,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 41,
+          "employee_currency": "NSD",
+          "employment_id": 8,
+          "firm_currency": "NSD",
+          "firm_id": 8,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 43,
+          "employee_currency": "NSD",
+          "employment_id": 9,
+          "firm_currency": "NSD",
+          "firm_id": 9,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 44,
+          "employee_currency": "NSD",
+          "employment_id": 10,
+          "firm_currency": "NSD",
+          "firm_id": 10,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 149,
+          "employee_currency": "SCD",
+          "employment_id": 11,
+          "firm_currency": "SCD",
+          "firm_id": 11,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 45,
+          "employee_currency": "NSD",
+          "employment_id": 12,
+          "firm_currency": "NSD",
+          "firm_id": 12,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 46,
+          "employee_currency": "NSD",
+          "employment_id": 13,
+          "firm_currency": "NSD",
+          "firm_id": 13,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 320000
+        },
+        {
+          "agent_id": 47,
+          "employee_currency": "NSD",
+          "employment_id": 14,
+          "firm_currency": "NSD",
+          "firm_id": 13,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 260000
+        },
+        {
+          "agent_id": 49,
+          "employee_currency": "NSD",
+          "employment_id": 15,
+          "firm_currency": "NSD",
+          "firm_id": 14,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 280000
+        },
+        {
+          "agent_id": 5,
+          "employee_currency": "NSD",
+          "employment_id": 16,
+          "firm_currency": "NSD",
+          "firm_id": 3,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 6,
+          "employee_currency": "NSD",
+          "employment_id": 17,
+          "firm_currency": "NSD",
+          "firm_id": 8,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 15,
+          "employee_currency": "NSD",
+          "employment_id": 18,
+          "firm_currency": "NSD",
+          "firm_id": 2,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 18,
+          "employee_currency": "NSD",
+          "employment_id": 19,
+          "firm_currency": "NSD",
+          "firm_id": 10,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 118,
+          "employee_currency": "IVC",
+          "employment_id": 20,
+          "firm_currency": "IVC",
+          "firm_id": 5,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 120,
+          "employee_currency": "IVC",
+          "employment_id": 21,
+          "firm_currency": "IVC",
+          "firm_id": 4,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 155,
+          "employee_currency": "SCD",
+          "employment_id": 22,
+          "firm_currency": "SCD",
+          "firm_id": 11,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 7,
+          "employee_currency": "NSD",
+          "employment_id": 23,
+          "firm_currency": "NSD",
+          "firm_id": 7,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 10,
+          "employee_currency": "NSD",
+          "employment_id": 24,
+          "firm_currency": "NSD",
+          "firm_id": 12,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 152,
+          "employee_currency": "SCD",
+          "employment_id": 25,
+          "firm_currency": "SCD",
+          "firm_id": 1,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 8,
+          "employee_currency": "NSD",
+          "employment_id": 26,
+          "firm_currency": "NSD",
+          "firm_id": 9,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 11,
+          "employee_currency": "NSD",
+          "employment_id": 27,
+          "firm_currency": "NSD",
+          "firm_id": 6,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 20,
+          "employee_currency": "NSD",
+          "employment_id": 28,
+          "firm_currency": "NSD",
+          "firm_id": 10,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 22,
+          "employee_currency": "NSD",
+          "employment_id": 29,
+          "firm_currency": "NSD",
+          "firm_id": 2,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 126,
+          "employee_currency": "IVC",
+          "employment_id": 30,
+          "firm_currency": "IVC",
+          "firm_id": 5,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 122,
+          "employee_currency": "IVC",
+          "employment_id": 31,
+          "firm_currency": "IVC",
+          "firm_id": 4,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 13,
+          "employee_currency": "NSD",
+          "employment_id": 32,
+          "firm_currency": "NSD",
+          "firm_id": 3,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 14,
+          "employee_currency": "NSD",
+          "employment_id": 33,
+          "firm_currency": "NSD",
+          "firm_id": 12,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 17,
+          "employee_currency": "NSD",
+          "employment_id": 34,
+          "firm_currency": "NSD",
+          "firm_id": 8,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 12,
+          "employee_currency": "NSD",
+          "employment_id": 35,
+          "firm_currency": "NSD",
+          "firm_id": 7,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 161,
+          "employee_currency": "SCD",
+          "employment_id": 36,
+          "firm_currency": "SCD",
+          "firm_id": 11,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 19,
+          "employee_currency": "NSD",
+          "employment_id": 37,
+          "firm_currency": "NSD",
+          "firm_id": 2,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 124,
+          "employee_currency": "IVC",
+          "employment_id": 38,
+          "firm_currency": "IVC",
+          "firm_id": 5,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 158,
+          "employee_currency": "SCD",
+          "employment_id": 39,
+          "firm_currency": "SCD",
+          "firm_id": 1,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 16,
+          "employee_currency": "NSD",
+          "employment_id": 40,
+          "firm_currency": "NSD",
+          "firm_id": 10,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 21,
+          "employee_currency": "NSD",
+          "employment_id": 41,
+          "firm_currency": "NSD",
+          "firm_id": 3,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 23,
+          "employee_currency": "NSD",
+          "employment_id": 42,
+          "firm_currency": "NSD",
+          "firm_id": 8,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 24,
+          "employee_currency": "NSD",
+          "employment_id": 43,
+          "firm_currency": "NSD",
+          "firm_id": 9,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 26,
+          "employee_currency": "NSD",
+          "employment_id": 44,
+          "firm_currency": "NSD",
+          "firm_id": 12,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 128,
+          "employee_currency": "IVC",
+          "employment_id": 45,
+          "firm_currency": "IVC",
+          "firm_id": 5,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 130,
+          "employee_currency": "IVC",
+          "employment_id": 46,
+          "firm_currency": "IVC",
+          "firm_id": 4,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 25,
+          "employee_currency": "NSD",
+          "employment_id": 47,
+          "firm_currency": "NSD",
+          "firm_id": 2,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 167,
+          "employee_currency": "SCD",
+          "employment_id": 48,
+          "firm_currency": "SCD",
+          "firm_id": 11,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 27,
+          "employee_currency": "NSD",
+          "employment_id": 49,
+          "firm_currency": "NSD",
+          "firm_id": 10,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 29,
+          "employee_currency": "NSD",
+          "employment_id": 50,
+          "firm_currency": "NSD",
+          "firm_id": 8,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 164,
+          "employee_currency": "SCD",
+          "employment_id": 51,
+          "firm_currency": "SCD",
+          "firm_id": 1,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 28,
+          "employee_currency": "NSD",
+          "employment_id": 52,
+          "firm_currency": "NSD",
+          "firm_id": 3,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 30,
+          "employee_currency": "NSD",
+          "employment_id": 53,
+          "firm_currency": "NSD",
+          "firm_id": 6,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 132,
+          "employee_currency": "IVC",
+          "employment_id": 54,
+          "firm_currency": "IVC",
+          "firm_id": 5,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 31,
+          "employee_currency": "NSD",
+          "employment_id": 55,
+          "firm_currency": "NSD",
+          "firm_id": 8,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 32,
+          "employee_currency": "NSD",
+          "employment_id": 56,
+          "firm_currency": "NSD",
+          "firm_id": 10,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 33,
+          "employee_currency": "NSD",
+          "employment_id": 57,
+          "firm_currency": "NSD",
+          "firm_id": 2,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 136,
+          "employee_currency": "IVC",
+          "employment_id": 58,
+          "firm_currency": "IVC",
+          "firm_id": 4,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 179,
+          "employee_currency": "SCD",
+          "employment_id": 59,
+          "firm_currency": "SCD",
+          "firm_id": 11,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 34,
+          "employee_currency": "NSD",
+          "employment_id": 60,
+          "firm_currency": "NSD",
+          "firm_id": 3,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 134,
+          "employee_currency": "IVC",
+          "employment_id": 61,
+          "firm_currency": "IVC",
+          "firm_id": 5,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 170,
+          "employee_currency": "SCD",
+          "employment_id": 62,
+          "firm_currency": "SCD",
+          "firm_id": 1,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 35,
+          "employee_currency": "NSD",
+          "employment_id": 63,
+          "firm_currency": "NSD",
+          "firm_id": 10,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 36,
+          "employee_currency": "NSD",
+          "employment_id": 64,
+          "firm_currency": "NSD",
+          "firm_id": 8,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 53,
+          "employee_currency": "NSD",
+          "employment_id": 65,
+          "firm_currency": "NSD",
+          "firm_id": 2,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 50,
+          "employee_currency": "NSD",
+          "employment_id": 66,
+          "firm_currency": "NSD",
+          "firm_id": 3,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 138,
+          "employee_currency": "IVC",
+          "employment_id": 67,
+          "firm_currency": "IVC",
+          "firm_id": 4,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 182,
+          "employee_currency": "SCD",
+          "employment_id": 68,
+          "firm_currency": "SCD",
+          "firm_id": 1,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 51,
+          "employee_currency": "NSD",
+          "employment_id": 69,
+          "firm_currency": "NSD",
+          "firm_id": 6,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 185,
+          "employee_currency": "SCD",
+          "employment_id": 70,
+          "firm_currency": "SCD",
+          "firm_id": 11,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 52,
+          "employee_currency": "NSD",
+          "employment_id": 71,
+          "firm_currency": "NSD",
+          "firm_id": 12,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 54,
+          "employee_currency": "NSD",
+          "employment_id": 72,
+          "firm_currency": "NSD",
+          "firm_id": 9,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 140,
+          "employee_currency": "IVC",
+          "employment_id": 73,
+          "firm_currency": "IVC",
+          "firm_id": 4,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 197,
+          "employee_currency": "SCD",
+          "employment_id": 74,
+          "firm_currency": "SCD",
+          "firm_id": 11,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 55,
+          "employee_currency": "NSD",
+          "employment_id": 75,
+          "firm_currency": "NSD",
+          "firm_id": 12,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 173,
+          "employee_currency": "SCD",
+          "employment_id": 76,
+          "firm_currency": "SCD",
+          "firm_id": 1,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 57,
+          "employee_currency": "NSD",
+          "employment_id": 77,
+          "firm_currency": "NSD",
+          "firm_id": 7,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 59,
+          "employee_currency": "NSD",
+          "employment_id": 78,
+          "firm_currency": "NSD",
+          "firm_id": 9,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 60,
+          "employee_currency": "NSD",
+          "employment_id": 79,
+          "firm_currency": "NSD",
+          "firm_id": 6,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 61,
+          "employee_currency": "NSD",
+          "employment_id": 80,
+          "firm_currency": "NSD",
+          "firm_id": 12,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 56,
+          "employee_currency": "NSD",
+          "employment_id": 81,
+          "firm_currency": "NSD",
+          "firm_id": 7,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 62,
+          "employee_currency": "NSD",
+          "employment_id": 82,
+          "firm_currency": "NSD",
+          "firm_id": 9,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 63,
+          "employee_currency": "NSD",
+          "employment_id": 83,
+          "firm_currency": "NSD",
+          "firm_id": 6,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 58,
+          "employee_currency": "NSD",
+          "employment_id": 84,
+          "firm_currency": "NSD",
+          "firm_id": 9,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 67,
+          "employee_currency": "NSD",
+          "employment_id": 85,
+          "firm_currency": "NSD",
+          "firm_id": 7,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 69,
+          "employee_currency": "NSD",
+          "employment_id": 86,
+          "firm_currency": "NSD",
+          "firm_id": 6,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        },
+        {
+          "agent_id": 66,
+          "employee_currency": "NSD",
+          "employment_id": 87,
+          "firm_currency": "NSD",
+          "firm_id": 7,
+          "passed": true,
+          "pay_interval_ticks": 30,
+          "wage_cents": 15000
+        }
+      ]
+    },
+    "horizon": {
+      "active_tick": null,
+      "completed_statuses": [
+        "finished",
+        "paused"
+      ],
+      "replay_tick": 120,
+      "required_ticks": 120,
+      "source_status": "finished",
+      "source_tick": 120
+    },
+    "identity": {
+      "checks": {
+        "effective_config_hash": true,
+        "effective_config_matches_persisted": true,
+        "known_profile": true,
+        "persisted_config_matches_profile": true,
+        "profile_config_hash": true,
+        "profile_file_hash": true,
+        "replay_identity": true,
+        "runtime_schema": true,
+        "runtime_ticks": true,
+        "seed": true,
+        "semantics": true,
+        "source_commit": true,
+        "source_identity": true,
+        "threshold_contract": true
+      },
+      "effective_config_sha256": "ce583563d8d12c87bd20c7ea6dc054623a10992f1084e3fec8a708370cd25418",
+      "profile_config_sha256": "67fa33577d365c06d5c96df17d9882eeff968f309b9938f15732fbaf42c92670",
+      "profile_path": "runs/acceptance/scale-270-recovery-inventory-120.yaml",
+      "replay_run_id": "replay-21eb569b27-633f5d2344",
+      "source_commit": "fc4c55d3e46e4328ed2e1aa689b0c3d5c0e8e828",
+      "source_run_id": "21eb569b27"
+    },
+    "insolvency": {
+      "bankruptcy_identity_mismatches": [],
+      "invalid_bankruptcy_subject_fallbacks": [],
+      "invalid_merger_acquirers": [],
+      "invalid_terminal_event_ticks": [],
+      "orphan_terminal_events": [],
+      "permitted_departures": [],
+      "recovery_managed_goods_firm_ids": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12
+      ],
+      "recovery_managed_insolvencies": [],
+      "state_mismatches": [],
+      "terminal_events_after_completed_horizon": [],
+      "unparseable_acquisitions": [],
+      "unparseable_bankruptcies": []
+    },
+    "labor": {
+      "limits": {
+        "open_jobs": 20,
+        "pending_applications": 20,
+        "pending_job_offers": 20
+      },
+      "open_jobs": 0,
+      "pending_applications": 0,
+      "pending_job_offers": 0
+    },
+    "ledger": {
+      "account_mismatches": [],
+      "conserved": true,
+      "currency_sums": {
+        "IVC": 0,
+        "NSD": 0,
+        "SCD": 0,
+        "USD": 0
+      },
+      "grand_sum_cents": 0
+    },
+    "population": {
+      "expected": {
+        "agents": 308,
+        "alive": 308,
+        "citizen_kind": 272,
+        "core": 100,
+        "periphery": 208,
+        "regions": {
+          "ironvale": 69,
+          "northstar": 184,
+          "suncoast": 55
+        },
+        "staff_kind": 36
+      },
+      "invalid_tiers": 0,
+      "missing_regions": 0,
+      "observed": {
+        "agents": 308,
+        "alive": 308,
+        "citizen_kind": 272,
+        "core": 100,
+        "periphery": 208,
+        "regions": {
+          "ironvale": 69,
+          "northstar": 184,
+          "suncoast": 55
+        },
+        "staff_kind": 36
+      }
+    },
+    "production_and_inventory": {
+      "active_goods_firms": [
+        {
+          "accepted_sale_units": 2521,
+          "firm_id": 1,
+          "inventory_nonzero_evidenced": true,
+          "malformed_events": [],
+          "name": "Food Co 1",
+          "passed": false,
+          "production_events": 60,
+          "production_shortfall_units": 1,
+          "production_units": 2520,
+          "sale_events": 1278,
+          "terminal_inventory": 9
+        },
+        {
+          "accepted_sale_units": 2106,
+          "firm_id": 2,
+          "inventory_nonzero_evidenced": true,
+          "malformed_events": [],
+          "name": "Retail Co 2",
+          "passed": false,
+          "production_events": 60,
+          "production_shortfall_units": 6,
+          "production_units": 2100,
+          "sale_events": 711,
+          "terminal_inventory": 0
+        },
+        {
+          "accepted_sale_units": 1682,
+          "firm_id": 3,
+          "inventory_nonzero_evidenced": true,
+          "malformed_events": [],
+          "name": "Manufacturing Co 3",
+          "passed": false,
+          "production_events": 60,
+          "production_shortfall_units": 2,
+          "production_units": 1680,
+          "sale_events": 572,
+          "terminal_inventory": 0
+        },
+        {
+          "accepted_sale_units": 1675,
+          "firm_id": 4,
+          "inventory_nonzero_evidenced": true,
+          "malformed_events": [],
+          "name": "Services Co 4",
+          "passed": true,
+          "production_events": 60,
+          "production_shortfall_units": 0,
+          "production_units": 1680,
+          "sale_events": 1245,
+          "terminal_inventory": 10
+        },
+        {
+          "accepted_sale_units": 2090,
+          "firm_id": 5,
+          "inventory_nonzero_evidenced": true,
+          "malformed_events": [],
+          "name": "Tech Co 5",
+          "passed": true,
+          "production_events": 60,
+          "production_shortfall_units": 0,
+          "production_units": 2100,
+          "sale_events": 1543,
+          "terminal_inventory": 27
+        },
+        {
+          "accepted_sale_units": 2089,
+          "firm_id": 6,
+          "inventory_nonzero_evidenced": true,
+          "malformed_events": [],
+          "name": "Energy Co 6",
+          "passed": true,
+          "production_events": 60,
+          "production_shortfall_units": 0,
+          "production_units": 2100,
+          "sale_events": 704,
+          "terminal_inventory": 16
+        },
+        {
+          "accepted_sale_units": 3368,
+          "firm_id": 7,
+          "inventory_nonzero_evidenced": true,
+          "malformed_events": [],
+          "name": "Food Co 7",
+          "passed": false,
+          "production_events": 60,
+          "production_shortfall_units": 8,
+          "production_units": 3360,
+          "sale_events": 1122,
+          "terminal_inventory": 0
+        },
+        {
+          "accepted_sale_units": 2960,
+          "firm_id": 8,
+          "inventory_nonzero_evidenced": true,
+          "malformed_events": [],
+          "name": "Retail Co 8",
+          "passed": false,
+          "production_events": 60,
+          "production_shortfall_units": 20,
+          "production_units": 2940,
+          "sale_events": 1001,
+          "terminal_inventory": 6
+        },
+        {
+          "accepted_sale_units": 2939,
+          "firm_id": 9,
+          "inventory_nonzero_evidenced": true,
+          "malformed_events": [],
+          "name": "Manufacturing Co 9",
+          "passed": true,
+          "production_events": 60,
+          "production_shortfall_units": 0,
+          "production_units": 2940,
+          "sale_events": 984,
+          "terminal_inventory": 1
+        },
+        {
+          "accepted_sale_units": 2945,
+          "firm_id": 10,
+          "inventory_nonzero_evidenced": true,
+          "malformed_events": [],
+          "name": "Services Co 10",
+          "passed": false,
+          "production_events": 60,
+          "production_shortfall_units": 5,
+          "production_units": 2940,
+          "sale_events": 994,
+          "terminal_inventory": 7
+        },
+        {
+          "accepted_sale_units": 1683,
+          "firm_id": 11,
+          "inventory_nonzero_evidenced": true,
+          "malformed_events": [],
+          "name": "Tech Co 11",
+          "passed": false,
+          "production_events": 60,
+          "production_shortfall_units": 3,
+          "production_units": 1680,
+          "sale_events": 870,
+          "terminal_inventory": 1
+        },
+        {
+          "accepted_sale_units": 1678,
+          "firm_id": 12,
+          "inventory_nonzero_evidenced": true,
+          "malformed_events": [],
+          "name": "Energy Co 12",
+          "passed": true,
+          "production_events": 60,
+          "production_shortfall_units": 0,
+          "production_units": 1680,
+          "sale_events": 557,
+          "terminal_inventory": 20
+        }
+      ],
+      "final_window": [
+        61,
+        120
+      ],
+      "orphan_goods_events": []
+    },
+    "providers": {
+      "expected_pair": [
+        [
+          "scripted",
+          "scripted"
+        ]
+      ],
+      "governor_spend_usd": 0.0,
+      "hard_cap_usd": 200.0,
+      "observed": {
+        "calls": 15089,
+        "cost_usd": 0.0,
+        "pairs": [
+          {
+            "cached_calls": 0,
+            "calls": 15089,
+            "cost_usd": 0.0,
+            "in_tokens": 24100245,
+            "model": "scripted",
+            "out_tokens": 801047,
+            "provider": "scripted"
+          }
+        ],
+        "purposes": {
+          "central_banker": 17,
+          "conversation": 3032,
+          "credit_officer": 360,
+          "decision": 8138,
+          "founder": 1122,
+          "lawyer": 120,
+          "memory": 1700,
+          "newsroom": 240,
+          "reporter": 240,
+          "vc_partner": 120
+        }
+      },
+      "runtime_observed": {
+        "calls": 15089,
+        "cost_usd": 0.0,
+        "pairs": [
+          {
+            "cached_calls": 0,
+            "calls": 15089,
+            "cost_usd": 0.0,
+            "in_tokens": 24100245,
+            "model": "scripted",
+            "out_tokens": 801047,
+            "provider": "scripted"
+          }
+        ],
+        "purposes": {
+          "central_banker": 17,
+          "conversation": 3032,
+          "credit_officer": 360,
+          "decision": 8138,
+          "founder": 1122,
+          "lawyer": 120,
+          "memory": 1700,
+          "newsroom": 240,
+          "reporter": 240,
+          "vc_partner": 120
+        }
+      },
+      "scripted_provider_free": true
+    },
+    "purchase_windows": {
+      "failed_window_count": 2,
+      "latest_window": {
+        "attempts": 12228,
+        "end_tick": 120,
+        "passed": false,
+        "rate": 0.052911,
+        "rejected": 647,
+        "start_tick": 61,
+        "unresolved": 0
+      },
+      "malformed_proposals": [],
+      "maximum_rate": 0.05,
+      "warmup_ticks": 60,
+      "window_ticks": 60,
+      "windows_evaluated": 2,
+      "worst_window": {
+        "attempts": 12228,
+        "end_tick": 120,
+        "passed": false,
+        "rate": 0.052911,
+        "rejected": 647,
+        "start_tick": 61,
+        "unresolved": 0
+      }
+    },
+    "replay": {
+      "current_source_sha256": "1125c44ee56f10b36690599626ff48ccfe9d344e03d0945b6ba476617a5a535c",
+      "proof": {
+        "differences": [],
+        "exact": true,
+        "replay_hash": "cbebec763d1db7b54409e8f8f0ab5bca25ceed403ecefcbe4ecafa147b327809",
+        "replay_run_id": "replay-21eb569b27-633f5d2344",
+        "replay_tick": 120,
+        "source_hash": "cbebec763d1db7b54409e8f8f0ab5bca25ceed403ecefcbe4ecafa147b327809",
+        "source_run_id": "21eb569b27",
+        "source_tick": 120,
+        "tables": [
+          {
+            "exact": true,
+            "replay_hash": "790437591afc879e42dcf4e8aa4e92138b309191d53553556d8e371062520130",
+            "replay_rows": 610,
+            "source_hash": "790437591afc879e42dcf4e8aa4e92138b309191d53553556d8e371062520130",
+            "source_rows": 610,
+            "table": "account_ledger_totals"
+          },
+          {
+            "exact": true,
+            "replay_hash": "47e836fd34c2228a4f419cde38509a74c8d6c9039fd545d628795a3369c6f3bc",
+            "replay_rows": 633,
+            "source_hash": "47e836fd34c2228a4f419cde38509a74c8d6c9039fd545d628795a3369c6f3bc",
+            "source_rows": 633,
+            "table": "accounts"
+          },
+          {
+            "exact": true,
+            "replay_hash": "7e06b4c7e28ed2257fac9c482ff59497621177667b960c8a4d9d3903d141d440",
+            "replay_rows": 36750,
+            "source_hash": "7e06b4c7e28ed2257fac9c482ff59497621177667b960c8a4d9d3903d141d440",
+            "source_rows": 36750,
+            "table": "action_proposals"
+          },
+          {
+            "exact": true,
+            "replay_hash": "f5f10b855afbdbfd2e3fb45bcdab280f0551defbc3da1f99da243185cad4d4eb",
+            "replay_rows": 3,
+            "source_hash": "f5f10b855afbdbfd2e3fb45bcdab280f0551defbc3da1f99da243185cad4d4eb",
+            "source_rows": 3,
+            "table": "agencies"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "agency_staff"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "agent_decisions"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "agent_skill_history"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "agent_skills"
+          },
+          {
+            "exact": true,
+            "replay_hash": "9093c36a7245f3f0dc2d40f81a1c3533fbe9cf9ea02a59a2455da9b7fac00f70",
+            "replay_rows": 190,
+            "source_hash": "9093c36a7245f3f0dc2d40f81a1c3533fbe9cf9ea02a59a2455da9b7fac00f70",
+            "source_rows": 190,
+            "table": "agent_tier_history"
+          },
+          {
+            "exact": true,
+            "replay_hash": "74467b6ca5ee161176b2937e7a198371150436545390eca128137e202f81c054",
+            "replay_rows": 308,
+            "source_hash": "74467b6ca5ee161176b2937e7a198371150436545390eca128137e202f81c054",
+            "source_rows": 308,
+            "table": "agents"
+          },
+          {
+            "exact": true,
+            "replay_hash": "d939f66a74775d00cb1702561d5c07daef1ed5edda4c5f9dec0b059ac770af36",
+            "replay_rows": 4543,
+            "source_hash": "d939f66a74775d00cb1702561d5c07daef1ed5edda4c5f9dec0b059ac770af36",
+            "source_rows": 4543,
+            "table": "applications"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "attention_context_items"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "attention_contexts"
+          },
+          {
+            "exact": true,
+            "replay_hash": "3e7140248793ed0d714bfc4ab9af512b8ab6e3e655b837bc6f3bab92c621eb67",
+            "replay_rows": 3,
+            "source_hash": "3e7140248793ed0d714bfc4ab9af512b8ab6e3e655b837bc6f3bab92c621eb67",
+            "source_rows": 3,
+            "table": "banks"
+          },
+          {
+            "exact": true,
+            "replay_hash": "5cff313093c52e7a3ad400983c107cea4e105056ef679e879fdf24faf446bb1c",
+            "replay_rows": 58796,
+            "source_hash": "5cff313093c52e7a3ad400983c107cea4e105056ef679e879fdf24faf446bb1c",
+            "source_rows": 58796,
+            "table": "beliefs"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "bill_actions"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "bill_versions"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "bills"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "calibration_targets"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "causal_links"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "child_needs"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "civic_authorizations"
+          },
+          {
+            "exact": true,
+            "replay_hash": "32285e6927c592af602251522a64c05a05d7f07b0384f7f6f81fbe7c11765da3",
+            "replay_rows": 240,
+            "source_hash": "32285e6927c592af602251522a64c05a05d7f07b0384f7f6f81fbe7c11765da3",
+            "source_rows": 240,
+            "table": "claims"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "comm_audiences"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "comm_deliveries"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "comm_disclosure_authorities"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "comm_disclosures"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "comm_messages"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "comm_threads"
+          },
+          {
+            "exact": true,
+            "replay_hash": "313497c1121b0a1e2c63c01b27618d92998b1344262f9c1af51b72d47a3f8ee0",
+            "replay_rows": 20,
+            "source_hash": "313497c1121b0a1e2c63c01b27618d92998b1344262f9c1af51b72d47a3f8ee0",
+            "source_rows": 20,
+            "table": "committee_members"
+          },
+          {
+            "exact": true,
+            "replay_hash": "413e5e7c60cc14afd10636800665c6b31e0a0a951f8d48d0ada5ce229c781fd6",
+            "replay_rows": 8,
+            "source_hash": "413e5e7c60cc14afd10636800665c6b31e0a0a951f8d48d0ada5ce229c781fd6",
+            "source_rows": 8,
+            "table": "committees"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "commons_appeals"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "commons_communities"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "commons_entries"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "commons_feed_impressions"
+          },
+          {
+            "exact": true,
+            "replay_hash": "8a02fec885fbad0af359a37379eb9c5c8b7033e1666c2840cc70ab52ee089869",
+            "replay_rows": 2,
+            "source_hash": "8a02fec885fbad0af359a37379eb9c5c8b7033e1666c2840cc70ab52ee089869",
+            "source_rows": 2,
+            "table": "commons_feed_policies"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "commons_follows"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "commons_memberships"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "commons_moderation_actions"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "commons_profiles"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "commons_reactions"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "compute_subscriptions"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "construction_action_receipts"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "construction_contributions"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "construction_permit_cases"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "construction_projects"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "contract_acceptances"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "contract_clauses"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "contract_parties"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "contracts"
+          },
+          {
+            "exact": true,
+            "replay_hash": "7e56f57511feae40b50a680d78c23bb2416d9cfa77a33e7ddbfeb43c05b8fc2c",
+            "replay_rows": 3000,
+            "source_hash": "7e56f57511feae40b50a680d78c23bb2416d9cfa77a33e7ddbfeb43c05b8fc2c",
+            "source_rows": 3000,
+            "table": "conversations"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "counterfactual_experiments"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "counterfactual_results"
+          },
+          {
+            "exact": true,
+            "replay_hash": "4cbe3e03d7b76489ca359b558bd2631b27f00662047ed4dd3010513ae7e99dfb",
+            "replay_rows": 3,
+            "source_hash": "4cbe3e03d7b76489ca359b558bd2631b27f00662047ed4dd3010513ae7e99dfb",
+            "source_rows": 3,
+            "table": "currencies"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "dataset_manifests"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "due_diligence_checks"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "effective_presence"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "elections"
+          },
+          {
+            "exact": true,
+            "replay_hash": "742d8fc3cefd6fb6a48de65dc0ab47ba37989ec814c94493d289ed11e6877b20",
+            "replay_rows": 87,
+            "source_hash": "742d8fc3cefd6fb6a48de65dc0ab47ba37989ec814c94493d289ed11e6877b20",
+            "source_rows": 87,
+            "table": "employments"
+          },
+          {
+            "exact": true,
+            "replay_hash": "59f27f9668c18a969c68c496b2aea4d1e15dd6b27c67dbdded38b4e30d387af3",
+            "replay_rows": 164199,
+            "source_hash": "59f27f9668c18a969c68c496b2aea4d1e15dd6b27c67dbdded38b4e30d387af3",
+            "source_rows": 164199,
+            "table": "events"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "external_action_submissions"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "external_actor_requests"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "external_agent_connections"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "external_turn_attendance"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "firm_disclosures"
+          },
+          {
+            "exact": true,
+            "replay_hash": "212ade353072471f46e2334c9982eb2cede57aec910c767cd3532efd78dbd9d2",
+            "replay_rows": 14,
+            "source_hash": "212ade353072471f46e2334c9982eb2cede57aec910c767cd3532efd78dbd9d2",
+            "source_rows": 14,
+            "table": "firms"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "funding_rounds"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "fx_orders"
+          },
+          {
+            "exact": true,
+            "replay_hash": "7519d9b0dcbcf130afce26bdc69d9bc0df9cdc084f67bc9811b6a6b6bef9c735",
+            "replay_rows": 3,
+            "source_hash": "7519d9b0dcbcf130afce26bdc69d9bc0df9cdc084f67bc9811b6a6b6bef9c735",
+            "source_rows": 3,
+            "table": "fx_reserves"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "fx_trades"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "guardianships"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "household_memberships"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "households"
+          },
+          {
+            "exact": true,
+            "replay_hash": "198dcff86ba20d15750596dde2b2afae445606bcc029ea3494c96576d494a39a",
+            "replay_rows": 57308,
+            "source_hash": "198dcff86ba20d15750596dde2b2afae445606bcc029ea3494c96576d494a39a",
+            "source_rows": 57308,
+            "table": "information_exposures"
+          },
+          {
+            "exact": true,
+            "replay_hash": "29198c8f4eb22e9f9ef7a4d48eb1a8039f5436f6e9a9b832b711f866a8daf39c",
+            "replay_rows": 240,
+            "source_hash": "29198c8f4eb22e9f9ef7a4d48eb1a8039f5436f6e9a9b832b711f866a8daf39c",
+            "source_rows": 240,
+            "table": "information_items"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "institution_tasks"
+          },
+          {
+            "exact": true,
+            "replay_hash": "946b1856574a091c183ab18c0f2a12d06a23f2e22f6cffefe23ad6849b9dca71",
+            "replay_rows": 115,
+            "source_hash": "946b1856574a091c183ab18c0f2a12d06a23f2e22f6cffefe23ad6849b9dca71",
+            "source_rows": 115,
+            "table": "insurance_policies"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "ip_assets"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "ip_licenses"
+          },
+          {
+            "exact": true,
+            "replay_hash": "48072fd0c3256a290d836af45bcb32134963dea07dcc534e3abd5be8d5f76244",
+            "replay_rows": 340,
+            "source_hash": "48072fd0c3256a290d836af45bcb32134963dea07dcc534e3abd5be8d5f76244",
+            "source_rows": 340,
+            "table": "ipo_bids"
+          },
+          {
+            "exact": true,
+            "replay_hash": "ccac34b33d552c15925648dea9399a1a8dd5d9a6d86f3c8847ce778a4575c34d",
+            "replay_rows": 11,
+            "source_hash": "ccac34b33d552c15925648dea9399a1a8dd5d9a6d86f3c8847ce778a4575c34d",
+            "source_rows": 11,
+            "table": "ipo_offerings"
+          },
+          {
+            "exact": true,
+            "replay_hash": "f862ff281da1c8fda9d4a31521b5d19c76f28dab413e0201b217832f99e88b7e",
+            "replay_rows": 143,
+            "source_hash": "f862ff281da1c8fda9d4a31521b5d19c76f28dab413e0201b217832f99e88b7e",
+            "source_rows": 143,
+            "table": "job_offers"
+          },
+          {
+            "exact": true,
+            "replay_hash": "46ca75a54bf71e12bd1788b6c2f94c7e0b2bbb31d286672d51547447d2bcbf40",
+            "replay_rows": 73,
+            "source_hash": "46ca75a54bf71e12bd1788b6c2f94c7e0b2bbb31d286672d51547447d2bcbf40",
+            "source_rows": 73,
+            "table": "jobs"
+          },
+          {
+            "exact": true,
+            "replay_hash": "269662c532ad0f90015a3f219ee1daa39cb4ea85c8c2836bc58095745349a14e",
+            "replay_rows": 60625,
+            "source_hash": "269662c532ad0f90015a3f219ee1daa39cb4ea85c8c2836bc58095745349a14e",
+            "source_rows": 60625,
+            "table": "ledger_entries"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "legal_decisions"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "legal_filings"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "legal_matters"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "legal_notices"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "legal_restrictions"
+          },
+          {
+            "exact": true,
+            "replay_hash": "9a981fe98fe4aa49f8399350ef52aecffac978d95c3f86e50e9889038b8c9c63",
+            "replay_rows": 1,
+            "source_hash": "9a981fe98fe4aa49f8399350ef52aecffac978d95c3f86e50e9889038b8c9c63",
+            "source_rows": 1,
+            "table": "legal_rulesets"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "legislative_votes"
+          },
+          {
+            "exact": true,
+            "replay_hash": "1315f7410a49e5da67ec77ddc3fbf75b191d616fce07545b5dbd6a5598df7f4e",
+            "replay_rows": 18,
+            "source_hash": "1315f7410a49e5da67ec77ddc3fbf75b191d616fce07545b5dbd6a5598df7f4e",
+            "source_rows": 18,
+            "table": "legislators"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "liquidity_support_requests"
+          },
+          {
+            "exact": true,
+            "replay_hash": "b7b3e8d3f60b2834c53a3a5ced1b363283ed8b244f8a6e6df5c171da0955af08",
+            "replay_rows": 15089,
+            "source_hash": "b7b3e8d3f60b2834c53a3a5ced1b363283ed8b244f8a6e6df5c171da0955af08",
+            "source_rows": 15089,
+            "table": "llm_calls"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "loan_applications"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "loans"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "lobbying_activities"
+          },
+          {
+            "exact": true,
+            "replay_hash": "c7ff34f6859ce39838342a89e93bf56081662f848ea943a846388da7332c4d55",
+            "replay_rows": 133705,
+            "source_hash": "c7ff34f6859ce39838342a89e93bf56081662f848ea943a846388da7332c4d55",
+            "source_rows": 133705,
+            "table": "memories"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "merger_reviews"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "mergers"
+          },
+          {
+            "exact": true,
+            "replay_hash": "1eadc92b1a86a282adbe8936f61c240cef7dae3e36bb579710e5119b40c2f1a2",
+            "replay_rows": 9000,
+            "source_hash": "1eadc92b1a86a282adbe8936f61c240cef7dae3e36bb579710e5119b40c2f1a2",
+            "source_rows": 9000,
+            "table": "messages"
+          },
+          {
+            "exact": true,
+            "replay_hash": "2acecbfb06fdcbf8836298ef980956230934960b99e84dfd563b451e82c33173",
+            "replay_rows": 3952,
+            "source_hash": "2acecbfb06fdcbf8836298ef980956230934960b99e84dfd563b451e82c33173",
+            "source_rows": 3952,
+            "table": "metrics"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "migrations"
+          },
+          {
+            "exact": true,
+            "replay_hash": "c219711e726fa6303a8d14c426b64291490065a890a4bc711be3c92b09653d3f",
+            "replay_rows": 240,
+            "source_hash": "c219711e726fa6303a8d14c426b64291490065a890a4bc711be3c92b09653d3f",
+            "source_rows": 240,
+            "table": "news_articles"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "obligations"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "occupancy_leases"
+          },
+          {
+            "exact": true,
+            "replay_hash": "5a322a64e89dbc67214e3e243ef48bf9d7d008148c493c4b23c7f963ce174b19",
+            "replay_rows": 2645,
+            "source_hash": "5a322a64e89dbc67214e3e243ef48bf9d7d008148c493c4b23c7f963ce174b19",
+            "source_rows": 2645,
+            "table": "orders"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "parent_child_relations"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "person_lifecycle"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "pitches"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "places"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "policy_rules"
+          },
+          {
+            "exact": true,
+            "replay_hash": "cb260eb53b4142360816c147ffe68fbc4521e735b0249371ae9e5ca0c9397f51",
+            "replay_rows": 2,
+            "source_hash": "cb260eb53b4142360816c147ffe68fbc4521e735b0249371ae9e5ca0c9397f51",
+            "source_rows": 2,
+            "table": "political_parties"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "population_census"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "predictions"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "projection_commits"
+          },
+          {
+            "exact": true,
+            "replay_hash": "27d703981ab7da84fd8c20ad09a4900d67f7df88a7705075d1bd7f024c1781c8",
+            "replay_rows": 3,
+            "source_hash": "27d703981ab7da84fd8c20ad09a4900d67f7df88a7705075d1bd7f024c1781c8",
+            "source_rows": 3,
+            "table": "regions"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "scenario_packs"
+          },
+          {
+            "exact": true,
+            "replay_hash": "5f6df8d6f4469e91783f885c0c2fe15f68df66d54980785f261c0e6de8fbc66b",
+            "replay_rows": 11,
+            "source_hash": "5f6df8d6f4469e91783f885c0c2fe15f68df66d54980785f261c0e6de8fbc66b",
+            "source_rows": 11,
+            "table": "schema_migrations"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "service_appointments"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "service_cases"
+          },
+          {
+            "exact": true,
+            "replay_hash": "97160aaedbefccfe524fe822575190c4624598c03c3a3c51846f283195142a48",
+            "replay_rows": 356,
+            "source_hash": "97160aaedbefccfe524fe822575190c4624598c03c3a3c51846f283195142a48",
+            "source_rows": 356,
+            "table": "share_movements"
+          },
+          {
+            "exact": true,
+            "replay_hash": "3b55514e2904fa2662f5602d959b5bf5246ce3e1f2593d3431a41f5d76b3d011",
+            "replay_rows": 345,
+            "source_hash": "3b55514e2904fa2662f5602d959b5bf5246ce3e1f2593d3431a41f5d76b3d011",
+            "source_rows": 345,
+            "table": "shares"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "shocks"
+          },
+          {
+            "exact": true,
+            "replay_hash": "0120be30642937aa6c523a02cbf3d0491884a40f77c6f6af6b41e7e0536467f9",
+            "replay_rows": 1240,
+            "source_hash": "0120be30642937aa6c523a02cbf3d0491884a40f77c6f6af6b41e7e0536467f9",
+            "source_rows": 1240,
+            "table": "social_ties"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "term_sheets"
+          },
+          {
+            "exact": true,
+            "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "replay_rows": 0,
+            "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "source_rows": 0,
+            "table": "trade_shipments"
+          },
+          {
+            "exact": true,
+            "replay_hash": "1ba34c7e1ebd1c54d5ebc14867b05179f54aeb5e46b8580d29b9593bbe3c65ef",
+            "replay_rows": 308,
+            "source_hash": "1ba34c7e1ebd1c54d5ebc14867b05179f54aeb5e46b8580d29b9593bbe3c65ef",
+            "source_rows": 308,
+            "table": "trader_profiles"
+          },
+          {
+            "exact": true,
+            "replay_hash": "997147dce29a8e7c419e8c4507665e2e972f40b37637469a85ca2921ddffddb8",
+            "replay_rows": 219,
+            "source_hash": "997147dce29a8e7c419e8c4507665e2e972f40b37637469a85ca2921ddffddb8",
+            "source_rows": 219,
+            "table": "trades"
+          },
+          {
+            "exact": true,
+            "replay_hash": "c33d3177540e37b01f896a9a58e5b7a6e0f21c68429ea1274c22e52e021fdb8e",
+            "replay_rows": 30184,
+            "source_hash": "c33d3177540e37b01f896a9a58e5b7a6e0f21c68429ea1274c22e52e021fdb8e",
+            "source_rows": 30184,
+            "table": "transactions"
+          }
+        ]
+      },
+      "replay_live_dispatch_count": 0,
+      "replay_manifest": {
+        "entries": 24,
+        "observed": [
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t105.db",
+            "bytes": 408322048,
+            "present": true,
+            "sha256": "8d1d5e123247de9f1138b4dd8d2340cf72c9e9d0e9c8e02d1d274eed3c43eb4a",
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t105.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t105.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t105.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t105.db.manifest.json",
+            "bytes": 2233,
+            "present": true,
+            "sha256": "6ed262882af7852a28e679e4beceea7070a3d879b60ad7ea75b83fb2d1fedb3b",
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t112.db",
+            "bytes": 436486144,
+            "present": true,
+            "sha256": "acc2093d5ba033d0ebfb7558329d41a68d45bfd672dd8f16bdf2d3bc52177486",
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t112.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t112.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t112.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t112.db.manifest.json",
+            "bytes": 2233,
+            "present": true,
+            "sha256": "7e6f35ef5e1b293b0079cc71a6dae0da79863216282c2811546c4aa9cdadb05d",
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t119.db",
+            "bytes": 465096704,
+            "present": true,
+            "sha256": "61850b7243a56eea02ca1a0ff158b2867ebc1d2f8ba668cce6809e0e8c95d30a",
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t119.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t119.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t119.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t119.db.manifest.json",
+            "bytes": 2233,
+            "present": true,
+            "sha256": "1caacb86fbe996cf6a510dadcd76f772a1fb50bcb22b5be45ce73ac3d7c69a2a",
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t120.db",
+            "bytes": 468688896,
+            "present": true,
+            "sha256": "e81b07be387c50ecf6e1896f5f2e566a2fdae3ea73cbbcc37f712ab24bb63f04",
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t120.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t120.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t120.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/checkpoints/replay-21eb569b27-633f5d2344_t120.db.manifest.json",
+            "bytes": 2232,
+            "present": true,
+            "sha256": "87122d086c3ed17399414a2bbd99a014f75ee8a6368e2a2af5a89b7637a5da98",
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/replay-21eb569b27-633f5d2344.db",
+            "bytes": 468688896,
+            "present": true,
+            "sha256": "a093135ca3fc619d376bfad8c302b8bb4d492df46860b4c58ddca8f7f05d9c50",
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/replay-21eb569b27-633f5d2344.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/replay-21eb569b27-633f5d2344.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/replay/replay-21eb569b27-633f5d2344.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          }
+        ]
+      },
+      "runtime_proof_matches": true,
+      "runtime_source_sha256_after_replay": "1125c44ee56f10b36690599626ff48ccfe9d344e03d0945b6ba476617a5a535c",
+      "runtime_source_sha256_before_replay": "1125c44ee56f10b36690599626ff48ccfe9d344e03d0945b6ba476617a5a535c",
+      "source_manifest_after": {
+        "entries": 24,
+        "observed": [
+          {
+            "artifact": "data/source/21eb569b27.db",
+            "bytes": 468688896,
+            "present": true,
+            "sha256": "1125c44ee56f10b36690599626ff48ccfe9d344e03d0945b6ba476617a5a535c",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/21eb569b27.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/21eb569b27.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/21eb569b27.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t105.db",
+            "bytes": 408322048,
+            "present": true,
+            "sha256": "f8a5e4504eabebefecd44a8cf888bfef3280476abc10fe7d9720529a08754e6b",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t105.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t105.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t105.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t105.db.manifest.json",
+            "bytes": 2192,
+            "present": true,
+            "sha256": "c206dccc5566aedc31a8f4923f8959cc7dc3abdcc34e5dd66ca0f4f0eaaaa952",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t112.db",
+            "bytes": 436486144,
+            "present": true,
+            "sha256": "4fc2cc411ab1fc7027a7682141715e0f0d151f0a6c466e0a29b722a55b2c6aea",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t112.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t112.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t112.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t112.db.manifest.json",
+            "bytes": 2192,
+            "present": true,
+            "sha256": "9f686d1dc3868b877e37d2d4a91c5ac0fb73910f3a78f967c17a50e7f53c5b16",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t119.db",
+            "bytes": 465096704,
+            "present": true,
+            "sha256": "804fc424d7fb2a5456956003ad9428322e23877657c636ec9e016f87cebae4eb",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t119.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t119.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t119.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t119.db.manifest.json",
+            "bytes": 2192,
+            "present": true,
+            "sha256": "2af5a229c4d25b0901a75a58a48c485561f8176ca7c8db853dbed231e5dc705c",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t120.db",
+            "bytes": 468688896,
+            "present": true,
+            "sha256": "c562c6340d64b552e68bfe3a0fd923ec0145264f1b7aa4d30ef618d7e6a5d9df",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t120.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t120.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t120.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t120.db.manifest.json",
+            "bytes": 2193,
+            "present": true,
+            "sha256": "856cb9796889df5299556768a781d4b9d5c864aa5b6ba12407af798cd3f341a3",
+            "valid": true
+          }
+        ]
+      },
+      "source_manifest_before": {
+        "entries": 24,
+        "observed": [
+          {
+            "artifact": "data/source/21eb569b27.db",
+            "bytes": 468688896,
+            "present": true,
+            "sha256": "1125c44ee56f10b36690599626ff48ccfe9d344e03d0945b6ba476617a5a535c",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/21eb569b27.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/21eb569b27.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/21eb569b27.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t105.db",
+            "bytes": 408322048,
+            "present": true,
+            "sha256": "f8a5e4504eabebefecd44a8cf888bfef3280476abc10fe7d9720529a08754e6b",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t105.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t105.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t105.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t105.db.manifest.json",
+            "bytes": 2192,
+            "present": true,
+            "sha256": "c206dccc5566aedc31a8f4923f8959cc7dc3abdcc34e5dd66ca0f4f0eaaaa952",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t112.db",
+            "bytes": 436486144,
+            "present": true,
+            "sha256": "4fc2cc411ab1fc7027a7682141715e0f0d151f0a6c466e0a29b722a55b2c6aea",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t112.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t112.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t112.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t112.db.manifest.json",
+            "bytes": 2192,
+            "present": true,
+            "sha256": "9f686d1dc3868b877e37d2d4a91c5ac0fb73910f3a78f967c17a50e7f53c5b16",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t119.db",
+            "bytes": 465096704,
+            "present": true,
+            "sha256": "804fc424d7fb2a5456956003ad9428322e23877657c636ec9e016f87cebae4eb",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t119.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t119.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t119.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t119.db.manifest.json",
+            "bytes": 2192,
+            "present": true,
+            "sha256": "2af5a229c4d25b0901a75a58a48c485561f8176ca7c8db853dbed231e5dc705c",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t120.db",
+            "bytes": 468688896,
+            "present": true,
+            "sha256": "c562c6340d64b552e68bfe3a0fd923ec0145264f1b7aa4d30ef618d7e6a5d9df",
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t120.db-journal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t120.db-shm",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t120.db-wal",
+            "bytes": 0,
+            "present": false,
+            "sha256": null,
+            "valid": true
+          },
+          {
+            "artifact": "data/source/checkpoints/21eb569b27_t120.db.manifest.json",
+            "bytes": 2193,
+            "present": true,
+            "sha256": "856cb9796889df5299556768a781d4b9d5c864aa5b6ba12407af798cd3f341a3",
+            "valid": true
+          }
+        ]
+      },
+      "source_manifests_equal": true
+    },
+    "resources": {
+      "checkpoint_p95_seconds": 3.722033,
+      "checkpoint_samples": 18,
+      "database_growth_bytes": 464740352,
+      "database_growth_bytes_per_tick": 3872836.266667,
+      "limits": {
+        "max_checkpoint_p95_seconds": 5.0,
+        "max_database_growth_bytes_per_tick": 8388608,
+        "max_peak_rss_mb": 2048.0,
+        "min_available_memory_gb": 8.0
+      },
+      "min_available_memory_gb": 72.08,
+      "peak_rss_mb": 1409.21,
+      "runtime_tick_records": 120
+    },
+    "runtime_receipt_safety": {
+      "error": null,
+      "passed": true
+    },
+    "sqlite_integrity": {
+      "replay": {
+        "foreign_key_violations": [],
+        "integrity_check": [
+          "ok"
+        ],
+        "quick_check": [
+          "ok"
+        ]
+      },
+      "replay_sidecars": [],
+      "source": {
+        "foreign_key_violations": [],
+        "integrity_check": [
+          "ok"
+        ],
+        "quick_check": [
+          "ok"
+        ]
+      },
+      "source_sidecars": []
+    },
+    "unemployment": {
+      "duplicate_ticks": [],
+      "failed_window_count": 0,
+      "final_window_mean": 0.734375,
+      "first_window_mean": 0.80293,
+      "invalid_rows": [],
+      "latest_window": {
+        "passed": true,
+        "preceding_trough": 0.734375,
+        "preceding_window": [
+          1,
+          60
+        ],
+        "rebound": 0.0,
+        "trailing_peak": 0.734375,
+        "trailing_window": [
+          61,
+          120
+        ]
+      },
+      "maximum_rebound": 0.1,
+      "missing_ticks": [],
+      "window_ticks": 60,
+      "windows_evaluated": 1,
+      "worst_window": {
+        "passed": true,
+        "preceding_trough": 0.734375,
+        "preceding_window": [
+          1,
+          60
+        ],
+        "rebound": 0.0,
+        "trailing_peak": 0.734375,
+        "trailing_window": [
+          61,
+          120
+        ]
+      }
+    },
+    "unit_economics": {
+      "firms": [
+        {
+          "employment": [
+            {
+              "employment_id": 1,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15120,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 25,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15120,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 39,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15120,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 51,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15120,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 62,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15120,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 68,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15120,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 76,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15120,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            }
+          ],
+          "firm_id": 1,
+          "name": "Food Co 1",
+          "product": {
+            "output_per_worker": 6,
+            "stored_base_input_cost_cents": 146,
+            "unit_price_cents": 251
+          },
+          "production": {
+            "event_id": 162797,
+            "tick": 120,
+            "unit_cost_cents": 146
+          },
+          "sector": "food",
+          "status": "listed",
+          "validated": true,
+          "validation_errors": []
+        },
+        {
+          "employment": [
+            {
+              "employment_id": 2,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 24840,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 18,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 24840,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 29,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 24840,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 37,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 24840,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 47,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 24840,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 57,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 24840,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 65,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 24840,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            }
+          ],
+          "firm_id": 2,
+          "name": "Retail Co 2",
+          "product": {
+            "output_per_worker": 5,
+            "stored_base_input_cost_cents": 346,
+            "unit_price_cents": 553
+          },
+          "production": {
+            "event_id": 162798,
+            "tick": 120,
+            "unit_cost_cents": 346
+          },
+          "sector": "retail",
+          "status": "listed",
+          "validated": true,
+          "validation_errors": []
+        },
+        {
+          "employment": [
+            {
+              "employment_id": 3,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 16,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 32,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 41,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 52,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 60,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 66,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            }
+          ],
+          "firm_id": 3,
+          "name": "Manufacturing Co 3",
+          "product": {
+            "output_per_worker": 4,
+            "stored_base_input_cost_cents": 122,
+            "unit_price_cents": 279
+          },
+          "production": {
+            "event_id": 162799,
+            "tick": 120,
+            "unit_cost_cents": 122
+          },
+          "sector": "manufacturing",
+          "status": "listed",
+          "validated": true,
+          "validation_errors": []
+        },
+        {
+          "employment": [
+            {
+              "employment_id": 4,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 21,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 31,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 46,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 58,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 67,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 73,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            }
+          ],
+          "firm_id": 4,
+          "name": "Services Co 4",
+          "product": {
+            "output_per_worker": 4,
+            "stored_base_input_cost_cents": 147,
+            "unit_price_cents": 304
+          },
+          "production": {
+            "event_id": 162800,
+            "tick": 120,
+            "unit_cost_cents": 147
+          },
+          "sector": "services",
+          "status": "listed",
+          "validated": true,
+          "validation_errors": []
+        },
+        {
+          "employment": [
+            {
+              "employment_id": 5,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 23760,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 20,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 23760,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 30,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 23760,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 38,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 23760,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 45,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 23760,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 54,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 23760,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 61,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 23760,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            }
+          ],
+          "firm_id": 5,
+          "name": "Tech Co 5",
+          "product": {
+            "output_per_worker": 5,
+            "stored_base_input_cost_cents": 330,
+            "unit_price_cents": 528
+          },
+          "production": {
+            "event_id": 162801,
+            "tick": 120,
+            "unit_cost_cents": 330
+          },
+          "sector": "tech",
+          "status": "listed",
+          "validated": true,
+          "validation_errors": []
+        },
+        {
+          "employment": [
+            {
+              "employment_id": 6,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 22800,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 27,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 22800,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 53,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 22800,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 69,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 22800,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 79,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 22800,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 83,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 22800,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 86,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 22800,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            }
+          ],
+          "firm_id": 6,
+          "name": "Energy Co 6",
+          "product": {
+            "output_per_worker": 5,
+            "stored_base_input_cost_cents": 318,
+            "unit_price_cents": 508
+          },
+          "production": {
+            "event_id": 162802,
+            "tick": 120,
+            "unit_cost_cents": 318
+          },
+          "sector": "energy",
+          "status": "listed",
+          "validated": true,
+          "validation_errors": []
+        },
+        {
+          "employment": [
+            {
+              "employment_id": 7,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 40512,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 23,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 40512,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 35,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 40512,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 77,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 40512,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 81,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 40512,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 85,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 40512,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 87,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 40512,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            }
+          ],
+          "firm_id": 7,
+          "name": "Food Co 7",
+          "product": {
+            "output_per_worker": 8,
+            "stored_base_input_cost_cents": 353,
+            "unit_price_cents": 564
+          },
+          "production": {
+            "event_id": 162803,
+            "tick": 120,
+            "unit_cost_cents": 353
+          },
+          "sector": "food",
+          "status": "listed",
+          "validated": true,
+          "validation_errors": []
+        },
+        {
+          "employment": [
+            {
+              "employment_id": 8,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 31416,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 17,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 31416,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 34,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 31416,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 42,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 31416,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 50,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 31416,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 55,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 31416,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 64,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 31416,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            }
+          ],
+          "firm_id": 8,
+          "name": "Retail Co 8",
+          "product": {
+            "output_per_worker": 7,
+            "stored_base_input_cost_cents": 313,
+            "unit_price_cents": 500
+          },
+          "production": {
+            "event_id": 162804,
+            "tick": 120,
+            "unit_cost_cents": 313
+          },
+          "sector": "retail",
+          "status": "listed",
+          "validated": true,
+          "validation_errors": []
+        },
+        {
+          "employment": [
+            {
+              "employment_id": 9,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15960,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 26,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15960,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 43,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15960,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 72,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15960,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 78,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15960,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 82,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15960,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 84,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15960,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            }
+          ],
+          "firm_id": 9,
+          "name": "Manufacturing Co 9",
+          "product": {
+            "output_per_worker": 7,
+            "stored_base_input_cost_cents": 159,
+            "unit_price_cents": 254
+          },
+          "production": {
+            "event_id": 162805,
+            "tick": 120,
+            "unit_cost_cents": 159
+          },
+          "sector": "manufacturing",
+          "status": "listed",
+          "validated": true,
+          "validation_errors": []
+        },
+        {
+          "employment": [
+            {
+              "employment_id": 10,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 28896,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 19,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 28896,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 28,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 28896,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 40,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 28896,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 49,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 28896,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 56,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 28896,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 63,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 28896,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            }
+          ],
+          "firm_id": 10,
+          "name": "Services Co 10",
+          "product": {
+            "output_per_worker": 7,
+            "stored_base_input_cost_cents": 288,
+            "unit_price_cents": 460
+          },
+          "production": {
+            "event_id": 162806,
+            "tick": 120,
+            "unit_cost_cents": 288
+          },
+          "sector": "services",
+          "status": "listed",
+          "validated": true,
+          "validation_errors": []
+        },
+        {
+          "employment": [
+            {
+              "employment_id": 11,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 22,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 36,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 48,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 59,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 70,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 74,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            }
+          ],
+          "firm_id": 11,
+          "name": "Tech Co 11",
+          "product": {
+            "output_per_worker": 4,
+            "stored_base_input_cost_cents": 160,
+            "unit_price_cents": 317
+          },
+          "production": {
+            "event_id": 162807,
+            "tick": 120,
+            "unit_cost_cents": 160
+          },
+          "sector": "tech",
+          "status": "listed",
+          "validated": true,
+          "validation_errors": []
+        },
+        {
+          "employment": [
+            {
+              "employment_id": 12,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 24,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 33,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 44,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 71,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 75,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            },
+            {
+              "employment_id": 80,
+              "pay_interval_ticks": 30,
+              "safe_wage_ceiling_cents": 15072,
+              "validated": true,
+              "wage_cents": 15000,
+              "wage_floor_cents": 15000,
+              "within_ceiling": true,
+              "within_floor": true
+            }
+          ],
+          "firm_id": 12,
+          "name": "Energy Co 12",
+          "product": {
+            "output_per_worker": 4,
+            "stored_base_input_cost_cents": 258,
+            "unit_price_cents": 415
+          },
+          "production": {
+            "event_id": 162808,
+            "tick": 120,
+            "unit_cost_cents": 258
+          },
+          "sector": "energy",
+          "status": "listed",
+          "validated": true,
+          "validation_errors": []
+        }
+      ],
+      "summary": {
+        "active_recovery_managed_goods_firm_count": 12,
+        "excluded_historical_goods_firms": [],
+        "invalid_producer_subject_fallbacks": [],
+        "malformed_producer_events": [],
+        "orphan_producer_events": [],
+        "producer_events_after_completed_horizon": [],
+        "producer_identity_mismatches": [],
+        "recovery_managed_goods_firm_count": 12,
+        "requires_persisted_product_production_and_active_employment": true,
+        "validated_firm_count": 12
+      }
+    }
+  },
+  "outcome": "diagnostic_economic_failure",
+  "passed": false,
+  "population": {
+    "agents": 308,
+    "alive": 308,
+    "citizen_kind": 272,
+    "core": 100,
+    "periphery": 208,
+    "regions": {
+      "ironvale": 69,
+      "northstar": 184,
+      "suncoast": 55
+    },
+    "staff_kind": 36
+  },
+  "profile": {
+    "diagnostic": true,
+    "effective_config_sha256": "ce583563d8d12c87bd20c7ea6dc054623a10992f1084e3fec8a708370cd25418",
+    "path": "runs/acceptance/scale-270-recovery-inventory-120.yaml",
+    "policy_version": "supply-recovery-v1",
+    "profile_config_sha256": "67fa33577d365c06d5c96df17d9882eeff968f309b9938f15732fbaf42c92670",
+    "recovery_enabled": true,
+    "required_ticks": 120,
+    "source_commit": "fc4c55d3e46e4328ed2e1aa689b0c3d5c0e8e828"
+  },
+  "run": {
+    "active_tick": null,
+    "engine_semantics_version": 7,
+    "replay_run_id": "replay-21eb569b27-633f5d2344",
+    "run_id": "21eb569b27",
+    "seed": 42,
+    "status": "finished",
+    "tick": 120
+  },
+  "runtime": {
+    "effective_config": {
+      "acceptance": {
+        "min_ticks": 120,
+        "scale_economic_health": {
+          "max_buy_goods_rejection_rate": 0.05,
+          "max_checkpoint_p95_seconds": 5.0,
+          "max_database_growth_bytes_per_tick": 8388608,
+          "max_open_jobs": 20,
+          "max_peak_rss_mb": 2048,
+          "max_pending_applications": 20,
+          "max_pending_job_offers": 20,
+          "max_unemployment_rebound": 0.1,
+          "min_available_memory_gb": 8,
+          "required_ticks": 120,
+          "schema_version": 1,
+          "trailing_window_ticks": 60,
+          "warmup_ticks": 60
+        }
+      },
+      "banks": {
+        "count": 3,
+        "initial_reserve_ratio": 0.6,
+        "names": [
+          "Northstar Bank",
+          "Ironvale Industrial Bank",
+          "Suncoast Exchange Bank"
+        ],
+        "reserve_requirement_bps": 1000,
+        "risk_policy": {
+          "default_rate_bps": 900,
+          "max_rate_bps": 3000,
+          "min_rate_bps": 300
+        }
+      },
+      "behavior": {
+        "act_every": 3,
+        "event_wake_importance": 2.0,
+        "inventory_aware_shopping_activation_tick": 60,
+        "run_threshold": 0.35
+      },
+      "beliefs": {
+        "audit_history": true,
+        "enforce_reserved_ranges": true,
+        "model_grounding_from_tick": 0,
+        "model_max_reserved_step": 0.05,
+        "prioritize_reserved_belief_context": true
+      },
+      "budget": {
+        "cap_usd": 200.0,
+        "conversation_pairs": 25,
+        "oracle_plan_in_reserve": true,
+        "oracle_reserve_usd": 10.0,
+        "report_reserve_usd": 0.25,
+        "thresholds": [
+          0.6,
+          0.8,
+          0.95
+        ]
+      },
+      "central_bank": {
+        "max_rate_bps": 2000,
+        "max_step_bps": 50,
+        "min_rate_bps": 0,
+        "natural_unemployment": 0.05,
+        "neutral_rate_bps": 500,
+        "target_inflation": 0.02
+      },
+      "checkpoint_dir": "data/source/checkpoints",
+      "checkpoint_every": 7,
+      "checkpoint_keep_last": 4,
+      "conversations": {
+        "coverage_first": true,
+        "recent_utterance_limit": 360,
+        "similarity_jaccard_threshold": 0.65,
+        "similarity_shingle_threshold": 0.65,
+        "turns": 3
+      },
+      "engine_semantics_version": 7,
+      "exchange": {
+        "circuit_breaker_drop": 0.2
+      },
+      "firms": {
+        "count": 12,
+        "listed": 3,
+        "pay_interval_ticks": 30,
+        "target_headcount": 3
+      },
+      "government": {
+        "benefit_interval_ticks": 30,
+        "benefit_step_cents": 40000,
+        "election_interval_ticks": 180,
+        "max_benefit_cents": 400000,
+        "max_tax_bps": 3000,
+        "min_benefit_cents": 0,
+        "min_tax_bps": 500,
+        "tax_rate_bps": 1500,
+        "tax_step_bps": 300,
+        "unemployment_benefit_cents": 120000
+      },
+      "health": {
+        "coverage_bps": 8000,
+        "hospital": true,
+        "hospital_capital_cents": 3000000,
+        "insurer": true,
+        "insurer_capital_cents": 5000000,
+        "premium_cents": 3000,
+        "premium_interval_ticks": 30
+      },
+      "information": {
+        "citizen_bank_visibility": "public_status",
+        "daily_news_required": true
+      },
+      "information_economy": {
+        "base_reach": 0.15,
+        "diffusion_window_ticks": 30,
+        "enabled": true
+      },
+      "legal": {
+        "enabled": true,
+        "max_damages_cents": 10000000000,
+        "response_ticks": 14,
+        "ruleset": "northstar-us-inspired-1.0"
+      },
+      "lifecycle": {
+        "housing_cost_cents": 75000,
+        "medical_cost_cents": 5000,
+        "population_mode": "stable",
+        "retirement_age": 65
+      },
+      "living_world": {
+        "career_migration_enabled": false,
+        "core_agents": 100,
+        "enabled": true,
+        "fx_market_maker_inventory": 100000000,
+        "promotion_interval_ticks": 30,
+        "regions": [
+          {
+            "currency": "NSD",
+            "key": "northstar",
+            "legal_ruleset": "northstar-us-inspired-1.0",
+            "name": "Northstar Federation",
+            "population": 182,
+            "rate_ppm": 1000000,
+            "specialization": [
+              "technology",
+              "services",
+              "finance"
+            ],
+            "x": 0.25,
+            "y": 0.35
+          },
+          {
+            "currency": "IVC",
+            "key": "ironvale",
+            "legal_ruleset": "external-lite-1.0",
+            "name": "Ironvale Union",
+            "population": 70,
+            "rate_ppm": 750000,
+            "specialization": [
+              "manufacturing",
+              "energy"
+            ],
+            "x": 0.72,
+            "y": 0.28
+          },
+          {
+            "currency": "SCD",
+            "key": "suncoast",
+            "legal_ruleset": "external-lite-1.0",
+            "name": "Suncoast Republic",
+            "population": 56,
+            "rate_ppm": 1200000,
+            "specialization": [
+              "agriculture",
+              "logistics",
+              "tourism"
+            ],
+            "x": 0.55,
+            "y": 0.78
+          }
+        ],
+        "require_trade_contract": true
+      },
+      "llm": {
+        "concurrency": 8,
+        "decision_max_tokens": 900,
+        "default_route": {
+          "model": "scripted",
+          "provider": "scripted"
+        },
+        "local_currency_action_surfaces": true,
+        "routes": {}
+      },
+      "oracle": {
+        "default_horizon_ticks": 30,
+        "max_horizon_ticks": 365,
+        "strict_resolution_rules": true
+      },
+      "outlets": [
+        {
+          "id": 1,
+          "name": "The Ledger",
+          "slant": "pro-market-sensational"
+        },
+        {
+          "id": 2,
+          "name": "Commons Dispatch",
+          "slant": "cautious-pro-labor"
+        }
+      ],
+      "personal_names": {
+        "activation_tick": 0,
+        "version": 1
+      },
+      "political_model": {
+        "actor_bound_authorization": true,
+        "enabled": true,
+        "executive_election_interval_ticks": 360,
+        "house_election_interval_ticks": 180,
+        "house_seats": 12,
+        "lobbying_disclosure_delay_ticks": 5,
+        "senate_seats": 6
+      },
+      "population": {
+        "baseline_citizens_core": false,
+        "size": 270
+      },
+      "report_dir": "output/reports",
+      "reports": {
+        "narrative_max_tokens": 600,
+        "narrative_timeout_s": 45
+      },
+      "resource_guard": {
+        "consecutive_breaches": 3,
+        "enabled": true,
+        "max_cpu_percent": 95,
+        "max_memory_percent": 85,
+        "max_swap_percent": 80,
+        "min_available_memory_gb": 8,
+        "sample_interval_s": 2
+      },
+      "seed": 42,
+      "shocks": [],
+      "speed_delay_s": 0.0,
+      "supply_recovery": {
+        "activation_tick": 0,
+        "cash_payroll_coverage_periods": 2,
+        "demand_buffer_ticks": 5,
+        "enabled": true,
+        "gross_margin_coverage_bps": 12500,
+        "max_headcount_per_firm": 7,
+        "max_hires_per_firm_per_period": 1,
+        "policy_version": "supply-recovery-v1",
+        "sales_observation_ticks": 30,
+        "wage_floor_cents": 15000
+      },
+      "vc": {
+        "fund_cents": 10000000
+      }
+    },
+    "effective_config_sha256": "ce583563d8d12c87bd20c7ea6dc054623a10992f1084e3fec8a708370cd25418",
+    "replay_proof": {
+      "differences": [],
+      "exact": true,
+      "replay_hash": "cbebec763d1db7b54409e8f8f0ab5bca25ceed403ecefcbe4ecafa147b327809",
+      "replay_run_id": "replay-21eb569b27-633f5d2344",
+      "replay_tick": 120,
+      "source_hash": "cbebec763d1db7b54409e8f8f0ab5bca25ceed403ecefcbe4ecafa147b327809",
+      "source_run_id": "21eb569b27",
+      "source_tick": 120,
+      "tables": [
+        {
+          "exact": true,
+          "replay_hash": "790437591afc879e42dcf4e8aa4e92138b309191d53553556d8e371062520130",
+          "replay_rows": 610,
+          "source_hash": "790437591afc879e42dcf4e8aa4e92138b309191d53553556d8e371062520130",
+          "source_rows": 610,
+          "table": "account_ledger_totals"
+        },
+        {
+          "exact": true,
+          "replay_hash": "47e836fd34c2228a4f419cde38509a74c8d6c9039fd545d628795a3369c6f3bc",
+          "replay_rows": 633,
+          "source_hash": "47e836fd34c2228a4f419cde38509a74c8d6c9039fd545d628795a3369c6f3bc",
+          "source_rows": 633,
+          "table": "accounts"
+        },
+        {
+          "exact": true,
+          "replay_hash": "7e06b4c7e28ed2257fac9c482ff59497621177667b960c8a4d9d3903d141d440",
+          "replay_rows": 36750,
+          "source_hash": "7e06b4c7e28ed2257fac9c482ff59497621177667b960c8a4d9d3903d141d440",
+          "source_rows": 36750,
+          "table": "action_proposals"
+        },
+        {
+          "exact": true,
+          "replay_hash": "f5f10b855afbdbfd2e3fb45bcdab280f0551defbc3da1f99da243185cad4d4eb",
+          "replay_rows": 3,
+          "source_hash": "f5f10b855afbdbfd2e3fb45bcdab280f0551defbc3da1f99da243185cad4d4eb",
+          "source_rows": 3,
+          "table": "agencies"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "agency_staff"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "agent_decisions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "agent_skill_history"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "agent_skills"
+        },
+        {
+          "exact": true,
+          "replay_hash": "9093c36a7245f3f0dc2d40f81a1c3533fbe9cf9ea02a59a2455da9b7fac00f70",
+          "replay_rows": 190,
+          "source_hash": "9093c36a7245f3f0dc2d40f81a1c3533fbe9cf9ea02a59a2455da9b7fac00f70",
+          "source_rows": 190,
+          "table": "agent_tier_history"
+        },
+        {
+          "exact": true,
+          "replay_hash": "74467b6ca5ee161176b2937e7a198371150436545390eca128137e202f81c054",
+          "replay_rows": 308,
+          "source_hash": "74467b6ca5ee161176b2937e7a198371150436545390eca128137e202f81c054",
+          "source_rows": 308,
+          "table": "agents"
+        },
+        {
+          "exact": true,
+          "replay_hash": "d939f66a74775d00cb1702561d5c07daef1ed5edda4c5f9dec0b059ac770af36",
+          "replay_rows": 4543,
+          "source_hash": "d939f66a74775d00cb1702561d5c07daef1ed5edda4c5f9dec0b059ac770af36",
+          "source_rows": 4543,
+          "table": "applications"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "attention_context_items"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "attention_contexts"
+        },
+        {
+          "exact": true,
+          "replay_hash": "3e7140248793ed0d714bfc4ab9af512b8ab6e3e655b837bc6f3bab92c621eb67",
+          "replay_rows": 3,
+          "source_hash": "3e7140248793ed0d714bfc4ab9af512b8ab6e3e655b837bc6f3bab92c621eb67",
+          "source_rows": 3,
+          "table": "banks"
+        },
+        {
+          "exact": true,
+          "replay_hash": "5cff313093c52e7a3ad400983c107cea4e105056ef679e879fdf24faf446bb1c",
+          "replay_rows": 58796,
+          "source_hash": "5cff313093c52e7a3ad400983c107cea4e105056ef679e879fdf24faf446bb1c",
+          "source_rows": 58796,
+          "table": "beliefs"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "bill_actions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "bill_versions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "bills"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "calibration_targets"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "causal_links"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "child_needs"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "civic_authorizations"
+        },
+        {
+          "exact": true,
+          "replay_hash": "32285e6927c592af602251522a64c05a05d7f07b0384f7f6f81fbe7c11765da3",
+          "replay_rows": 240,
+          "source_hash": "32285e6927c592af602251522a64c05a05d7f07b0384f7f6f81fbe7c11765da3",
+          "source_rows": 240,
+          "table": "claims"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "comm_audiences"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "comm_deliveries"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "comm_disclosure_authorities"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "comm_disclosures"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "comm_messages"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "comm_threads"
+        },
+        {
+          "exact": true,
+          "replay_hash": "313497c1121b0a1e2c63c01b27618d92998b1344262f9c1af51b72d47a3f8ee0",
+          "replay_rows": 20,
+          "source_hash": "313497c1121b0a1e2c63c01b27618d92998b1344262f9c1af51b72d47a3f8ee0",
+          "source_rows": 20,
+          "table": "committee_members"
+        },
+        {
+          "exact": true,
+          "replay_hash": "413e5e7c60cc14afd10636800665c6b31e0a0a951f8d48d0ada5ce229c781fd6",
+          "replay_rows": 8,
+          "source_hash": "413e5e7c60cc14afd10636800665c6b31e0a0a951f8d48d0ada5ce229c781fd6",
+          "source_rows": 8,
+          "table": "committees"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_appeals"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_communities"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_entries"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_feed_impressions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "8a02fec885fbad0af359a37379eb9c5c8b7033e1666c2840cc70ab52ee089869",
+          "replay_rows": 2,
+          "source_hash": "8a02fec885fbad0af359a37379eb9c5c8b7033e1666c2840cc70ab52ee089869",
+          "source_rows": 2,
+          "table": "commons_feed_policies"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_follows"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_memberships"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_moderation_actions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_profiles"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "commons_reactions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "compute_subscriptions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "construction_action_receipts"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "construction_contributions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "construction_permit_cases"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "construction_projects"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "contract_acceptances"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "contract_clauses"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "contract_parties"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "contracts"
+        },
+        {
+          "exact": true,
+          "replay_hash": "7e56f57511feae40b50a680d78c23bb2416d9cfa77a33e7ddbfeb43c05b8fc2c",
+          "replay_rows": 3000,
+          "source_hash": "7e56f57511feae40b50a680d78c23bb2416d9cfa77a33e7ddbfeb43c05b8fc2c",
+          "source_rows": 3000,
+          "table": "conversations"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "counterfactual_experiments"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "counterfactual_results"
+        },
+        {
+          "exact": true,
+          "replay_hash": "4cbe3e03d7b76489ca359b558bd2631b27f00662047ed4dd3010513ae7e99dfb",
+          "replay_rows": 3,
+          "source_hash": "4cbe3e03d7b76489ca359b558bd2631b27f00662047ed4dd3010513ae7e99dfb",
+          "source_rows": 3,
+          "table": "currencies"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "dataset_manifests"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "due_diligence_checks"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "effective_presence"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "elections"
+        },
+        {
+          "exact": true,
+          "replay_hash": "742d8fc3cefd6fb6a48de65dc0ab47ba37989ec814c94493d289ed11e6877b20",
+          "replay_rows": 87,
+          "source_hash": "742d8fc3cefd6fb6a48de65dc0ab47ba37989ec814c94493d289ed11e6877b20",
+          "source_rows": 87,
+          "table": "employments"
+        },
+        {
+          "exact": true,
+          "replay_hash": "59f27f9668c18a969c68c496b2aea4d1e15dd6b27c67dbdded38b4e30d387af3",
+          "replay_rows": 164199,
+          "source_hash": "59f27f9668c18a969c68c496b2aea4d1e15dd6b27c67dbdded38b4e30d387af3",
+          "source_rows": 164199,
+          "table": "events"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "external_action_submissions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "external_actor_requests"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "external_agent_connections"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "external_turn_attendance"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "firm_disclosures"
+        },
+        {
+          "exact": true,
+          "replay_hash": "212ade353072471f46e2334c9982eb2cede57aec910c767cd3532efd78dbd9d2",
+          "replay_rows": 14,
+          "source_hash": "212ade353072471f46e2334c9982eb2cede57aec910c767cd3532efd78dbd9d2",
+          "source_rows": 14,
+          "table": "firms"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "funding_rounds"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "fx_orders"
+        },
+        {
+          "exact": true,
+          "replay_hash": "7519d9b0dcbcf130afce26bdc69d9bc0df9cdc084f67bc9811b6a6b6bef9c735",
+          "replay_rows": 3,
+          "source_hash": "7519d9b0dcbcf130afce26bdc69d9bc0df9cdc084f67bc9811b6a6b6bef9c735",
+          "source_rows": 3,
+          "table": "fx_reserves"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "fx_trades"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "guardianships"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "household_memberships"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "households"
+        },
+        {
+          "exact": true,
+          "replay_hash": "198dcff86ba20d15750596dde2b2afae445606bcc029ea3494c96576d494a39a",
+          "replay_rows": 57308,
+          "source_hash": "198dcff86ba20d15750596dde2b2afae445606bcc029ea3494c96576d494a39a",
+          "source_rows": 57308,
+          "table": "information_exposures"
+        },
+        {
+          "exact": true,
+          "replay_hash": "29198c8f4eb22e9f9ef7a4d48eb1a8039f5436f6e9a9b832b711f866a8daf39c",
+          "replay_rows": 240,
+          "source_hash": "29198c8f4eb22e9f9ef7a4d48eb1a8039f5436f6e9a9b832b711f866a8daf39c",
+          "source_rows": 240,
+          "table": "information_items"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "institution_tasks"
+        },
+        {
+          "exact": true,
+          "replay_hash": "946b1856574a091c183ab18c0f2a12d06a23f2e22f6cffefe23ad6849b9dca71",
+          "replay_rows": 115,
+          "source_hash": "946b1856574a091c183ab18c0f2a12d06a23f2e22f6cffefe23ad6849b9dca71",
+          "source_rows": 115,
+          "table": "insurance_policies"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "ip_assets"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "ip_licenses"
+        },
+        {
+          "exact": true,
+          "replay_hash": "48072fd0c3256a290d836af45bcb32134963dea07dcc534e3abd5be8d5f76244",
+          "replay_rows": 340,
+          "source_hash": "48072fd0c3256a290d836af45bcb32134963dea07dcc534e3abd5be8d5f76244",
+          "source_rows": 340,
+          "table": "ipo_bids"
+        },
+        {
+          "exact": true,
+          "replay_hash": "ccac34b33d552c15925648dea9399a1a8dd5d9a6d86f3c8847ce778a4575c34d",
+          "replay_rows": 11,
+          "source_hash": "ccac34b33d552c15925648dea9399a1a8dd5d9a6d86f3c8847ce778a4575c34d",
+          "source_rows": 11,
+          "table": "ipo_offerings"
+        },
+        {
+          "exact": true,
+          "replay_hash": "f862ff281da1c8fda9d4a31521b5d19c76f28dab413e0201b217832f99e88b7e",
+          "replay_rows": 143,
+          "source_hash": "f862ff281da1c8fda9d4a31521b5d19c76f28dab413e0201b217832f99e88b7e",
+          "source_rows": 143,
+          "table": "job_offers"
+        },
+        {
+          "exact": true,
+          "replay_hash": "46ca75a54bf71e12bd1788b6c2f94c7e0b2bbb31d286672d51547447d2bcbf40",
+          "replay_rows": 73,
+          "source_hash": "46ca75a54bf71e12bd1788b6c2f94c7e0b2bbb31d286672d51547447d2bcbf40",
+          "source_rows": 73,
+          "table": "jobs"
+        },
+        {
+          "exact": true,
+          "replay_hash": "269662c532ad0f90015a3f219ee1daa39cb4ea85c8c2836bc58095745349a14e",
+          "replay_rows": 60625,
+          "source_hash": "269662c532ad0f90015a3f219ee1daa39cb4ea85c8c2836bc58095745349a14e",
+          "source_rows": 60625,
+          "table": "ledger_entries"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "legal_decisions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "legal_filings"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "legal_matters"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "legal_notices"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "legal_restrictions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "9a981fe98fe4aa49f8399350ef52aecffac978d95c3f86e50e9889038b8c9c63",
+          "replay_rows": 1,
+          "source_hash": "9a981fe98fe4aa49f8399350ef52aecffac978d95c3f86e50e9889038b8c9c63",
+          "source_rows": 1,
+          "table": "legal_rulesets"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "legislative_votes"
+        },
+        {
+          "exact": true,
+          "replay_hash": "1315f7410a49e5da67ec77ddc3fbf75b191d616fce07545b5dbd6a5598df7f4e",
+          "replay_rows": 18,
+          "source_hash": "1315f7410a49e5da67ec77ddc3fbf75b191d616fce07545b5dbd6a5598df7f4e",
+          "source_rows": 18,
+          "table": "legislators"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "liquidity_support_requests"
+        },
+        {
+          "exact": true,
+          "replay_hash": "b7b3e8d3f60b2834c53a3a5ced1b363283ed8b244f8a6e6df5c171da0955af08",
+          "replay_rows": 15089,
+          "source_hash": "b7b3e8d3f60b2834c53a3a5ced1b363283ed8b244f8a6e6df5c171da0955af08",
+          "source_rows": 15089,
+          "table": "llm_calls"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "loan_applications"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "loans"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "lobbying_activities"
+        },
+        {
+          "exact": true,
+          "replay_hash": "c7ff34f6859ce39838342a89e93bf56081662f848ea943a846388da7332c4d55",
+          "replay_rows": 133705,
+          "source_hash": "c7ff34f6859ce39838342a89e93bf56081662f848ea943a846388da7332c4d55",
+          "source_rows": 133705,
+          "table": "memories"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "merger_reviews"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "mergers"
+        },
+        {
+          "exact": true,
+          "replay_hash": "1eadc92b1a86a282adbe8936f61c240cef7dae3e36bb579710e5119b40c2f1a2",
+          "replay_rows": 9000,
+          "source_hash": "1eadc92b1a86a282adbe8936f61c240cef7dae3e36bb579710e5119b40c2f1a2",
+          "source_rows": 9000,
+          "table": "messages"
+        },
+        {
+          "exact": true,
+          "replay_hash": "2acecbfb06fdcbf8836298ef980956230934960b99e84dfd563b451e82c33173",
+          "replay_rows": 3952,
+          "source_hash": "2acecbfb06fdcbf8836298ef980956230934960b99e84dfd563b451e82c33173",
+          "source_rows": 3952,
+          "table": "metrics"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "migrations"
+        },
+        {
+          "exact": true,
+          "replay_hash": "c219711e726fa6303a8d14c426b64291490065a890a4bc711be3c92b09653d3f",
+          "replay_rows": 240,
+          "source_hash": "c219711e726fa6303a8d14c426b64291490065a890a4bc711be3c92b09653d3f",
+          "source_rows": 240,
+          "table": "news_articles"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "obligations"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "occupancy_leases"
+        },
+        {
+          "exact": true,
+          "replay_hash": "5a322a64e89dbc67214e3e243ef48bf9d7d008148c493c4b23c7f963ce174b19",
+          "replay_rows": 2645,
+          "source_hash": "5a322a64e89dbc67214e3e243ef48bf9d7d008148c493c4b23c7f963ce174b19",
+          "source_rows": 2645,
+          "table": "orders"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "parent_child_relations"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "person_lifecycle"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "pitches"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "places"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "policy_rules"
+        },
+        {
+          "exact": true,
+          "replay_hash": "cb260eb53b4142360816c147ffe68fbc4521e735b0249371ae9e5ca0c9397f51",
+          "replay_rows": 2,
+          "source_hash": "cb260eb53b4142360816c147ffe68fbc4521e735b0249371ae9e5ca0c9397f51",
+          "source_rows": 2,
+          "table": "political_parties"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "population_census"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "predictions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "projection_commits"
+        },
+        {
+          "exact": true,
+          "replay_hash": "27d703981ab7da84fd8c20ad09a4900d67f7df88a7705075d1bd7f024c1781c8",
+          "replay_rows": 3,
+          "source_hash": "27d703981ab7da84fd8c20ad09a4900d67f7df88a7705075d1bd7f024c1781c8",
+          "source_rows": 3,
+          "table": "regions"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "scenario_packs"
+        },
+        {
+          "exact": true,
+          "replay_hash": "5f6df8d6f4469e91783f885c0c2fe15f68df66d54980785f261c0e6de8fbc66b",
+          "replay_rows": 11,
+          "source_hash": "5f6df8d6f4469e91783f885c0c2fe15f68df66d54980785f261c0e6de8fbc66b",
+          "source_rows": 11,
+          "table": "schema_migrations"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "service_appointments"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "service_cases"
+        },
+        {
+          "exact": true,
+          "replay_hash": "97160aaedbefccfe524fe822575190c4624598c03c3a3c51846f283195142a48",
+          "replay_rows": 356,
+          "source_hash": "97160aaedbefccfe524fe822575190c4624598c03c3a3c51846f283195142a48",
+          "source_rows": 356,
+          "table": "share_movements"
+        },
+        {
+          "exact": true,
+          "replay_hash": "3b55514e2904fa2662f5602d959b5bf5246ce3e1f2593d3431a41f5d76b3d011",
+          "replay_rows": 345,
+          "source_hash": "3b55514e2904fa2662f5602d959b5bf5246ce3e1f2593d3431a41f5d76b3d011",
+          "source_rows": 345,
+          "table": "shares"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "shocks"
+        },
+        {
+          "exact": true,
+          "replay_hash": "0120be30642937aa6c523a02cbf3d0491884a40f77c6f6af6b41e7e0536467f9",
+          "replay_rows": 1240,
+          "source_hash": "0120be30642937aa6c523a02cbf3d0491884a40f77c6f6af6b41e7e0536467f9",
+          "source_rows": 1240,
+          "table": "social_ties"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "term_sheets"
+        },
+        {
+          "exact": true,
+          "replay_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "replay_rows": 0,
+          "source_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+          "source_rows": 0,
+          "table": "trade_shipments"
+        },
+        {
+          "exact": true,
+          "replay_hash": "1ba34c7e1ebd1c54d5ebc14867b05179f54aeb5e46b8580d29b9593bbe3c65ef",
+          "replay_rows": 308,
+          "source_hash": "1ba34c7e1ebd1c54d5ebc14867b05179f54aeb5e46b8580d29b9593bbe3c65ef",
+          "source_rows": 308,
+          "table": "trader_profiles"
+        },
+        {
+          "exact": true,
+          "replay_hash": "997147dce29a8e7c419e8c4507665e2e972f40b37637469a85ca2921ddffddb8",
+          "replay_rows": 219,
+          "source_hash": "997147dce29a8e7c419e8c4507665e2e972f40b37637469a85ca2921ddffddb8",
+          "source_rows": 219,
+          "table": "trades"
+        },
+        {
+          "exact": true,
+          "replay_hash": "c33d3177540e37b01f896a9a58e5b7a6e0f21c68429ea1274c22e52e021fdb8e",
+          "replay_rows": 30184,
+          "source_hash": "c33d3177540e37b01f896a9a58e5b7a6e0f21c68429ea1274c22e52e021fdb8e",
+          "source_rows": 30184,
+          "table": "transactions"
+        }
+      ]
+    },
+    "source_sha256": "1125c44ee56f10b36690599626ff48ccfe9d344e03d0945b6ba476617a5a535c"
+  },
+  "schema": "agent-economy-scale-economic-health-v1",
+  "schema_version": 1,
+  "thresholds": {
+    "max_buy_goods_rejection_rate": 0.05,
+    "max_checkpoint_p95_seconds": 5.0,
+    "max_database_growth_bytes_per_tick": 8388608,
+    "max_open_jobs": 20,
+    "max_peak_rss_mb": 2048,
+    "max_pending_applications": 20,
+    "max_pending_job_offers": 20,
+    "max_unemployment_rebound": 0.1,
+    "min_available_memory_gb": 8,
+    "required_ticks": 120,
+    "schema_version": 1,
+    "trailing_window_ticks": 60,
+    "warmup_ticks": 60
+  }
+}

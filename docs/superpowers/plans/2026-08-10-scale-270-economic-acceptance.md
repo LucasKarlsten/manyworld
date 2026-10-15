@@ -595,7 +595,9 @@ and the actors/firms/goods involved without modifying the source.
 
 Add success and rejection cases plus ledger reconciliation and exact replay.
 If the failure is configuration-only, add an inheritance regression proving the
-missing recovery setting. Do not change thresholds.
+missing recovery setting. Do not change thresholds, except for the expressly
+approved, prospective [inventory/demand v2 amendment](../specs/2026-10-14-inventory-buffer-demand-v2.md).
+Keep every unrelated gate and all historical v1 receipts unchanged.
 
 - [ ] **Step 3: Implement the minimal governed fix**
 

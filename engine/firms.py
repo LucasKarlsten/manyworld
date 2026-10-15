@@ -69,6 +69,7 @@ class Firms:
         self.store = store
         self.ledger = ledger
         self.engine_semantics_version = int(engine_semantics_version)
+        self.inventory_audit = None  # optional scientific observer, bound by runtime
         self.city_enabled = bool(
             city_enabled and self.engine_semantics_version >= 12)
 
