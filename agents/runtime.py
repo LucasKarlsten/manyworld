@@ -15,6 +15,7 @@ from typing import NamedTuple, Optional
 
 from engine.actions import ActionExecutor
 from engine.core import Economy
+from engine.inventory_audit import InventoryAudit
 from engine.keyed_random import policy_seed
 from engine.local_participation import is_local
 from engine.store import load_json
@@ -47,6 +48,7 @@ from .policies import (
     SUPPLIER_WARNING_POLICY_ID,
     register_scripted_policies,
     scripted_decision,
+    probe_consumption_demand,
     workforce_recovery_actions,
 )
 from .scheduler import Scheduler
@@ -209,6 +211,8 @@ class AgentRuntime:
         self.store = economy.store
         self.gw = gateway
         self.config = config
+        self.inventory_audit = InventoryAudit.from_config(self.store, config)
+        self.e.firms.inventory_audit = self.inventory_audit
         self.mem = Memory(self.store, config)
         self.ctx = ContextBuilder(economy, self.mem, config)
         self.participant = ParticipantService(self.store, self.ctx, config)
@@ -351,6 +355,8 @@ class AgentRuntime:
                     by_id[aid] = self.store.query_one("SELECT * FROM agents WHERE id=?", (aid,))
             agents = [by_id[aid] for aid in sorted(by_id)]
         self.ctx.prepare_decision_cohort(agents, tick)
+        if self.inventory_audit is not None:
+            self.inventory_audit.record_cohort(tick, agents)
         participant_decision = self.participant.decision_for_tick(tick)
         external_agent_ids, external_decisions = self.external.decisions_for_tick(tick)
         participant_agent_id = (
@@ -1029,6 +1035,13 @@ class AgentRuntime:
         agent_id = int(a["id"])
         self.ctx.persist_inbox_read_context(agent_id, tick, context)
         purpose = context.get("purpose", "decision")
+        if self.inventory_audit is not None:
+            currency = str(self.store.scalar(
+                "SELECT currency_code FROM accounts WHERE id=?",
+                (a["checking_account_id"],), default="USD"))
+            observation = probe_consumption_demand(
+                str(purpose), context, self.inventory_audit.goods_catalog(currency))
+            self.inventory_audit.record_demand(tick, a, currency, observation)
         attention_context_key, attention_source_event_ids = (
             self.e.city.persist_attention_context(
                 agent_id,

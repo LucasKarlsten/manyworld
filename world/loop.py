@@ -668,6 +668,8 @@ class World:
 
     def _phase_night_close(self, tick: int) -> None:
         e = self.economy
+        if self.runtime.inventory_audit is not None:
+            self.runtime.inventory_audit.open_tick(tick)
         # A legacy semantics-7 run may opt into a forward-only supply recovery.
         # Its one-time endowment is a normal balanced ledger transaction and is
         # applied before payroll/production at the configured untouched tick.
@@ -925,6 +927,8 @@ class World:
         self.oracle.resolve_open(tick)
         # The completed-tick invariant includes every action settled today.
         self._assert_reconciled(tick, "FINALIZE")
+        if self.runtime.inventory_audit is not None:
+            self.runtime.inventory_audit.close_tick(tick)
         if self.engine_semantics_version >= 8:
             domains = [
                 "summary", "events", "communications", "causal", "snapshot",

@@ -447,6 +447,19 @@ history is not claimed. The
 failed attempts and the validation boundary; a candidate must pass a fresh
 120-tick source/replay evaluation before formal or live acceptance.
 
+The prospective `runs/acceptance/scale-270-recovery-buffer-120.yaml` profile
+keeps those economic settings and opts into the
+[buffer/demand v2 contract](superpowers/specs/2026-10-14-inventory-buffer-demand-v2.md).
+It records independent daily inventory, stock-free scripted demand and
+purchase-time stock/cash limits in three additive audit tables. These tables
+are absent by default and included in exact replay when enabled. The v2 report
+allows ordinary buffer drawdown but requires conserved inventory, continued
+production and no persistent empty/unsafe buffers. Its separate demand table
+exposes desired, affordable, submitted and fulfilled quantities; measurement
+completeness is required, and household demand adequacy is not certified by a
+low rejection rate. The original v1 A/B evaluator deliberately rejects a v2
+arm as directly comparable. Retain each arm's contract version in comparisons.
+
 The harness prints the exact source database, replay database, and runtime
 receipt identities. Evaluate each finalized pair without opening a writer,
 replacing the three `<...>` values with those printed artifact paths:

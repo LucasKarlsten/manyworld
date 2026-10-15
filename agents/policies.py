@@ -260,7 +260,7 @@ def _public_estate_sale(context: dict) -> dict | None:
     return None
 
 
-def citizen_decision(context: dict) -> dict:
+def citizen_decision(context: dict, *, consumption_probe: dict | None = None) -> dict:
     adjudication = _adjudication_decision(context)
     if adjudication is not None:
         return adjudication
@@ -411,6 +411,20 @@ def citizen_decision(context: dict) -> dict:
     # 4) Consumption: buy goods (unless critically ill). Households with dependents buy more.
     if health != "critical" and not ran:
         firm = _select_stocked_firm(context, rng)
+        if consumption_probe is not None:
+            # Only the independent, stock-free audit probe supplies this sink.
+            # Default decisions and their envelopes are unchanged.
+            budget = int(cash * (0.12 + 0.03 * int(agent.get("dependents", 0))))
+            affordable = (max(1, min(8, budget // max(1, firm["price"])))
+                          if firm and cash > firm["price"] * 2 else 0)
+            consumption_probe.update(
+                eligibility="eligible", desired_units=8, affordable_units=affordable,
+                unpriced_units=0 if firm else 8,
+                affordability_limited_units=8 - affordable if firm else 0,
+                budget_cents=budget, liquid_cash_cents=cash,
+                reference_firm_id=firm["firm_id"] if firm else None,
+                reference_price_cents=firm["price"] if firm else None,
+            )
         if firm and cash > firm["price"] * 2:
             budget = int(cash * (0.12 + 0.03 * int(agent.get("dependents", 0))))
             qty_cap = (
@@ -831,7 +845,7 @@ def workforce_recovery_actions(
     return actions
 
 
-def founder_decision(context: dict) -> dict:
+def founder_decision(context: dict, *, consumption_probe: dict | None = None) -> dict:
     adjudication = _adjudication_decision(context)
     if adjudication is not None:
         return adjudication
@@ -846,7 +860,7 @@ def founder_decision(context: dict) -> dict:
         return estate_sale
     firm = context.get("my_firm")
     if not firm:
-        return citizen_decision(context)
+        return citizen_decision(context, consumption_probe=consumption_probe)
     legal_action = _first_legal_action(context)
     if legal_action:
         return _env(None, [legal_action], [], "pursuing an unresolved recorded legal claim")
@@ -1043,7 +1057,7 @@ def founder_decision(context: dict) -> dict:
 
     if not actions:
         # Founder still consumes as a household.
-        return citizen_decision(context)
+        return citizen_decision(context, consumption_probe=consumption_probe)
     return _env(None, actions, [], "; ".join(reasons))
 
 
@@ -1562,7 +1576,7 @@ POLICIES: dict[str, Callable[[dict], dict]] = {
 }
 
 
-def scripted_decision(purpose: str, context: dict) -> dict:
+def scripted_decision(purpose: str, context: dict, *, consumption_probe: dict | None = None) -> dict:
     """Run one local policy without entering the governed model-call path."""
     adjudication = _adjudication_decision(context)
     if adjudication is not None:
@@ -1594,7 +1608,10 @@ def scripted_decision(purpose: str, context: dict) -> dict:
             [],
             "advancing an agent-authored construction project",
         )
-    envelope = POLICIES.get(purpose, citizen_decision)(context)
+    policy = POLICIES.get(purpose, citizen_decision)
+    envelope = (policy(context, consumption_probe=consumption_probe)
+                if consumption_probe is not None and policy in {citizen_decision, founder_decision}
+                else policy(context))
     communication = context.get("scripted_communication_action")
     if not isinstance(communication, dict) or not isinstance(envelope, dict):
         return envelope
@@ -1607,6 +1624,33 @@ def scripted_decision(purpose: str, context: dict) -> dict:
         actions.append(dict(communication))
     enriched["actions"] = actions
     return enriched
+
+
+def probe_consumption_demand(purpose: str, context: dict, catalog: list[dict]) -> dict:
+    """Measure this scripted policy's demand without stock or guidance censoring.
+
+    This shadow evaluation has its own seeded RNG and a copied context. Its
+    actions are discarded; only the consumption branch's observations survive.
+    Equal hypothetical inventories remove stock from seller-selection weights.
+    """
+    from copy import deepcopy
+    shadow = deepcopy(context)
+    shadow["prices"] = [{**offer, "inventory": 8} for offer in catalog]
+    shadow["inventory_aware_shopping_enabled"] = False
+    shadow["shopping_qty_cap"] = 8
+    probe = {
+        "schema_version": 1, "eligibility": "policy_preempted",
+        "desired_units": 0, "affordable_units": 0, "unpriced_units": 0,
+        "affordability_limited_units": 0, "guidance_limited_units": 0,
+        "budget_cents": 0, "liquid_cash_cents": 0,
+        "reference_firm_id": None, "reference_price_cents": None,
+    }
+    scripted_decision(purpose, shadow, consumption_probe=probe)
+    cap = (max(1, int(context.get("shopping_qty_cap", 8)))
+           if context.get("inventory_aware_shopping_enabled") else 8)
+    probe["shopping_qty_cap"] = cap
+    probe["guidance_limited_units"] = max(0, probe["affordable_units"] - cap)
+    return probe
 
 
 def register_scripted_policies(scripted_adapter) -> None:
