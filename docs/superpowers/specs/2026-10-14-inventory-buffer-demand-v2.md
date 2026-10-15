@@ -80,7 +80,11 @@ orders. Bind the pre-clamp request and outcome to the immutable action-proposal
 ID. Reconcile each dispatched proposal exactly once. Stock-then-cash losses
 are checked against opening stock plus production and sales at the recorded
 goods-event boundary. Bind accepted orders to exactly one sale and reconcile
-its price and total with the proposal result. Validate rejected orders against
+its price and total with the proposal result. Require continuous goods boundaries
+in proposal execution order, including rejected dispatches, and consume every
+sale exactly once. The explicit zero boundary means no goods event yet; exact
+replay preserves that sentinel without accepting other dangling references.
+Validate rejected orders against
 the executor's stock, account, currency and cash rejection ordering. Check each
 probe's actor region, checking currency and reference firm's goods-catalog
 membership, and reject impossible mixed priced/unpriced demand. Losses

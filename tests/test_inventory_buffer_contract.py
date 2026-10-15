@@ -225,6 +225,44 @@ def test_rejected_before_dispatch_is_separate_from_stock_and_cash():
     assert evidence["totals"]["pre_execution_rejected_units"] == 8
 
 
+def test_rejected_purchase_cannot_rewind_before_an_earlier_settlement():
+    connection = _demand_fixture(requested=6, stock=9)
+    result = json.dumps({"ok": False, "reason": "insufficient funds"})
+    connection.execute("INSERT INTO action_proposals VALUES (2,1,1,'buy_goods',?,'rejected',?)",
+                       (json.dumps({"firm_id": 1, "qty": 8}), result))
+    connection.execute("INSERT INTO scale_purchase_audit VALUES (2,1,1,1,8,3,500,0,NULL,?,1,1)", (result,))
+    ok, evidence = demand_evidence(connection, 1, THRESHOLDS)
+    assert ok, evidence
+    assert evidence["totals"]["stock_limited_units"] == 5
+    assert evidence["totals"]["cash_limited_units"] == 3
+    connection.execute("UPDATE scale_purchase_audit SET stock_units=9,preceding_goods_event_id=0,following_goods_event_id=0 WHERE proposal_id=2")
+    assert not demand_evidence(connection, 1, THRESHOLDS)[0]
+
+
+def test_empty_goods_boundary_replays_as_a_valid_explicit_sentinel(tmp_path, economy):
+    bank = make_bank(economy)
+    owner, _ = make_agent(economy, bank, cash=100000)
+    buyer, _ = make_agent(economy, bank, cash=500)
+    firm = economy.firms.found_firm(0, owner, "Empty shop", "retail", opening_capital_cents=1000)
+    economy.store.update("firms", firm, inventory=0)
+    economy.firms.inventory_audit = InventoryAudit(economy.store)
+    result = ActionExecutor(economy).execute_action(1, buyer, {"type": "buy_goods", "firm_id": firm, "qty": 8})
+    assert result == {"ok": False, "reason": "out of stock"}
+    audit = economy.store.query_one("SELECT * FROM scale_purchase_audit")
+    assert audit["preceding_goods_event_id"] == audit["following_goods_event_id"] == 0
+    connection = economy.store.conn
+    connection.commit()
+    paths = [tmp_path / name for name in ("source.db", "replay.db")]
+    for path in paths:
+        with sqlite3.connect(path) as target:
+            connection.backup(target)
+    proof = verify_replay(*paths)
+    assert proof["exact"], proof["differences"]
+    with sqlite3.connect(paths[1]) as damaged:
+        damaged.execute("UPDATE scale_purchase_audit SET following_goods_event_id=999999")
+    assert not verify_replay(*paths)["exact"]
+
+
 @pytest.mark.parametrize("damage", ["missing_probe", "missing_cohort", "missing_execution", "missing_rejected_execution", "wrong_sale", "wrong_result", "negative_probe"])
 def test_demand_audit_fails_closed_for_missing_or_inconsistent_evidence(damage):
     connection = _demand_fixture(stock=0 if damage == "missing_rejected_execution" else 3)

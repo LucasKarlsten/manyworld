@@ -202,6 +202,29 @@ def demand_evidence(connection, ticks, thresholds):
             flow_ids[key].append(row["id"])
             flow_sums[key].append(flow_sums[key][-1] + (quantity if row["kind"] == "production" else -quantity))
         goods_positions = {event_id: index for index, event_id in enumerate(goods_ids)}
+        # Night production precedes all market purchases in this fixed lane.
+        # Every dispatch, including a rejection, must continue the previous
+        # goods boundary rather than selecting a convenient historical stock.
+        tick_boundaries = {}
+        tick_end_boundaries = {}
+        last_goods = 0
+        sales_started = set()
+        for event_id in goods_ids[1:]:
+            tick, kind, _ = goods_events[event_id]
+            tick_boundaries.setdefault(tick, last_goods)
+            if kind == "production":
+                if tick in sales_started:
+                    raise ValueError("goods production occurs after market settlement")
+                tick_boundaries[tick] = event_id
+            else:
+                sales_started.add(tick)
+            last_goods = event_id
+            tick_end_boundaries[tick] = event_id
+        last_completed = 0
+        for tick in range(1, ticks + 1):
+            tick_boundaries.setdefault(tick, last_completed)
+            last_completed = tick_end_boundaries.get(tick, last_completed)
+        consumed_sales = set()
         expected = set()
         audit_ticks = list(connection.execute("SELECT tick,decision_agent_ids_json FROM scale_inventory_audit ORDER BY tick"))
         if [row["tick"] for row in audit_ticks] != list(range(1, ticks + 1)):
@@ -302,11 +325,16 @@ def demand_evidence(connection, ticks, thresholds):
             before, after = _int(audit["preceding_goods_event_id"]), _int(audit["following_goods_event_id"])
             if before not in goods_positions or after not in goods_positions or before > after:
                 raise ValueError("invalid purchase goods-event boundary")
+            if before != tick_boundaries[key[0]]:
+                raise ValueError("purchase boundary does not continue prior dispatches")
             if before and goods_events[before][0] > key[0]:
                 raise ValueError("purchase boundary belongs to a later tick")
             if filled:
                 if goods_positions[after] != goods_positions[before] + 1:
                     raise ValueError("purchase is not bound to exactly one goods event")
+                if after in consumed_sales:
+                    raise ValueError("goods sale consumed by more than one proposal")
+                consumed_sales.add(after)
                 event_tick, event_kind, sale = goods_events[after]
                 price = _int(audit["unit_price_cents"])
                 if (event_tick != key[0] or event_kind != "goods_sale"
@@ -316,6 +344,7 @@ def demand_evidence(connection, ticks, thresholds):
                     raise ValueError("purchase price or settlement differs from its goods sale")
             elif before != after:
                 raise ValueError("rejected purchase emitted a goods event")
+            tick_boundaries[key[0]] = after
             expected_reason = None
             if stock is not None:
                 stock = _int(stock)
@@ -355,6 +384,8 @@ def demand_evidence(connection, ticks, thresholds):
             observation["other_execution_shortfall_units"] += other_lost
         if consumed_audits != set(audits):
             raise ValueError("orphan purchase execution audit")
+        if consumed_sales != {event_id for event_id, event in goods_events.items() if event[1] == "goods_sale"}:
+            raise ValueError("goods sales are not consumed exactly once by purchase audits")
         sold = Counter()
         for row in connection.execute("SELECT tick,payload_json FROM events WHERE kind='goods_sale' ORDER BY tick,id"):
             payload = _object(row["payload_json"])
