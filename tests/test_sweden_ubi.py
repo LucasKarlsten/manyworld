@@ -29,6 +29,9 @@ class FiscalStore:
                     if lo <= age <= hi]
         raise AssertionError(f"unexpected query: {sql}")
 
+    def metric_latest(self, name, default=0.0):
+        return 0
+
     def scalar(self, sql, params=(), default=None):
         if "FROM transactions" in sql:
             return 1 if params[0] in self.paid else None
