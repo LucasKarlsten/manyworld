@@ -34,6 +34,13 @@ DEFAULT_PARAMS = {
     "min_benefit_cents": 0,
     "max_benefit_cents": 400_000,
     "vote_threshold": 0.25,               # net grievance needed to vote "expand"
+    # Sweden UBI experiment: disabled by default for backward compatibility.
+    "ubi_enabled": False,
+    "ubi_amount_cents": 0,
+    "ubi_interval_ticks": 30,
+    "ubi_first_tick": 30,
+    "ubi_min_age": 18,
+    "ubi_max_age": 120,
 }
 
 
@@ -80,6 +87,13 @@ class Government:
         interval = max(1, int(self.p["benefit_interval_ticks"]))
         if tick % interval == 0:
             self._pay_benefits(tick)
+        if bool(self.p["ubi_enabled"]):
+            start = int(self.p["ubi_first_tick"])
+            ubi_interval = int(self.p["ubi_interval_ticks"])
+            if ubi_interval < 1:
+                raise ValueError("ubi_interval_ticks must be positive")
+            if tick >= start and (tick - start) % ubi_interval == 0:
+                self._pay_ubi(tick)
         election_every = int(self.p["election_interval_ticks"])
         if (election_every > 0 and tick > 0 and tick % election_every == 0
                 and not (getattr(self, "ballots", None) and self.ballots.active(tick))):
@@ -130,6 +144,60 @@ class Government:
                 "recipients": paid, "total_cents": total,
                 "treasury_cents": self.treasury_balance()}, phase="NIGHT_CLOSE",
                 importance=1.5)
+
+    # ── experimental universal basic income ────────────────────────────────
+    def _pay_ubi(self, tick: int) -> None:
+        """Ledgered, additive, untaxed adult UBI. Does not replace benefits.
+
+        Per-recipient idempotency uses a transaction memo. Same-day retries
+        cannot duplicate completed transfers. Population locality is checked
+        using the same semantics-gated mechanism as unemployment benefits.
+        """
+        amount = int(self.p["ubi_amount_cents"])
+        if amount < 0:
+            raise ValueError("ubi_amount_cents cannot be negative")
+        if amount == 0:
+            return
+        min_age, max_age = int(self.p["ubi_min_age"]), int(self.p["ubi_max_age"])
+        if min_age < 0 or max_age < min_age:
+            raise ValueError("invalid UBI age eligibility")
+        citizens = self.store.query(
+            "SELECT id FROM agents WHERE alive=1 AND kind='citizen' "
+            "AND age BETWEEN ? AND ? ORDER BY id", (min_age, max_age))
+        total = recipients = 0
+        for row in citizens:
+            agent_id = int(row["id"])
+            if not self._is_local(agent_id, tick):
+                continue
+            acct = self.ledger.agent_checking_id(agent_id)
+            if acct is None:
+                continue
+            currency = str(self.store.scalar(
+                "SELECT currency_code FROM accounts WHERE id=?", (acct,),
+                default="USD") or "USD")
+            # Unique across policy, recipient, currency and scheduled day.
+            memo = f"sweden_ubi:v1:{tick}:{agent_id}:{currency}"
+            with self.store.savepoint("sweden_ubi_recipient"):
+                already_paid = self.store.scalar(
+                    "SELECT id FROM transactions WHERE kind='ubi_payment' "
+                    "AND memo=? LIMIT 1", (memo,), default=None)
+                if already_paid is not None:
+                    continue
+                gov = self.ledger.system_account(SYS_GOV, currency_code=currency)
+                self.ledger.post(tick, "ubi_payment", [
+                    Leg(acct, amount, "universal basic income"),
+                    Leg(gov, -amount, "UBI outlay")], memo=memo)
+                self.store.log_event(tick, "ubi_paid", {
+                    "agent_id": agent_id, "amount_cents": amount,
+                    "currency": currency}, phase="NIGHT_CLOSE",
+                    subject_type="agent", subject_id=agent_id, importance=0.8)
+            recipients += 1
+            total += amount
+        if recipients:
+            self.store.log_event(tick, "ubi_batch_paid", {
+                "recipients": recipients, "total_cents": total,
+                "treasury_cents": self.treasury_balance()},
+                phase="NIGHT_CLOSE", importance=1.5)
 
     # ── elections ────────────────────────────────────────────────────────────
     def hold_election(self, tick: int) -> dict:
