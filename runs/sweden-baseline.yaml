@@ -1,0 +1,25 @@
+# Sweden-inspired exploratory baseline. NOT calibrated to Sweden.
+# Existing recovery benchmark uses a USD-region; monetary values below are
+# model dollars and must NOT be presented as SEK. No LLM API calls.
+extends: life-course-recovery-benchmark.yaml
+seed: 1
+government:
+  enabled: true
+  # Illustrative flat withholding, NOT Swedish effective income taxation.
+  tax_rate_bps: 3000
+  unemployment_benefit_cents: 120000
+  benefit_interval_ticks: 30
+  # Freeze endogenous fiscal changes during the 180-tick comparison.
+  election_interval_ticks: 0
+  ubi_enabled: false
+  ubi_amount_cents: 0
+  ubi_interval_ticks: 30
+  ubi_first_tick: 30
+  ubi_min_age: 18
+  ubi_max_age: 120
+behavior:
+  inventory_aware_shopping: true
+  inventory_aware_shopping_include_staff: true
+  inventory_aware_shopping_reserve_bps: 2000
+# Deliberately preserve the qualified benchmark's small population and firms.
+# Future Swedish calibration and five archetypes need separate experiments.
