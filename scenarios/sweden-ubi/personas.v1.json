@@ -1,0 +1,80 @@
+{
+  "schema_version": 1,
+  "status": "design_baseline_not_bound_to_simulation",
+  "currency": "model_USD",
+  "experiment": {
+    "name": "Five Lives, One Reform",
+    "intervention_tick": 5,
+    "observation_ticks": 40,
+    "payment_interval_ticks": 30,
+    "treatment": "additive_untaxed_ubi_deficit_financed",
+    "paired_world_requirement": "shared_tick_4_checkpoint_not_yet_implemented"
+  },
+  "personas": [
+    {
+      "id": "marcus",
+      "display_name": "Marcus",
+      "age": 29,
+      "archetype": "unemployed_job_seeker",
+      "situation": "Unemployed adult looking for a stable job. Has limited liquid savings and depends partly on unemployment support.",
+      "goals": ["stable_income", "meaningful_work", "financial_buffer"],
+      "preferences": {"risk_tolerance": "low", "planning_horizon": "short", "education_openness": "high", "leisure_priority": "medium"},
+      "decision_tensions": ["Apply for a job now or invest time in retraining?", "Use new income for basic spending or emergency savings?"],
+      "candidate_actions": ["search_job", "apply_job", "save_cash", "buy_essential", "consider_training"],
+      "observable_outcomes": ["employment_status", "applications", "cash_balance", "benefits", "spending"],
+      "economic_state": "MUST_BE_BACKED_BY_ENGINE_DATA"
+    },
+    {
+      "id": "sara",
+      "display_name": "Sara",
+      "age": 25,
+      "archetype": "low_income_worker",
+      "situation": "Lower-paid employee with unpredictable hours. Wants greater financial stability while keeping time for life outside work.",
+      "goals": ["stable_schedule", "financial_security", "career_progress"],
+      "preferences": {"risk_tolerance": "medium_low", "planning_horizon": "medium", "education_openness": "medium", "leisure_priority": "high"},
+      "decision_tensions": ["Accept more hours or protect time?", "Stay with a familiar employer or apply for a better position?"],
+      "candidate_actions": ["accept_shift", "search_job", "save_cash", "buy_essential"],
+      "observable_outcomes": ["hours_worked", "income", "employment_status", "cash_balance", "spending"],
+      "economic_state": "MUST_BE_BACKED_BY_ENGINE_DATA"
+    },
+    {
+      "id": "johan",
+      "display_name": "Johan",
+      "age": 38,
+      "archetype": "median_income_worker",
+      "situation": "Employed at a middle income. Balances longer-term savings against time with family.",
+      "goals": ["household_stability", "savings", "family_time"],
+      "preferences": {"risk_tolerance": "medium", "planning_horizon": "long", "education_openness": "medium", "leisure_priority": "high"},
+      "decision_tensions": ["Increase saving or improve the household's present quality of life?", "Would reduced hours be worth lower pay?"],
+      "candidate_actions": ["save_cash", "buy_good", "consider_hours_change"],
+      "observable_outcomes": ["income", "cash_balance", "spending", "hours_worked"],
+      "economic_state": "MUST_BE_BACKED_BY_ENGINE_DATA"
+    },
+    {
+      "id": "helena",
+      "display_name": "Helena",
+      "age": 44,
+      "archetype": "high_income_professional",
+      "situation": "Higher-paid professional with accumulated savings and greater spending flexibility.",
+      "goals": ["long_term_financial_security", "career_growth", "autonomy"],
+      "preferences": {"risk_tolerance": "medium", "planning_horizon": "long", "education_openness": "medium", "leisure_priority": "medium"},
+      "decision_tensions": ["How does a change in taxes and transfers affect her budget?", "Save, invest, or consume additional resources?"],
+      "candidate_actions": ["save_cash", "invest", "buy_good"],
+      "observable_outcomes": ["wages", "taxes", "cash_balance", "assets", "spending"],
+      "economic_state": "MUST_BE_BACKED_BY_ENGINE_DATA"
+    },
+    {
+      "id": "alexander",
+      "display_name": "Alexander",
+      "age": 41,
+      "archetype": "business_founder",
+      "situation": "Owner-manager of a company. Weighs household security against payroll, inventory and growth.",
+      "goals": ["business_survival", "sustainable_growth", "employee_retention"],
+      "preferences": {"risk_tolerance": "medium_high", "planning_horizon": "long", "education_openness": "high", "leisure_priority": "medium"},
+      "decision_tensions": ["Hire or preserve cash?", "Invest in stock and equipment or wait for more demand?"],
+      "candidate_actions": ["consider_hiring", "consider_investment", "adjust_price", "save_cash"],
+      "observable_outcomes": ["firm_balance", "employees", "firm_sales", "inventory", "personal_cash_balance"],
+      "economic_state": "MUST_BE_BACKED_BY_ENGINE_DATA"
+    }
+  ]
+}
