@@ -1,0 +1,16 @@
+# Milestone 2: day-5 demonstration, control arm.
+# Run as a fresh world. No medborgarlon is paid in this arm.
+# Time zero is genesis; day 5 is the policy intervention boundary.
+extends: sweden-baseline.yaml
+government:
+  enabled: true
+  tax_rate_bps: 3000
+  unemployment_benefit_cents: 120000
+  benefit_interval_ticks: 30
+  election_interval_ticks: 0
+  ubi_enabled: false
+  ubi_amount_cents: 0
+  ubi_interval_ticks: 30
+  ubi_first_tick: 5
+  ubi_min_age: 18
+  ubi_max_age: 120
