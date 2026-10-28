@@ -1,0 +1,17 @@
+# Milestone 2: day-5 demonstration, treatment arm.
+# The initial payment happens on tick 5, followed by ticks 35, 65, etc.
+# NOTE: additive, deficit-financed, model USD (not SEK).
+# Pairing by seed is exploratory; shared checkpoint split not yet implemented.
+extends: sweden-baseline.yaml
+government:
+  enabled: true
+  tax_rate_bps: 3000
+  unemployment_benefit_cents: 120000
+  benefit_interval_ticks: 30
+  election_interval_ticks: 0
+  ubi_enabled: true
+  ubi_amount_cents: 1500000
+  ubi_interval_ticks: 30
+  ubi_first_tick: 5
+  ubi_min_age: 18
+  ubi_max_age: 120
