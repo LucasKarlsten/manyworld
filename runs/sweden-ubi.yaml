@@ -1,0 +1,17 @@
+# Treatment arm: extends the SAME Swedish-inspired baseline.
+# UBI paid every 30 days from tick 30 to eligible adult citizens.
+# This is additive, untaxed, deficit-financed within the model.
+# 1500000 cents = 15000 *MODEL USD*, not SEK. No FX conversion implied.
+extends: sweden-baseline.yaml
+government:
+  enabled: true
+  tax_rate_bps: 3000
+  unemployment_benefit_cents: 120000
+  benefit_interval_ticks: 30
+  election_interval_ticks: 0
+  ubi_enabled: true
+  ubi_amount_cents: 1500000
+  ubi_interval_ticks: 30
+  ubi_first_tick: 30
+  ubi_min_age: 18
+  ubi_max_age: 120
