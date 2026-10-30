@@ -53,7 +53,7 @@ async def run(args) -> dict:
         "note": "Synthetic fixture, not read from a Manyworld run",
     }
     prompt = (
-        "You are acting as a synthetic economic agent, not a chatbot. "
+        "/no_think\nYou are acting as a synthetic economic agent, not a chatbot. "
         "Choose one action grounded in your personality and observed situation. "
         "Do not assume actions already happened. "
         "Return JSON with exactly: action (one of buy_essential, save_cash, "
@@ -68,10 +68,27 @@ async def run(args) -> dict:
         args.model,
         [{"role": "user", "content": prompt}],
         purpose="sweden_persona_smoke",
-        max_tokens=200,
+        max_tokens=args.max_tokens,
         temperature=0,
     )
-    decision = decode_decision(response.text)
+    if not response.text.strip():
+        choices = response.raw.get("choices") or [{}]
+        reason = choices[0].get("finish_reason", "unknown")
+        completion = (response.raw.get("usage") or {}).get("completion_tokens", "unknown")
+        raise RuntimeError(
+            f"Ollama returned empty message.content (finish_reason={reason}, "
+            f"completion_tokens={completion}). Qwen3 may have spent its output "
+            "budget in thinking mode. This smoke test sends /no_think and "
+            "allows a larger token budget."
+        )
+    try:
+        decision = decode_decision(response.text)
+    except ValueError as exc:
+        snippet = response.text.strip()[:160]
+        raise RuntimeError(
+            f"Model returned invalid decision JSON (characters={len(response.text)}, "
+            f"preview={snippet!r}). No action was executed."
+        ) from exc
     return {
         "status": "real_provider_reply_validated",
         "persona": persona["id"],
@@ -88,6 +105,7 @@ def main() -> None:
     parser.add_argument("--model", default=os.getenv("OLLAMA_MODEL", "qwen3:4b"))
     parser.add_argument("--base-url", default="http://127.0.0.1:11434/v1")
     parser.add_argument("--timeout", type=float, default=90)
+    parser.add_argument("--max-tokens", type=int, default=1024)
     args = parser.parse_args()
     print(json.dumps(asyncio.run(run(args)), ensure_ascii=False, indent=2))
 
